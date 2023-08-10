@@ -16,6 +16,11 @@ module.exports = {
       },
     },
     extend: {
+      fontFamily: {
+        montserrat: 'Montserrat',
+        poppins: 'Poppins',
+        urbanist: 'Urbanist',
+      },
       colors: {
         border: 'hsl(var(--border))',
         input: 'hsl(var(--input))',
@@ -49,6 +54,10 @@ module.exports = {
         card: {
           DEFAULT: 'hsl(var(--card))',
           foreground: 'hsl(var(--card-foreground))',
+        },
+        dashboard: {
+          DEFAULT: 'white',
+          background: '#E6EFF6',
         },
       },
       borderRadius: {

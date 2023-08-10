@@ -1,0 +1,7 @@
+@import url('https://fonts.cdnfonts.com/css/poppins');
+@import url('https://fonts.cdnfonts.com/css/montserrat');
+@import url('https://fonts.googleapis.com/css?family=Urbanist&display=swap');
+
+* {
+  font-family: 'Montserrat', 'Poppins', 'Urbanist', sans-serif;
+}

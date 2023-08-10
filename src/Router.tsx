@@ -1,23 +1,30 @@
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 
+import Auth from '@/pages/auth';
 import AuthLayout from '@/pages/auth/layout';
+import DashboardLayout from '@/pages/dashboard/layout';
 import Home from '@/pages/Home';
-import Login from '@/pages/auth/Login';
-import Register from '@/pages/auth/Register';
+import Logout from '@/components/widgets/auth/Logout';
+import NotFound from '@/pages/NotFound';
+import { useAuthContext } from '@/context/AuthContext';
 
 export default function Router() {
+  const { isAuth } = useAuthContext();
+
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/">
-          <Route index element={<Home />} />
-          <Route path="auth" element={<AuthLayout />}>
-            <Route index element={<Login />} />
-            <Route path="login" element={<Login />} />
-            <Route path="register" element={<Register />} />
-          </Route>
+    <Routes>
+      <Route path="/">
+        <Route index element={<Home />} />
+        <Route path="auth" element={<AuthLayout />}>
+          <Route index element={<Auth />} />
         </Route>
-      </Routes>
-    </BrowserRouter>
+        <Route path="logout" element={<Logout />} />
+
+        {isAuth === true && (
+          <Route path="dashboard" element={<DashboardLayout />}></Route>
+        )}
+        <Route path="*" element={<NotFound />}></Route>
+      </Route>
+    </Routes>
   );
 }
