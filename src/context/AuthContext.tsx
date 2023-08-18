@@ -66,7 +66,7 @@ export const AuthProvider: React.FC<IAuthProviderProps> = ({ children }) => {
     }
 
     if (location.pathname !== '/auth') {
-      if (!isAuth) navigate('/auth');
+      if (!authToken) navigate('/auth');
     }
   }, [isAuth, location, navigate]);
 

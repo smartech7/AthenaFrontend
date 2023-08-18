@@ -39,15 +39,15 @@ const RightSidebar: React.FC<IRightSidebarProps> = ({ open }) => {
   return (
     <div
       className={cn(
-        'basis-[500px] w-[500px] bg-dashboard-background',
+        'lg:basis-[500px] w-full lg:w-[500px] bg-dashboard-background',
         open === false ? 'hidden' : 'block'
       )}
     >
-      <div className="bg-white px-6 py-10">
+      <div className="px-6 py-10 bg-white">
         <div className="bg-[url(/images/demo_1.jpg)] bg-cover w-full h-[300px] bg-center rounded-t-2xl"></div>
       </div>
 
-      <div className="bg-white rounded-t-2xl mt-10 px-6 py-6">
+      <div className="px-6 py-6 mt-10 bg-white rounded-t-2xl">
         <div className="flex items-center gap-4">
           <Avatar user={user} />
           <div>
@@ -57,35 +57,35 @@ const RightSidebar: React.FC<IRightSidebarProps> = ({ open }) => {
             </a>
           </div>
         </div>
-        <div className="mt-5 flex justify-evenly">
+        <div className="flex mt-5 justify-evenly">
           <TooltipProvider>
             <Tooltip>
-              <TooltipTrigger className="bg-transparent border-none flex flex-col items-center gap-2">
+              <TooltipTrigger className="flex flex-col items-center gap-2 bg-transparent border-none">
                 <p className="text-[22px] text-black font-extrabold">160</p>
                 <p className="text-[13px] text-[#151515] opacity-[0.63] font-semibold">
                   Your daily friend requests!
                 </p>
               </TooltipTrigger>
-              <TooltipContent className="bg-black text-white">
+              <TooltipContent className="text-white bg-black">
                 <p>Growing Connections</p>
               </TooltipContent>
             </Tooltip>
           </TooltipProvider>
           <TooltipProvider>
             <Tooltip>
-              <TooltipTrigger className="bg-transparent border-none flex flex-col items-center gap-2">
+              <TooltipTrigger className="flex flex-col items-center gap-2 bg-transparent border-none">
                 <p className="text-[22px] text-black font-extrabold">10</p>
                 <p className="text-[13px] text-[#151515] opacity-[0.63] font-semibold">
                   Your daily tally of gifts!
                 </p>
               </TooltipTrigger>
-              <TooltipContent className="bg-black text-white">
+              <TooltipContent className="text-white bg-black">
                 <p>Daily surprise</p>
               </TooltipContent>
             </Tooltip>
           </TooltipProvider>
         </div>
-        <div className="mt-5 bg-white flex justify-between px-10 gap-4 items-center">
+        <div className="flex items-center justify-between gap-4 px-10 mt-5 bg-white">
           <p className="font-semibold text-[17px] text-[#515151]">Wallet</p>
           <div className="flex gap-1">
             <img src="/images/money.svg" width={24} height={24} />
@@ -94,11 +94,11 @@ const RightSidebar: React.FC<IRightSidebarProps> = ({ open }) => {
         </div>
       </div>
 
-      <div className="bg-white mt-10 rounded-t-2xl px-6 py-6">
+      <div className="px-6 py-6 mt-10 bg-white rounded-t-2xl">
         <h4 className="text-[18px] text-[#B5B5B5] font-semibold font-inter">
           Trending Topics
         </h4>
-        <div className="mt-4 flex flex-wrap gap-2">
+        <div className="flex flex-wrap gap-2 mt-4">
           <Tag>#Donamix</Tag>
           <Tag>#DDD</Tag>
           <Tag>#Cookieclicker</Tag>
@@ -107,8 +107,8 @@ const RightSidebar: React.FC<IRightSidebarProps> = ({ open }) => {
         </div>
       </div>
 
-      <div className="bg-white mt-10 rounded-t-2xl px-6 py-6">
-        <div className='flex justify-between items-center'>
+      <div className="px-6 py-6 mt-10 bg-white rounded-t-2xl">
+        <div className='flex items-center justify-between'>
           <h4 className="text-[18px] text-[#B5B5B5] font-semibold font-inter">
             Featured Members
           </h4>
@@ -116,7 +116,7 @@ const RightSidebar: React.FC<IRightSidebarProps> = ({ open }) => {
             See all
           </Button>
         </div>
-        <div className='mt-6 flex flex-col gap-6'>
+        <div className='flex flex-col gap-6 mt-6'>
           {featuredMembers.map((item, i) => (
             <FeaturedMemberItem key={`featured-member-${i}`} item={item} />
           ))}

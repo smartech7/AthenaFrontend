@@ -1,4 +1,4 @@
-import { BiChevronDown, BiSearch, BiSolidBell } from 'react-icons/bi';
+import { BiChevronDown, BiMenu, BiSearch, BiSolidBell } from 'react-icons/bi';
 import {
   BsFillChatSquareDotsFill,
   BsMoonFill,
@@ -10,6 +10,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
+import { Menu, MenuHandler, MenuItem, MenuList } from '@material-tailwind/react';
 
 import Avatar from '@/components/common/Avatar';
 import { Button } from '@/components/ui/button';
@@ -19,6 +20,76 @@ import { useNavigate } from 'react-router-dom';
 const Navbar = () => {
   const navigate = useNavigate();
   const { user } = useAuthContext();
+
+  const MobileNavs = (
+    <Menu>
+      <MenuHandler>
+        <Button variant='secondary' size='icon'>
+          <BiMenu />
+        </Button>
+      </MenuHandler>
+      <MenuList>
+        <MenuItem>Home</MenuItem>
+        <Menu placement="right-start" offset={15}>
+          <MenuHandler>
+            <MenuItem>Newsfeed</MenuItem>
+          </MenuHandler>
+          <MenuList>
+            <MenuItem>Newsfeed</MenuItem>
+            <MenuItem>People Nearby</MenuItem>
+            <MenuItem>My friends</MenuItem>
+            <MenuItem>Inbox</MenuItem>
+          </MenuList>
+        </Menu>
+        <Menu placement="right-start" offset={15}>
+          <MenuHandler>
+            <MenuItem>My Profile</MenuItem>
+          </MenuHandler>
+          <MenuList>
+            <MenuItem>View My Profile</MenuItem>
+            <MenuItem>Edit Profile</MenuItem>
+            <MenuItem>Profile Picture</MenuItem>
+            <MenuItem>My Articles</MenuItem>
+            <MenuItem>My Classifieds</MenuItem>
+            <MenuItem>My Jobs</MenuItem>
+            <MenuItem>My Friends</MenuItem>
+            <MenuItem>My Photos</MenuItem>
+            <MenuItem>My Gifts</MenuItem>
+            <MenuItem>Add new article</MenuItem>
+          </MenuList>
+        </Menu>
+        <Menu placement="right-start" offset={15}>
+          <MenuHandler>
+            <MenuItem>Group Chat</MenuItem>
+          </MenuHandler>
+          <MenuList>
+            <MenuItem>Download</MenuItem>
+            <MenuItem>Embeded Code</MenuItem>
+            <MenuItem>All Chat room</MenuItem>
+            <MenuItem>Chat Rules</MenuItem>
+            <MenuItem>Administration</MenuItem>
+            <MenuItem>Mobile Chat</MenuItem>
+          </MenuList>
+        </Menu>
+        <MenuItem>Blog</MenuItem>
+        <Menu placement="right-start" offset={15}>
+          <MenuHandler>
+            <MenuItem>Explore</MenuItem>
+          </MenuHandler>
+          <MenuList>
+            <MenuItem>Classifieds</MenuItem>
+            <MenuItem>Banners</MenuItem>
+            <MenuItem>Radio</MenuItem>
+            <MenuItem>Browse</MenuItem>
+            <MenuItem>Forums</MenuItem>
+            <MenuItem>Who we are?</MenuItem>
+            <MenuItem>Contact Us</MenuItem>
+            <MenuItem>Logout</MenuItem>
+          </MenuList>
+        </Menu>
+      </MenuList>
+    </Menu>
+  )
 
   return (
     <div className="fixed top-0 left-0 w-screen px-10 z-[9900] bg-white h-[72px] flex items-center justify-between gap-5">

@@ -4,10 +4,10 @@ import RightSidebar from '@/pages/dashboard/layout/RightSidebar';
 
 const DashboardLayout = () => {
   return (
-    <div className="flex">
+    <div className="flex flex-col lg:flex-row">
       <LeftSidebar />
-      <div className="bg-white flex-1">
-        <div className="bg-dashboard-background w-full h-full rounded-t-[20px]">
+      <div className="flex-1 bg-white">
+        <div className="w-full h-full bg-dashboard-background">
           <Outlet />
         </div>
       </div>

@@ -34,12 +34,12 @@ const BlogDetail = () => {
     }
   }, [params]);
 
-  if (isLoading || !item) return <Spinner />;
+  if (isLoading || !item) return (<div className='items-center justify-center flex w-full h-[300px]'><Spinner /></div>);
 
   return (
     <div className="w-full p-6">
       <div
-        className="h-[370px] rounded-t-2xl relative flex flex-col justify-end"
+        className="h-[370px] rounded-t-2xl relative flex flex-col justify-end bg-cover bg-center"
         style={{ backgroundImage: `url(${item.banner})` }}
       >
         <div className="flex flex-col justify-end w-full p-8 h-1/2 bg-gradient-to-b from-black/0 to-black/60">

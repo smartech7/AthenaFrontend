@@ -44,9 +44,9 @@ const SidebarMenuItem: React.FC<ISidebarMenuItemProps> = ({
       )}
       onClick={onSelect}
     >
-      <div className="h-2 rounded-br-full bg-white"></div>
+      <div className="h-2 bg-white rounded-br-full"></div>
       <div className="relative w-full h-[75px]">
-        <div className="absolute left-0 top-0 h-full z-0 w-10 bg-white"></div>
+        <div className="absolute top-0 left-0 z-0 w-10 h-full bg-white"></div>
         <div className="w-full h-full px-2">
           <div
             className={cn(
@@ -65,7 +65,7 @@ const SidebarMenuItem: React.FC<ISidebarMenuItemProps> = ({
           </div>
         </div>
       </div>
-      <div className="h-2 rounded-tr-full bg-white"></div>
+      <div className="h-2 bg-white rounded-tr-full"></div>
     </div>
   );
 };
@@ -80,8 +80,8 @@ const LeftSidebar: React.FC<ILeftSidebarProps> = ({ open }) => {
   return (
     <div
       className={cn(
-        'basis-[300px] w-[300px] bg-dashboard-background',
-        open === false ? 'hidden' : 'block'
+        'basis-[300px] w-[300px] bg-dashboard-background hidden 2xl:block',
+        // open === false ? 'hidden' : 'block'
       )}
     >
       <div className="w-full py-4 bg-white rounded-br-lg">
@@ -229,7 +229,7 @@ const LeftSidebar: React.FC<ILeftSidebarProps> = ({ open }) => {
         </div>
       </div>
 
-      <div className="w-full py-4 bg-white rounded-r-lg mt-8">
+      <div className="w-full py-4 mt-8 bg-white rounded-r-lg">
         <big className="p-5">Settings</big>
         <SidebarMenuItem selected={false} onSelect={() => setSelectedMenu(13)}>
           <big>
@@ -251,7 +251,7 @@ const LeftSidebar: React.FC<ILeftSidebarProps> = ({ open }) => {
         </SidebarMenuItem>
       </div>
 
-      <div className="w-full py-4 px-8 bg-white rounded-r-lg mt-8">
+      <div className="w-full px-8 py-4 mt-8 bg-white rounded-r-lg">
         <img src="/images/big_sale.png" width="100%" height="100%" />
       </div>
 

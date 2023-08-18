@@ -68,7 +68,7 @@ const BlogCreate = () => {
         <CardBody>
           <h4 className="text-black font-inter text-[22px]">Create Blog</h4>
           <div
-            className="bg-primary h-[300px] w-full mt-5 rounded-t-3xl flex items-center justify-center"
+            className="bg-primary h-[300px] w-full mt-5 rounded-t-3xl flex items-center justify-center bg-cover bg-center"
             style={{
               backgroundImage: input.banner ? `url(${input.banner})` : '',
             }}
