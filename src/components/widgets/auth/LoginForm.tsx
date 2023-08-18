@@ -8,7 +8,6 @@ import { Loader2 } from 'lucide-react';
 import axios from 'axios';
 import { login } from '@/api/auth';
 import toast from 'react-hot-toast';
-import { useAuthContext } from '@/context/AuthContext';
 import { useNavigate } from 'react-router-dom';
 
 export type LoginUser = {
@@ -18,7 +17,6 @@ export type LoginUser = {
 
 export default function LoginForm() {
   const navigate = useNavigate();
-  const { setIsAuth } = useAuthContext();
   const [isLoading, setLoading] = useState<boolean>(false);
   const [input, setInput] = useState<LoginUser>({
     email: '',
@@ -39,13 +37,11 @@ export default function LoginForm() {
       .then((res) => {
         if (res.code === CONSTANTS.SUCCESS) {
           setAuthToken(res.token);
-          setIsAuth(true);
           axios.defaults.headers.common['Token'] = res.token;
-          navigate('/dashboard', { replace: true });
+          navigate('/');
           toast.success(res.message);
         } else {
           removeAuthToken();
-          setIsAuth(false);
           delete axios.defaults.headers.common['Token'];
           toast.error(res.message);
         }
@@ -57,8 +53,11 @@ export default function LoginForm() {
         setLoading(false);
       });
   };
+  const onGoogleLogin = () => {
+  }
+
   return (
-    <div className="flex flex-col gap-7 mt-10">
+    <div className="flex flex-col mt-10 gap-7">
       <div className="flex gap-4">
         <Button
           variant="secondary"
@@ -71,6 +70,7 @@ export default function LoginForm() {
           variant="secondary"
           size="icon"
           className="w-[60px] h-[60px] rounded-lg"
+          onClick={onGoogleLogin}
         >
           <img src="/images/facebook.svg" width={35} height={35} />
         </Button>
@@ -118,7 +118,7 @@ export default function LoginForm() {
         onClick={onSubmit}
         disabled={isLoading}
       >
-        {isLoading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
+        {isLoading && <Loader2 className="w-4 h-4 mr-2 animate-spin" />}
         Sign in
       </Button>
     </div>

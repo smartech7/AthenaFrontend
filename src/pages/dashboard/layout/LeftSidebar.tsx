@@ -84,10 +84,6 @@ const LeftSidebar: React.FC<ILeftSidebarProps> = ({ open }) => {
         open === false ? 'hidden' : 'block'
       )}
     >
-      <div className="bg-white flex items-center justify-center h-[100px]">
-        <img src="/images/black_logo.svg" width={200} height={530} />
-      </div>
-
       <div className="w-full py-4 bg-white rounded-br-lg">
         <div className="w-full bg-dashboard-background">
           <SidebarMenuItem

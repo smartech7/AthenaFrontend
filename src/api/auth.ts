@@ -122,3 +122,27 @@ export const logout = async () => {
   delete axios.defaults.headers.common['Token'];
   console.log('Log out');
 };
+
+export const getCurrentUser = async () => {
+  try {
+    const res = await axios.get(`${apiUrl}/auth/getinfo`);
+    
+    if (res.data.message === CONSTANTS.SUCCESS) {
+      return {
+        code: CONSTANTS.SUCCESS,
+        data: res.data.data
+      }
+    } else {
+      return {
+        code: CONSTANTS.FAILED,
+        message: res.data.status
+      }
+    }
+  } catch (err) {
+    console.log('Error while getting user info:', err);
+    return {
+      code: CONSTANTS.FAILED,
+      message: err
+    }
+  }
+}

@@ -5,7 +5,7 @@ const Logout = () => {
   const navigate = useNavigate();
 
   logout().then(() => {
-    navigate('/auth', { replace: true });
+    navigate('/auth');
   });
 
   return <></>;

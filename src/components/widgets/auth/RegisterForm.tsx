@@ -5,7 +5,7 @@ import { Button } from '@/components/ui/button';
 import CONSTANTS from '@/config/constants';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import { Loader2 } from 'lucide-react';
+import { Spinner } from '@material-tailwind/react';
 import { register } from '@/api/auth';
 import toast from 'react-hot-toast';
 
@@ -64,7 +64,7 @@ export default function RegisterForm() {
   };
 
   return (
-    <div className="flex flex-col gap-7 mt-10">
+    <div className="flex flex-col mt-10 gap-7">
       <div className="flex gap-4">
         <Button
           variant="secondary"
@@ -191,7 +191,7 @@ export default function RegisterForm() {
         onClick={onSubmit}
         disabled={isLoading}
       >
-        {isLoading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
+        {isLoading && <Spinner className="w-4 h-4 mr-2 animate-spin" />}
         Sign Up
       </Button>
     </div>
