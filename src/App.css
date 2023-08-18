@@ -1,0 +1,28 @@
+@import url('https://fonts.cdnfonts.com/css/poppins');
+@import url('https://fonts.cdnfonts.com/css/montserrat');
+@import url('https://fonts.cdnfonts.com/css/inter');
+@import url('https://fonts.googleapis.com/css?family=Urbanist&display=swap');
+
+* {
+  font-family: 'Montserrat', 'Poppins', 'Urbanist', 'Inter', sans-serif;
+}
+
+.react-datepicker-wrapper {
+  width: 100%;
+}
+
+.react-datepicker__input-container .react-datepicker__calendar-icon {
+  width: 40px;
+  height: 40px;
+  fill: black;
+  position: absolute;
+  right: 0;
+  top: 8px;
+}
+
+.react-datepicker__input-container > input {
+  width: 100%;
+  padding-block: 15px !important;
+  padding-inline: 8px !important;
+  border-radius: 8px;
+}

@@ -1,5 +1,7 @@
+const withMT = require('@material-tailwind/react/utils/withMT');
+
 /** @type {import('tailwindcss').Config} */
-module.exports = {
+module.exports = withMT({
   darkMode: ['class'],
   content: [
     './pages/**/*.{ts,tsx}',
@@ -16,6 +18,12 @@ module.exports = {
       },
     },
     extend: {
+      fontFamily: {
+        montserrat: 'Montserrat',
+        poppins: 'Poppins',
+        urbanist: 'Urbanist',
+        inter: 'Inter'
+      },
       colors: {
         border: 'hsl(var(--border))',
         input: 'hsl(var(--input))',
@@ -50,6 +58,10 @@ module.exports = {
           DEFAULT: 'hsl(var(--card))',
           foreground: 'hsl(var(--card-foreground))',
         },
+        dashboard: {
+          DEFAULT: 'white',
+          background: '#E6EFF6',
+        },
       },
       borderRadius: {
         lg: 'var(--radius)',
@@ -73,4 +85,4 @@ module.exports = {
     },
   },
   plugins: [require('tailwindcss-animate')],
-};
+});

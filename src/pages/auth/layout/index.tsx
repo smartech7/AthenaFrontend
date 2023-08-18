@@ -1,5 +1,5 @@
-import { Outlet } from 'react-router-dom';
 import LeftPanel from '@/pages/auth/layout/LeftPanel';
+import { Outlet } from 'react-router-dom';
 
 export default function AuthLayout() {
   return (
@@ -7,7 +7,7 @@ export default function AuthLayout() {
       <div className="flex-1 hidden lg:block">
         <LeftPanel />
       </div>
-      <div className="flex-1 px-4 overflow-y-scroll">
+      <div className="flex-1 px-4 overflow-y-auto">
         <Outlet />
       </div>
     </div>
