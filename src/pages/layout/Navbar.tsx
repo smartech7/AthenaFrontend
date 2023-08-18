@@ -1,4 +1,10 @@
-import { BiChevronDown, BiMenu, BiSearch, BiSolidBell } from 'react-icons/bi';
+import {
+  BiChevronDown,
+  BiChevronRight,
+  BiMenu,
+  BiSearch,
+  BiSolidBell,
+} from 'react-icons/bi';
 import {
   BsFillChatSquareDotsFill,
   BsMoonFill,
@@ -10,10 +16,16 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
-import { Menu, MenuHandler, MenuItem, MenuList } from '@material-tailwind/react';
+import {
+  Menu,
+  MenuHandler,
+  MenuItem,
+  MenuList,
+} from '@material-tailwind/react';
 
 import Avatar from '@/components/common/Avatar';
 import { Button } from '@/components/ui/button';
+import { MenuIcon } from 'lucide-react';
 import { useAuthContext } from '@/context/AuthContext';
 import { useNavigate } from 'react-router-dom';
 
@@ -24,15 +36,18 @@ const Navbar = () => {
   const MobileNavs = (
     <Menu>
       <MenuHandler>
-        <Button variant='secondary' size='icon'>
+        <Button variant="secondary" size="icon">
           <BiMenu />
         </Button>
       </MenuHandler>
-      <MenuList>
+      <MenuList className="text-base shadow-lg z-[9999] p-2">
         <MenuItem>Home</MenuItem>
         <Menu placement="right-start" offset={15}>
           <MenuHandler>
-            <MenuItem>Newsfeed</MenuItem>
+            <MenuItem className="flex justify-between">
+              Newsfeed
+              <BiChevronRight />
+            </MenuItem>
           </MenuHandler>
           <MenuList>
             <MenuItem>Newsfeed</MenuItem>
@@ -43,7 +58,10 @@ const Navbar = () => {
         </Menu>
         <Menu placement="right-start" offset={15}>
           <MenuHandler>
-            <MenuItem>My Profile</MenuItem>
+            <MenuItem className="flex justify-between">
+              My Profile
+              <BiChevronRight />
+            </MenuItem>
           </MenuHandler>
           <MenuList>
             <MenuItem>View My Profile</MenuItem>
@@ -60,7 +78,10 @@ const Navbar = () => {
         </Menu>
         <Menu placement="right-start" offset={15}>
           <MenuHandler>
-            <MenuItem>Group Chat</MenuItem>
+            <MenuItem className="flex justify-between">
+              Group Chat
+              <BiChevronRight />
+            </MenuItem>
           </MenuHandler>
           <MenuList>
             <MenuItem>Download</MenuItem>
@@ -74,7 +95,10 @@ const Navbar = () => {
         <MenuItem>Blog</MenuItem>
         <Menu placement="right-start" offset={15}>
           <MenuHandler>
-            <MenuItem>Explore</MenuItem>
+            <MenuItem className="flex justify-between">
+              Explore
+              <BiChevronRight />
+            </MenuItem>
           </MenuHandler>
           <MenuList>
             <MenuItem>Classifieds</MenuItem>
@@ -89,14 +113,15 @@ const Navbar = () => {
         </Menu>
       </MenuList>
     </Menu>
-  )
+  );
 
   return (
     <div className="fixed top-0 left-0 w-screen px-10 z-[9900] bg-white h-[72px] flex items-center justify-between gap-5">
       <div className="basis-[300px] w-[300px]">
         <img src="/images/black_logo.svg" />
       </div>
-      <div className="flex gap-2">
+      <div className="flex-1 2xl:hidden">{MobileNavs}</div>
+      <div className="hidden gap-2 2xl:flex">
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <Button
@@ -282,16 +307,16 @@ const Navbar = () => {
       </div>
 
       <div className="flex items-center gap-3">
-        <Button className="rounded-full" size="icon">
+        <Button className="hidden rounded-full md:flex" size="icon">
           <BsFillChatSquareDotsFill />
         </Button>
-        <Button className="rounded-full" size="icon">
+        <Button className="hidden rounded-full md:flex" size="icon">
           <BiSolidBell />
         </Button>
-        <Button className="rounded-full" size="icon">
+        <Button className="hidden rounded-full md:flex" size="icon">
           <BsPeopleFill />
         </Button>
-        <Button className="rounded-full" size="icon">
+        <Button className="hidden rounded-full md:flex" size="icon">
           <BsMoonFill />
         </Button>
         <div className="flex items-center gap-2">
