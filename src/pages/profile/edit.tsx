@@ -128,8 +128,8 @@ const ProfileEdit: React.FC<IProfileEditProps> = () => {
         }}
       >
         <FileUpload
-          onSuccess={(data) => {
-            setCoverPhoto(data.url);
+          onSuccess={({ url }: { url: string }) => {
+            setCoverPhoto(url);
           }}
         >
           <Button

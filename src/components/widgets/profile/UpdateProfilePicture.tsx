@@ -71,8 +71,8 @@ const UpdateProfilePicture = () => {
       >
         <div>
           <FileUpload
-            onSuccess={(data) => {
-              setCoverPhoto(data.url);
+            onSuccess={({ url }: { url: string }) => {
+              setCoverPhoto(url);
             }}
           >
             <Button
@@ -99,8 +99,8 @@ const UpdateProfilePicture = () => {
             />
 
             <FileUpload
-              onSuccess={(data) => {
-                setAvatar(data.url);
+              onSuccess={({ url }: { url: string }) => {
+                setAvatar(url);
               }}
             >
               <Button
