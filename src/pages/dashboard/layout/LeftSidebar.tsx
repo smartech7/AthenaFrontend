@@ -70,11 +70,7 @@ const SidebarMenuItem: React.FC<ISidebarMenuItemProps> = ({
   );
 };
 
-interface ILeftSidebarProps {
-  open?: boolean;
-}
-
-const LeftSidebar: React.FC<ILeftSidebarProps> = ({ open }) => {
+const LeftSidebar = () => {
   const [selectedMenu, setSelectedMenu] = useState(0);
   const [isExpanded, setExpanded] = useState(false);
   return (
