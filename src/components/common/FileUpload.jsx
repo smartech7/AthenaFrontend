@@ -1,14 +1,8 @@
 import { useEffect, useRef } from "react";
 
 import CONSTANTS from "@/config/constants";
-import { Cloudinary } from '@cloudinary/url-gen'
 
-interface IFileUploadProps {
-  children: React.ReactNode;
-  onSuccess: (data: any) => void;
-}
-
-const FileUpload: React.FC<IFileUploadProps> = ({children, onSuccess}) => {
+const FileUpload = ({children, onSuccess}) => {
   const cloudinaryRef = useRef();
   const widgetRef = useRef();
 
@@ -18,8 +12,8 @@ const FileUpload: React.FC<IFileUploadProps> = ({children, onSuccess}) => {
     widgetRef.current = cloudinaryRef.current?.createUploadWidget({
       cloudName: import.meta.env.VITE_CLOUDINARY_NAME,
       uploadPreset: "iablofcf",
-    }, (err: any, res: any) => {
-      if (res.event === CONSTANTS.SUCCESS) {
+    }, (err, res) => {
+      if (!err && res.event === CONSTANTS.SUCCESS) {
         onSuccess(res.info);
       }
     })

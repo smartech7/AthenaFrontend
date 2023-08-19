@@ -25,7 +25,6 @@ import {
 
 import Avatar from '@/components/common/Avatar';
 import { Button } from '@/components/ui/button';
-import { MenuIcon } from 'lucide-react';
 import { useAuthContext } from '@/context/AuthContext';
 import { useNavigate } from 'react-router-dom';
 
