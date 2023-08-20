@@ -1,7 +1,8 @@
+import axios, { AxiosError } from 'axios';
+
 import CONSTANTS from '@/config/constants';
 import { LoginUser } from '@/components/widgets/auth/LoginForm';
 import { RegisterUser } from '@/components/widgets/auth/RegisterForm';
-import axios from 'axios';
 import { removeAuthToken } from '@/actions/auth';
 
 const apiUrl = import.meta.env.VITE_BACKEND_API as string;
@@ -91,30 +92,42 @@ export const register = async (data: RegisterUser) => {
 };
 
 export const login = async (data: LoginUser) => {
-  try {
-    const res = await axios.post(`${apiUrl}/auth/login`, data);
-
-    const { message, status } = res.data;
-
-    if (message === CONSTANTS.SUCCESS) {
-      return {
-        code: CONSTANTS.SUCCESS,
-        token: status,
-        message: 'Successfully Logged In!',
-      };
-    } else {
-      return {
-        code: CONSTANTS.FAILED,
-        message: status,
-      };
+  return new Promise<{ code: string; token?: string; message: string }>(
+    (resolve, reject) => {
+      axios
+        .post(`${apiUrl}/auth/login`, data)
+        .then((res) => {
+          if (res.data.message === CONSTANTS.SUCCESS) {
+            resolve({
+              code: CONSTANTS.SUCCESS,
+              token: res.data.status,
+              message: 'Successfully Logged In!',
+            });
+          } else {
+            console.log(res);
+            reject({
+              code: CONSTANTS.FAILED,
+              message: res.data.status,
+            });
+          }
+        })
+        .catch((err: AxiosError) => {
+          console.log('Error while logging in:', err);
+          reject({
+            code: CONSTANTS.FAILED,
+            message: err.response
+              ? err.response.status
+              : 'Failed with unknown error.',
+          });
+        })
+        .finally(() => {
+          reject({
+            code: CONSTANTS.FAILED,
+            message: 'Failed with unknown error.',
+          });
+        });
     }
-  } catch (err) {
-    console.log('Error while logging in:', err);
-    return {
-      code: CONSTANTS.FAILED,
-      message: 'Login Failed',
-    };
-  }
+  );
 };
 
 export const logout = async () => {
@@ -126,23 +139,23 @@ export const logout = async () => {
 export const getCurrentUser = async () => {
   try {
     const res = await axios.get(`${apiUrl}/auth/getinfo`);
-    
+
     if (res.data.message === CONSTANTS.SUCCESS) {
       return {
         code: CONSTANTS.SUCCESS,
-        data: res.data.data
-      }
+        data: res.data.data,
+      };
     } else {
       return {
         code: CONSTANTS.FAILED,
-        message: res.data.status
-      }
+        message: res.data.status,
+      };
     }
   } catch (err) {
     console.log('Error while getting user info:', err);
     return {
       code: CONSTANTS.FAILED,
-      message: err
-    }
+      message: err,
+    };
   }
-}
+};

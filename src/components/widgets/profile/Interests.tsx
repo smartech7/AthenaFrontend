@@ -17,15 +17,15 @@ const Interests = () => {
   const [interests, setInterests] = useState<MultiValue<Option>>([]);
   const [isSaving, setIsSaving] = useState<boolean>(false);
 
-  // useEffect(() => {
-  //   if (user && user.interests) {
-  //     setInterests(
-  //       options.filter((val) =>
-  //         user.interests ? user.interests.includes(val.value) : false
-  //       )
-  //     );
-  //   }
-  // }, [user]);
+  useEffect(() => {
+    if (user && user.interests) {
+      setInterests(
+        options.filter((val) =>
+          user.interests ? user.interests.includes(val.value) : false
+        )
+      );
+    }
+  }, [user]);
 
   useEffect(() => {
     

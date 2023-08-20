@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
 
 import { Album } from '@/lib/validation/album';
-import AlbumCard from './AlbumCard';
+import AlbumCard from '@/components/widgets/profile/AlbumCard';
 import { Button } from '@/components/ui/button';
-import CreateAlbumDialog from './CreateAlbumDialog';
+import CreateAlbumDialog from '@/components/widgets/profile/CreateAlbumDialog';
 import { Spinner } from '@material-tailwind/react';
 import { getMyAlbums } from '@/api/album';
 import { useAuthContext } from '@/context/AuthContext';
@@ -37,6 +37,13 @@ const Albums = () => {
 
   const onCloseCreateModal = () => {
     setIsCreateModalOpen(false);
+    getMyAlbums()
+      .then((res) => {
+        if (res && res.data) setAlbums(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   return (
