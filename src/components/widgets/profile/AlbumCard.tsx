@@ -47,26 +47,44 @@ const AlbumCard: React.FC<IAlbumCardProps> = ({ item }) => {
             desktop: {
               breakpoint: {
                 max: 3000,
-                min: 1024,
+                min: 1400,
               },
               items: 3,
-              partialVisibilityGutter: 40,
             },
-            mobile: {
+            mobilelg: {
               breakpoint: {
-                max: 464,
+                max: 1100,
+                min: 960,
+              },
+              items: 1,
+            },
+            mobilemd: {
+              breakpoint: {
+                max: 960,
+                min: 850,
+              },
+              items: 3,
+            },
+            mobilesm: {
+              breakpoint: {
+                max: 850,
+                min: 650,
+              },
+              items: 2,
+            },
+            mobilexs: {
+              breakpoint: {
+                max: 650,
                 min: 0,
               },
               items: 1,
-              partialVisibilityGutter: 30,
             },
             tablet: {
               breakpoint: {
-                max: 1024,
-                min: 464,
+                max: 1400,
+                min: 1100,
               },
               items: 2,
-              partialVisibilityGutter: 30,
             },
           }}
           rewind={false}
