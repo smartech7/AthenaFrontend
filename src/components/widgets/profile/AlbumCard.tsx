@@ -15,7 +15,7 @@ interface IAlbumCardProps {
 const AlbumCard: React.FC<IAlbumCardProps> = ({ item }) => {
   return (
     <div className="bg-white rounded-t-[26px] p-4">
-      <div className="flex justify-between gap-3">
+      <div className="flex justify-between gap-3 mx-auto">
         <h4 className="text-black text-[24px] font-medium">{item.title}</h4>
 
         {/* <Button size="icon" variant="ghost">

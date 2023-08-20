@@ -37,6 +37,13 @@ const Albums = () => {
 
   const onCloseCreateModal = () => {
     setIsCreateModalOpen(false);
+    getMyAlbums()
+      .then((res) => {
+        if (res && res.data) setAlbums(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   return (

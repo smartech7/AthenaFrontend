@@ -1,12 +1,14 @@
 import { FaCircleUser, FaGraduationCap } from 'react-icons/fa6';
 import { MdBlock, MdFavorite } from 'react-icons/md';
 import {
+  Spinner,
   Tab,
   TabPanel,
   Tabs,
   TabsBody,
   TabsHeader,
 } from '@material-tailwind/react';
+import { User, userValidator } from '@/lib/validation/user';
 import { useEffect, useState } from 'react';
 
 import AccountSettings from '@/components/widgets/profile/AccountSettings';
@@ -15,6 +17,7 @@ import Avatar from '@/components/common/Avatar';
 import BasicInformation from '@/components/widgets/profile/BasicInformation';
 import { BiSolidPhotoAlbum } from 'react-icons/bi';
 import { Button } from '@/components/ui/button';
+import CONSTANTS from '@/config/constants';
 import ChangePassword from '@/components/widgets/profile/ChangePassword';
 import EducationAndWork from '@/components/widgets/profile/EducationAndWork';
 import FileUpload from '@/components/common/FileUpload';
@@ -23,6 +26,8 @@ import Interests from '@/components/widgets/profile/Interests';
 import { IoMdInformationCircle } from 'react-icons/io';
 import UpdateProfilePicture from '@/components/widgets/profile/UpdateProfilePicture';
 import { cn } from '@/lib/utils';
+import { toast } from 'react-hot-toast';
+import { updateUser } from '@/api/users';
 import { useAuthContext } from '@/context/AuthContext';
 
 const options = [
@@ -106,14 +111,23 @@ interface IProfileEditProps {}
 
 const ProfileEdit: React.FC<IProfileEditProps> = () => {
   const [tab, setTab] = useState<string>('0');
-  const { user } = useAuthContext();
+  const { user, reload } = useAuthContext();
   const [coverPhoto, setCoverPhoto] = useState<string | null | undefined>(null);
+  const [isSavingCoverPhoto, setIsSavingCoverPhoto] = useState<boolean>(false);
 
   useEffect(() => {
     if (user && user.banner) {
       setCoverPhoto(user.banner);
     }
   }, [user]);
+
+  if (!user) {
+    return (
+      <div className="flex items-center justify-center w-full h-full">
+        <Spinner color="blue" />
+      </div>
+    );
+  }
 
   return (
     <div>
@@ -130,11 +144,39 @@ const ProfileEdit: React.FC<IProfileEditProps> = () => {
         <FileUpload
           onSuccess={({ url }: { url: string }) => {
             setCoverPhoto(url);
+            console.log(user, url);
+
+            if (!user) return;
+            setIsSavingCoverPhoto(true);
+            console.log(url);
+
+            const newUser: User = userValidator.parse({
+              ...user,
+              banner: url,
+            });
+
+            updateUser(user._id, newUser)
+              .then((res) => {
+                if (res.code === CONSTANTS.SUCCESS) {
+                  reload();
+                  console.log(res);
+                  toast.success(res.message);
+                } else {
+                  toast.error(res.message);
+                }
+              })
+              .catch((err) => {
+                console.warn(err);
+              })
+              .finally(() => {
+                setIsSavingCoverPhoto(false);
+              });
           }}
         >
           <Button
             variant="secondary"
             className="absolute text-base font-medium text-black right-4 bottom-4"
+            disabled={isSavingCoverPhoto}
           >
             Edit Cover Photo
           </Button>
@@ -142,15 +184,15 @@ const ProfileEdit: React.FC<IProfileEditProps> = () => {
       </div>
       <div className="relative z-30 w-full">
         <Tabs value={tab} orientation="vertical" className="overflow-visible">
-          <div className="w-[380px] bg-white">
-            <div className="flex justify-center h-[85px]">
+          <div className="w-[50px] lg:w-[380px] bg-white">
+            <div className="flex justify-center h-[60px] lg:h-[85px]">
               <Avatar
-                className="w-[170px] h-[170px] -translate-y-1/2 text-[40px] font-bold border-white border-4 p-0"
+                className="w-[50px] h-[50px] lg:w-[170px] lg:h-[170px] lg:-translate-y-1/2 text-[40px] font-bold border-white border-4 p-0"
                 user={user}
               />
             </div>
 
-            <div className="flex flex-col items-center gap-1">
+            <div className="lg:flex flex-col items-center gap-1 hidden">
               <h4 className="text-black font-inter text-[21px] font-bold mt-4">
                 {user?.name}
               </h4>
@@ -159,9 +201,9 @@ const ProfileEdit: React.FC<IProfileEditProps> = () => {
               </h5>
             </div>
 
-            <div className="flex flex-col gap-1 mt-10">
+            <div className="flex flex-col gap-1 lg:mt-10">
               <TabsHeader
-                className="w-[380px] bg-transparent"
+                className="w-[50px] lg:w-[380px] bg-transparent"
                 indicatorProps={{
                   className: 'hidden',
                 }}
@@ -170,7 +212,7 @@ const ProfileEdit: React.FC<IProfileEditProps> = () => {
                   <Tab
                     key={`profile-option-${i}`}
                     value={option.value}
-                    className="justify-start px-8"
+                    className="justify-start lg:px-8"
                     onClick={() => {
                       setTab(option.value);
                     }}
@@ -182,7 +224,7 @@ const ProfileEdit: React.FC<IProfileEditProps> = () => {
                       )}
                     >
                       <span className="text-[25px]">{option.icon}</span>
-                      {option.title}
+                      <span className="lg:block hidden">{option.title}</span>
                     </div>
                   </Tab>
                 ))}
@@ -211,7 +253,9 @@ const ProfileEdit: React.FC<IProfileEditProps> = () => {
                 ))}
               </TabsHeader>
 
-              <TabsBody className="overflow-visible">
+              <TabsBody
+                className="overflow-visible profile-edit-panel"
+              >
                 <TabPanel value="0">
                   <BasicInformation />
                 </TabPanel>

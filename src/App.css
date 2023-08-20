@@ -26,3 +26,7 @@
   padding-inline: 8px !important;
   border-radius: 8px;
 }
+
+.profile-edit-panel {
+  width: calc(100vw - 380px);
+}

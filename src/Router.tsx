@@ -1,4 +1,4 @@
-import { Route, Routes } from 'react-router-dom';
+import { Navigate, Route, Routes } from 'react-router-dom';
 
 import Auth from '@/pages/auth';
 import AuthLayout from '@/pages/auth/layout';
@@ -24,23 +24,21 @@ export default function Router() {
         <Route index element={<Auth />} />
       </Route>
       <Route path="logout" element={<Logout />} />
-
-      <Route path="/" element={<Layout />}>
-        {isAuth === true && (
-          <>
-            <Route path="profile">
-              <Route index element={<Profile />} />
-              <Route path="edit" element={<ProfileEdit />} />
-            </Route>
-            <Route path="blog" element={<DashboardLayout />}>
-              <Route index element={<BlogHome />} />
-              <Route path="create" element={<BlogCreate />} />
-              <Route path=":id" element={<BlogDetail />} />
-            </Route>
-          </>
-        )}
-        <Route path="*" element={<NotFound />}></Route>
-      </Route>
+      {isAuth === true && (
+        <Route path="/" element={<Layout />}>
+          <Route index element={<Navigate to="/blog" />} />
+          <Route path="profile">
+            <Route index element={<Profile />} />
+            <Route path="edit" element={<ProfileEdit />} />
+          </Route>
+          <Route path="blog" element={<DashboardLayout />}>
+            <Route index element={<BlogHome />} />
+            <Route path="create" element={<BlogCreate />} />
+            <Route path=":id" element={<BlogDetail />} />
+          </Route>
+        </Route>
+      )}
+      <Route path="*" element={<NotFound />} />
     </Routes>
   );
 }

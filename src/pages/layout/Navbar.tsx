@@ -116,7 +116,7 @@ const Navbar = () => {
 
   return (
     <div className="fixed top-0 left-0 w-screen px-10 z-[9900] bg-white h-[72px] flex items-center justify-between gap-5">
-      <div className="basis-[300px] w-[300px]">
+      <div className="basis-[200px] w-[200px]">
         <img src="/images/black_logo.svg" />
       </div>
       <div className="flex-1 2xl:hidden">{MobileNavs}</div>
@@ -321,7 +321,7 @@ const Navbar = () => {
         <div className="flex items-center gap-2">
           <Avatar user={user} />
           <div className="flex items-center gap-1 cursor-pointer select-none">
-            <p className="text-[#202020] font-montserrat font-bold text-[14px]">
+            <p className="text-[#202020] font-montserrat font-bold text-[14px] hidden lg:block">
               {user?.name}
             </p>
             <BiChevronDown />

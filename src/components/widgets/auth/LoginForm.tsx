@@ -36,7 +36,7 @@ export default function LoginForm() {
     login(input)
       .then((res) => {
         if (res.code === CONSTANTS.SUCCESS) {
-          setAuthToken(res.token);
+          setAuthToken(res.token!);
           axios.defaults.headers.common['Token'] = res.token;
           navigate('/');
           toast.success(res.message);
