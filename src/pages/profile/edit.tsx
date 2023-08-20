@@ -254,7 +254,7 @@ const ProfileEdit: React.FC<IProfileEditProps> = () => {
               </TabsHeader>
 
               <TabsBody
-                className="overflow-visible profile-edit-panel"
+                className="overflow-visible"
               >
                 <TabPanel value="0">
                   <BasicInformation />
@@ -265,7 +265,7 @@ const ProfileEdit: React.FC<IProfileEditProps> = () => {
                 <TabPanel value="2" className="overflow-visible">
                   <Interests />
                 </TabPanel>
-                <TabPanel value="3" className="overflow-visible">
+                <TabPanel value="3" className="overflow-visible lg:profile-edit-panel-lg profile-edit-panel">
                   <Albums />
                 </TabPanel>
                 <TabPanel value="4" className="overflow-visible">

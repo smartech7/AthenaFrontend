@@ -81,4 +81,10 @@
   h2 {
     font-size: 34px;
   }
+  .profile-edit-panel-lg {
+    width: calc(100vw - 600px) !important;
+  }
+  .profile-edit-panel {
+    width: calc(100vw - 150px) !important;
+  }
 }

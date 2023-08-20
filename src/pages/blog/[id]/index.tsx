@@ -2,12 +2,18 @@ import { useEffect, useState } from 'react';
 
 import { Blog } from '@/lib/validation/blog';
 import CONSTANTS from '@/config/constants';
-import CommentBox from '@/components/widgets/blog/CommentBox';
 import { Spinner } from '@material-tailwind/react';
 import { formatDate } from '@/lib/utils';
 import { getBlogById } from '@/api/blog';
 import { toast } from 'react-hot-toast';
 import { useParams } from 'react-router-dom';
+
+// import CommentBox from '@/components/widgets/blog/CommentBox';
+
+
+
+
+
 
 const BlogDetail = () => {
   const params = useParams();
@@ -54,9 +60,9 @@ const BlogDetail = () => {
           }}
         ></div>
       </div>
-      <div className='mt-5'>
+      {/* <div className='mt-5'>
         <CommentBox blog={item} />
-      </div>
+      </div> */}
     </div>
   );
 };
