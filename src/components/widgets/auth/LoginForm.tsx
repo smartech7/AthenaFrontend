@@ -25,7 +25,8 @@ export default function LoginForm() {
         accesstoken: res.access_token,
       })
         .then((res) => {
-          if (res.message === CONSTANTS.SUCCESS) {
+          if (res.code === CONSTANTS.SUCCESS) {
+            console.log(res);
             onLoginSuccess(res.token!);
             navigate('/');
             toast.success(res.message);
