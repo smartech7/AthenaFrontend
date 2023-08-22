@@ -57,3 +57,8 @@ export type AlbumType = {
   title: string;
   description: string;
 }
+
+export interface BlogCategoryOption {
+  readonly _id: string;
+  readonly name: string;
+}

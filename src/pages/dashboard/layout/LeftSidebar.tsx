@@ -76,7 +76,7 @@ const LeftSidebar = () => {
   return (
     <div
       className={cn(
-        'basis-[300px] w-[300px] bg-dashboard-background hidden 2xl:block',
+        'basis-[254px] w-[254px] bg-dashboard-background hidden 2xl:block',
         // open === false ? 'hidden' : 'block'
       )}
     >

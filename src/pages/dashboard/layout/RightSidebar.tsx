@@ -39,7 +39,7 @@ const RightSidebar: React.FC<IRightSidebarProps> = ({ open }) => {
   return (
     <div
       className={cn(
-        'lg:basis-[500px] w-full lg:w-[500px] bg-dashboard-background',
+        'lg:basis-[400px] w-full lg:w-[400px] bg-dashboard-background',
         open === false ? 'hidden' : 'block'
       )}
     >

@@ -16,7 +16,7 @@ const BlogCard: React.FunctionComponent<IBlogCardProps> = ({ item }) => {
 
   return (
     <div
-      className={`relative rounded-t-2xl !bg-cover !bg-center w-full h-[250px] overflow-hidden`}
+      className={`relative rounded-t-2xl !bg-cover !bg-center w-full h-[300px] overflow-hidden p-0`}
       style={{
         backgroundImage: item.banner ? `url(${item.banner})` : '',
       }}
@@ -27,7 +27,7 @@ const BlogCard: React.FunctionComponent<IBlogCardProps> = ({ item }) => {
           navigate(`/blog/${item._id}`);
         }}
       >
-        <div className="absolute bottom-0 w-full p-4 bg-gradient-to-b from-black/0 to-black/60 h-1/2">
+        <div className="absolute bottom-0 w-full p-4 h-1/2">
           <h6 className="text-white text-[18px] font-bold leading-6">
             {item.title}
           </h6>
@@ -37,12 +37,13 @@ const BlogCard: React.FunctionComponent<IBlogCardProps> = ({ item }) => {
             ).fromNow()}`}
           </p>
           <div
-            className="h-12 leading-6 overflow-hidden text-[14px] font-sans text-white"
+            className="leading-6 overflow-hidden h-full text-[14px] font-sans text-white blog-card-content"
             dangerouslySetInnerHTML={{
               __html: item.body,
             }}
           ></div>
         </div>
+        <div className='absolute bottom-0 w-full h-1/2 bg-gradient-to-b from-black/0 to-black'></div>
       </div>
     </div>
   );
