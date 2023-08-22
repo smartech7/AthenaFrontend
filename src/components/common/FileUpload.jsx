@@ -12,6 +12,7 @@ const FileUpload = ({children, onSuccess}) => {
     widgetRef.current = cloudinaryRef.current?.createUploadWidget({
       cloudName: import.meta.env.VITE_CLOUDINARY_NAME,
       uploadPreset: "iablofcf",
+      sources: [ "local", "url"]
     }, (err, res) => {
       if (!err && res.event === CONSTANTS.SUCCESS) {
         onSuccess(res.info);
