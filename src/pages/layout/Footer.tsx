@@ -23,7 +23,7 @@ const Footer = () => {
                 className="invert"
               />
             </div>
-            <div className="lg:flex justify-between gap-8">
+            <div className="justify-between gap-8 lg:flex">
               <ul className="lg:flex-[2] flex flex-col flex-wrap gap-2 text-white list-disc h-[350px] text-[16px]">
                 <li className="font-urbanist">Classifieds</li>
                 <li className="font-urbanist">Jobs</li>
@@ -48,7 +48,7 @@ const Footer = () => {
                 <li className="font-urbanist">Earn Free Credits</li>
                 <li className="font-urbanist">Suggestions?</li>
               </ul>
-              <div className="lg:flex-1 lg:mt-0 mt-12 lg:block flex justify-center">
+              <div className="flex justify-center mt-12 lg:flex-1 lg:mt-0 lg:block">
                 <div>
                   <h4 className="text-white font-extrabold uppercase text-[30px] font-urbanist">
                     GET IN TOUCH
@@ -63,7 +63,7 @@ const Footer = () => {
               </div>
             </div>
           </div>
-          <div className="xl:flex-1 xl:m-0 mt-12">
+          <div className="mt-12 xl:flex-1 xl:m-0">
             <div className="bg-white rounded-[19px] shadow-[0_0_44px_0_rgba(0,0,0,0.15)] p-5">
               <p className="font-sans text-[13px] leading-[30px] text-black">
                 Discover the endless possibilities with Donamix! Immerse
@@ -83,8 +83,8 @@ const Footer = () => {
         </div>
 
         <div className="relative mt-[64px]">
-          <div className="relative z-2 w-full lg:h-[110px] flex lg:flex-row flex-col lg:justify-between gap-5">
-            <div className="z-2 flex justify-center h-full items-center gap-5">
+          <div className="relative z-20 w-full lg:h-[110px] flex lg:flex-row flex-col lg:justify-between gap-5">
+            <div className="z-20 flex items-center justify-center h-full gap-5">
               <Button
                 variant="ghost"
                 className="rounded-full border border-[#A6A6A6] gap-2 text-[#A6A6A6] text-base"
@@ -102,7 +102,7 @@ const Footer = () => {
             </div>
 
             {/* Begin Social Buttons */}
-            <div className="z-2 flex h-full items-center justify-center gap-8">
+            <div className="z-20 flex items-center justify-center h-full gap-8">
               <Button
                 variant="outline"
                 size="icon"
