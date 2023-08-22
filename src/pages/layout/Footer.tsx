@@ -12,7 +12,7 @@ import { FiArrowUpRight } from 'react-icons/fi';
 const Footer = () => {
   return (
     <div className="w-full bg-white pt-[80px]">
-      <div className="w-full bg-cover bg-[url(/images/footer_bg.svg)] lg:px-[100px] px-[50px]">
+      <div className="w-full bg-cover bg-[url(/images/footer_bg.svg)] lg:px-[75px] px-[15px] sm:px-[25px] md:px-[50px]">
         <div className="xl:flex">
           <div className="xl:flex-[3]">
             <div className="pt-[60px] pb-[40px]">
@@ -23,8 +23,8 @@ const Footer = () => {
                 className="invert"
               />
             </div>
-            <div className="justify-between gap-8 lg:flex">
-              <ul className="lg:flex-[2] flex flex-col flex-wrap gap-2 text-white list-disc h-[350px] text-[16px]">
+            <div className="justify-between lg:gap-8 lg:flex">
+              <ul className="lg:flex-[2] flex flex-col flex-wrap gap-2 pl-5 md:px-0 text-white list-disc h-[350px] text-[16px]">
                 <li className="font-urbanist">Classifieds</li>
                 <li className="font-urbanist">Jobs</li>
                 <li className="font-urbanist">Buy Us A Coffee</li>

@@ -14,8 +14,15 @@ module.exports = withMT({
       center: true,
       padding: '2rem',
       screens: {
+        '3xl': '1600px',
         '2xl': '1400px',
+        '1hlg': '1100px'
       },
+    },
+    screens: {
+      '3xl': '1600px',
+      '2xl': '1400px',
+      '1hlg': '1100px'
     },
     extend: {
       fontFamily: {

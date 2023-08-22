@@ -56,7 +56,7 @@ const BlogHome = () => {
   }, []);
 
   return (
-    <div className="w-full p-6">
+    <div className="w-full py-6 px-2 sm:px-6">
       <div className="flex items-center justify-between gap-2">
         <h1 className="text-black font-poppins text-[33px] font-bold">Blogs</h1>
         <Button
@@ -73,7 +73,7 @@ const BlogHome = () => {
       </div>
 
       <div className="mt-5">
-        <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 xl:grid-cols-2 3xl:grid-cols-3">
+        <div className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-1 1hlg:grid-cols-2 3xl:grid-cols-3">
           {blogs.map((blog: Blog, i: number) => (
             <BlogCard key={`blog-${i}`} item={blog} />
           ))}
