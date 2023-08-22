@@ -1,7 +1,7 @@
 import { Blog, blogValidator } from '@/lib/validation/blog';
 import CONSTANTS, { Option } from '@/config/constants';
 import { Card, CardBody, Input } from '@material-tailwind/react';
-import Select, { StylesConfig, Theme } from 'react-select';
+import Select, { Theme } from 'react-select';
 import { createBlog, getBlogCategories } from '@/api/blog';
 import { useEffect, useState } from 'react';
 
@@ -10,17 +10,19 @@ import FileUpload from '@/components/common/FileUpload';
 import RichTextEditor from '@/components/common/RichTextEditor';
 import { toast } from 'react-hot-toast';
 import { useAuthContext } from '@/context/AuthContext';
+import { useNavigate } from 'react-router-dom';
 
 const BlogCreate = () => {
+  const navigate = useNavigate();
   const { user } = useAuthContext();
   const [input, setInput] = useState<{
     title: string;
-    tags: Option | string;
+    tag: Option | string;
     body: string;
     banner: string;
   }>({
     title: '',
-    tags: '',
+    tag: '',
     body: '',
     banner: '',
   });
@@ -67,12 +69,15 @@ const BlogCreate = () => {
     setIsSaving(true);
     const newBlog: Blog = blogValidator.parse({
       ...input,
-      tags: typeof input.tags === 'string' ? input.tags : input.tags.value,
+      tag: typeof input.tag === 'string' ? input.tag : input.tag.value,
       userId: user._id,
     });
     createBlog(newBlog)
       .then((res) => {
-        if (res.code === CONSTANTS.SUCCESS) toast.success(res.message);
+        if (res.code === CONSTANTS.SUCCESS) {
+          navigate('/blog');
+          toast.success(res.message);
+        }
         else toast.error(res.message);
       })
       .catch((err) => {
@@ -120,15 +125,15 @@ const BlogCreate = () => {
             />
           </div>
           <div className="mt-8">
-            <h6 className="text-base font-bold text-black">Blog Tags</h6>
+            <h6 className="text-base font-bold text-black">Blog tag</h6>
             <Select
-              value={input.tags}
+              value={input.tag}
               options={categories}
               onChange={(newVal: Option) => {
                 console.log(newVal);
                 setInput((prev) => ({
                   ...prev,
-                  tags: newVal,
+                  tag: newVal,
                 }));
               }}
               theme={(theme: Theme) => ({
@@ -140,7 +145,7 @@ const BlogCreate = () => {
                 },
               })}
               styles={{
-                control: (base: StylesConfig) => ({
+                control: (base) => ({
                   ...base,
                   height: 50,
                   borderRadius: 6,
@@ -152,13 +157,13 @@ const BlogCreate = () => {
                 }),
               }}
               className="z-50 text-[13px] font-poppins mt-2"
-              placeholder="Enter Tags here"
+              placeholder="Enter tag here"
             />
             {/* <Input
-              name="tags"
-              value={input.tags}
+              name="tag"
+              value={input.tag}
               onChange={onInputChange}
-              placeholder="Enter Tags here"
+              placeholder="Enter tag here"
               className="!border-t-gray-400 focus:!border-t-gray-900 mt-2 !h-[50px]"
               labelProps={{
                 className: 'before:content-none after:content-none',
