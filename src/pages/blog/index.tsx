@@ -73,16 +73,27 @@ const BlogHome = () => {
       </div>
 
       <div className="mt-5">
-        <div className="grid grid-cols-1 gap-5 lg:grid-cols-2">
+        <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 xl:grid-cols-2 3xl:grid-cols-3">
           {blogs.map((blog: Blog, i: number) => (
             <BlogCard key={`blog-${i}`} item={blog} />
           ))}
           {isLoading === true &&
             [...Array(availableLimit)].map((_, i) => (
-              <div key={`skeleton-${i}`} className="bg-gray-700 rounded-t-2xl w-full h-[250px] animate-pulse"></div>
+              <div
+                key={`skeleton-${i}`}
+                className="bg-gray-700 rounded-t-2xl w-full h-[250px] animate-pulse"
+              ></div>
             ))}
         </div>
-        <Button className='w-full mt-3' onClick={load} disabled={isLoading || from >= realCount}>Load More</Button>
+        <div className="flex justify-center">
+          <Button
+            className="mt-3 rounded-full"
+            onClick={load}
+            disabled={isLoading || from >= realCount}
+          >
+            Load More
+          </Button>
+        </div>
       </div>
     </div>
   );

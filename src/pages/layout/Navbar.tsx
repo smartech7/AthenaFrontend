@@ -32,6 +32,8 @@ const Navbar = () => {
   const navigate = useNavigate();
   const { user } = useAuthContext();
 
+  const gotoBlog = () => navigate('/blog');
+
   const MobileNavs = (
     <Menu>
       <MenuHandler>
@@ -91,7 +93,7 @@ const Navbar = () => {
             <MenuItem>Mobile Chat</MenuItem>
           </MenuList>
         </Menu>
-        <MenuItem>Blog</MenuItem>
+        <MenuItem onClick={gotoBlog}>Blog</MenuItem>
         <Menu placement="right-start" offset={15}>
           <MenuHandler>
             <MenuItem className="flex justify-between">
@@ -125,7 +127,7 @@ const Navbar = () => {
           <DropdownMenuTrigger asChild>
             <Button
               variant="ghost"
-              className="focus-visible:ring-0 focus-visible:ring-offset-0 text-black font-semibold text-[15px]"
+              className="focus-visible:ring-0 focus-visible:ring-offset-0 text-black font-montserrat font-semibold text-[13px]"
             >
               Home
             </Button>
@@ -136,29 +138,29 @@ const Navbar = () => {
           <DropdownMenuTrigger asChild>
             <Button
               variant="ghost"
-              className="gap-1 focus-visible:ring-0 focus-visible:ring-offset-0 text-black font-semibold text-[15px]"
+              className="gap-1 focus-visible:ring-0 focus-visible:ring-offset-0 text-black font-montserrat font-semibold text-[13px]"
             >
               Newsfeed
               <BiChevronDown />
             </Button>
           </DropdownMenuTrigger>
-          <DropdownMenuContent className="w-56 z-[9900]">
-            <DropdownMenuItem>
+          <DropdownMenuContent className="w-56 z-[9900] !font-montserrat !text-[13px]">
+            <DropdownMenuItem className="font-montserrat font-medium text-[13px]">
               <span>Newsfeed</span>
             </DropdownMenuItem>
-            <DropdownMenuItem>
+            <DropdownMenuItem className="font-montserrat font-medium text-[13px]">
               <span>People Nearby</span>
             </DropdownMenuItem>
-            <DropdownMenuItem>
+            <DropdownMenuItem className="font-montserrat font-medium text-[13px]">
               <span>My friends</span>
             </DropdownMenuItem>
-            <DropdownMenuItem>
+            <DropdownMenuItem className="font-montserrat font-medium text-[13px]">
               <span>Inbox</span>
             </DropdownMenuItem>
-            <DropdownMenuItem>
+            <DropdownMenuItem className="font-montserrat font-medium text-[13px]">
               <span>Images</span>
             </DropdownMenuItem>
-            <DropdownMenuItem>
+            <DropdownMenuItem className="font-montserrat font-medium text-[13px]">
               <span>Videos</span>
             </DropdownMenuItem>
           </DropdownMenuContent>
@@ -168,45 +170,46 @@ const Navbar = () => {
           <DropdownMenuTrigger asChild>
             <Button
               variant="ghost"
-              className="gap-1 focus-visible:ring-0 focus-visible:ring-offset-0 text-black font-semibold text-[15px]"
+              className="gap-1 focus-visible:ring-0 focus-visible:ring-offset-0 text-black font-montserrat font-semibold text-[13px]"
             >
               My Profile
               <BiChevronDown />
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent className="w-56 z-[9900]">
-            <DropdownMenuItem>
+            <DropdownMenuItem className="font-montserrat font-medium text-[13px]">
               <span>View My Profile</span>
             </DropdownMenuItem>
             <DropdownMenuItem
+              className="font-montserrat font-medium text-[13px]"
               onClick={() => {
                 navigate('/profile/edit');
               }}
             >
               <span>Edit Profile</span>
             </DropdownMenuItem>
-            <DropdownMenuItem>
+            <DropdownMenuItem className="font-montserrat font-medium text-[13px]">
               <span>Profile Picture</span>
             </DropdownMenuItem>
-            <DropdownMenuItem>
+            <DropdownMenuItem className="font-montserrat font-medium text-[13px]">
               <span>My Articles</span>
             </DropdownMenuItem>
-            <DropdownMenuItem>
+            <DropdownMenuItem className="font-montserrat font-medium text-[13px]">
               <span>My Classifieds</span>
             </DropdownMenuItem>
-            <DropdownMenuItem>
+            <DropdownMenuItem className="font-montserrat font-medium text-[13px]">
               <span>My Jobs</span>
             </DropdownMenuItem>
-            <DropdownMenuItem>
+            <DropdownMenuItem className="font-montserrat font-medium text-[13px]">
               <span>My Friends</span>
             </DropdownMenuItem>
-            <DropdownMenuItem>
+            <DropdownMenuItem className="font-montserrat font-medium text-[13px]">
               <span>My Photos</span>
             </DropdownMenuItem>
-            <DropdownMenuItem>
+            <DropdownMenuItem className="font-montserrat font-medium text-[13px]">
               <span>My Gifts</span>
             </DropdownMenuItem>
-            <DropdownMenuItem>
+            <DropdownMenuItem className="font-montserrat font-medium text-[13px]">
               <span>Add new article</span>
             </DropdownMenuItem>
           </DropdownMenuContent>
@@ -216,29 +219,29 @@ const Navbar = () => {
           <DropdownMenuTrigger asChild>
             <Button
               variant="ghost"
-              className="gap-1 focus-visible:ring-0 focus-visible:ring-offset-0 text-black font-semibold text-[15px]"
+              className="gap-1 focus-visible:ring-0 focus-visible:ring-offset-0 text-black font-montserrat font-semibold text-[13px]"
             >
               Group Chat
               <BiChevronDown />
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent className="w-56 z-[9900]">
-            <DropdownMenuItem>
+            <DropdownMenuItem className="font-montserrat font-medium text-[13px]">
               <span>Download</span>
             </DropdownMenuItem>
-            <DropdownMenuItem>
+            <DropdownMenuItem className="font-montserrat font-medium text-[13px]">
               <span>Embeded Code</span>
             </DropdownMenuItem>
-            <DropdownMenuItem>
+            <DropdownMenuItem className="font-montserrat font-medium text-[13px]">
               <span>All Chat room</span>
             </DropdownMenuItem>
-            <DropdownMenuItem>
+            <DropdownMenuItem className="font-montserrat font-medium text-[13px]">
               <span>Chat Rules</span>
             </DropdownMenuItem>
-            <DropdownMenuItem>
+            <DropdownMenuItem className="font-montserrat font-medium text-[13px]">
               <span>Administration</span>
             </DropdownMenuItem>
-            <DropdownMenuItem>
+            <DropdownMenuItem className="font-montserrat font-medium text-[13px]">
               <span>Mobile Chat</span>
             </DropdownMenuItem>
           </DropdownMenuContent>
@@ -248,10 +251,8 @@ const Navbar = () => {
           <DropdownMenuTrigger asChild>
             <Button
               variant="ghost"
-              className="focus-visible:ring-0 focus-visible:ring-offset-0 text-black font-semibold text-[15px]"
-              onClick={() => {
-                navigate('/blog');
-              }}
+              className="focus-visible:ring-0 focus-visible:ring-offset-0 text-black font-montserrat font-semibold text-[13px]"
+              onClick={gotoBlog}
             >
               Blog
             </Button>
@@ -262,35 +263,36 @@ const Navbar = () => {
           <DropdownMenuTrigger asChild>
             <Button
               variant="ghost"
-              className="gap-1 focus-visible:ring-0 focus-visible:ring-offset-0 text-black font-semibold text-[15px]"
+              className="gap-1 focus-visible:ring-0 focus-visible:ring-offset-0 text-black font-montserrat font-semibold text-[13px]"
             >
               Explore
               <BiChevronDown />
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent className="w-56 z-[9900]">
-            <DropdownMenuItem>
+            <DropdownMenuItem className="font-montserrat font-medium text-[13px]">
               <span>Classifieds</span>
             </DropdownMenuItem>
-            <DropdownMenuItem>
+            <DropdownMenuItem className="font-montserrat font-medium text-[13px]">
               <span>Banners</span>
             </DropdownMenuItem>
-            <DropdownMenuItem>
+            <DropdownMenuItem className="font-montserrat font-medium text-[13px]">
               <span>Radio</span>
             </DropdownMenuItem>
-            <DropdownMenuItem>
+            <DropdownMenuItem className="font-montserrat font-medium text-[13px]">
               <span>Browse</span>
             </DropdownMenuItem>
-            <DropdownMenuItem>
+            <DropdownMenuItem className="font-montserrat font-medium text-[13px]">
               <span>Forums</span>
             </DropdownMenuItem>
-            <DropdownMenuItem>
+            <DropdownMenuItem className="font-montserrat font-medium text-[13px]">
               <span>Who we are?</span>
             </DropdownMenuItem>
-            <DropdownMenuItem>
+            <DropdownMenuItem className="font-montserrat font-medium text-[13px]">
               <span>Contact Us</span>
             </DropdownMenuItem>
             <DropdownMenuItem
+              className="font-montserrat font-medium text-[13px]"
               onClick={() => {
                 navigate('/logout');
               }}
@@ -321,7 +323,7 @@ const Navbar = () => {
         <div className="flex items-center gap-2">
           <Avatar user={user} />
           <div className="flex items-center gap-1 cursor-pointer select-none">
-            <p className="text-[#202020] font-montserrat font-bold text-[14px] hidden lg:block">
+            <p className="text-[#202020] font-montserrat font-bold text-[12px] hidden lg:block">
               {user?.name}
             </p>
             <BiChevronDown />

@@ -1,24 +1,48 @@
 import { Blog, blogValidator } from '@/lib/validation/blog';
+import CONSTANTS, { Option } from '@/config/constants';
 import { Card, CardBody, Input } from '@material-tailwind/react';
+import Select, { StylesConfig, Theme } from 'react-select';
+import { createBlog, getBlogCategories } from '@/api/blog';
+import { useEffect, useState } from 'react';
 
 import { Button } from '@/components/ui/button';
-import CONSTANTS from '@/config/constants';
 import FileUpload from '@/components/common/FileUpload';
 import RichTextEditor from '@/components/common/RichTextEditor';
-import { createBlog } from '@/api/blog';
 import { toast } from 'react-hot-toast';
 import { useAuthContext } from '@/context/AuthContext';
-import { useState } from 'react';
 
 const BlogCreate = () => {
   const { user } = useAuthContext();
-  const [input, setInput] = useState({
+  const [input, setInput] = useState<{
+    title: string;
+    tags: Option | string;
+    body: string;
+    banner: string;
+  }>({
     title: '',
     tags: '',
     body: '',
     banner: '',
   });
   const [isSaving, setIsSaving] = useState<boolean>(false);
+  const [categories, setCategories] = useState<readonly Option[]>([]);
+
+  useEffect(() => {
+    getBlogCategories()
+      .then((res) => {
+        if (res.code === CONSTANTS.SUCCESS) {
+          console.log(res.data);
+          setCategories(
+            res.data!.map((val) => ({ value: val._id, label: val.name }))
+          );
+        } else {
+          console.log(res.message);
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
 
   const onInputChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -43,6 +67,7 @@ const BlogCreate = () => {
     setIsSaving(true);
     const newBlog: Blog = blogValidator.parse({
       ...input,
+      tags: typeof input.tags === 'string' ? input.tags : input.tags.value,
       userId: user._id,
     });
     createBlog(newBlog)
@@ -96,7 +121,40 @@ const BlogCreate = () => {
           </div>
           <div className="mt-8">
             <h6 className="text-base font-bold text-black">Blog Tags</h6>
-            <Input
+            <Select
+              value={input.tags}
+              options={categories}
+              onChange={(newVal: Option) => {
+                console.log(newVal);
+                setInput((prev) => ({
+                  ...prev,
+                  tags: newVal,
+                }));
+              }}
+              theme={(theme: Theme) => ({
+                ...theme,
+                borderRadius: 0,
+                colors: {
+                  ...theme.colors,
+                  primary: 'black',
+                },
+              })}
+              styles={{
+                control: (base: StylesConfig) => ({
+                  ...base,
+                  height: 50,
+                  borderRadius: 6,
+                  'input:focus-visible': {
+                    boxShadow: 'none',
+                    outline: 'none',
+                    border: 'none',
+                  },
+                }),
+              }}
+              className="z-50 text-[13px] font-poppins mt-2"
+              placeholder="Enter Tags here"
+            />
+            {/* <Input
               name="tags"
               value={input.tags}
               onChange={onInputChange}
@@ -109,7 +167,7 @@ const BlogCreate = () => {
                 className: 'min-w-0',
               }}
               crossOrigin={undefined}
-            />
+            /> */}
           </div>
           <div className="mt-8">
             <RichTextEditor
