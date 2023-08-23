@@ -227,10 +227,10 @@ const ProfileEdit: React.FC<IProfileEditProps> = () => {
           </div>
           <div className="flex-1 px-2 lg:px-[84px] py-[20px]">
             <div className="flex gap-10 border-b-2 border-b-[#C9C9C9] px-5 items-center">
-              <div className="text-base text-[#818181] font-poppins font-semibold cursor-pointer select-none py-3 text-center">
+              <div className="text-base text-[#818181] font-poppins font-semibold cursor-pointer select-none py-3 text-center hover:text-black">
                 Timeline
               </div>
-              <div className="text-base text-[#818181] font-poppins font-semibold cursor-pointer select-none py-3 text-center">
+              <div className="text-base text-[#818181] font-poppins font-semibold cursor-pointer select-none py-3 text-center hover:text-black">
                 Complete Profile
               </div>
             </div>
