@@ -1,4 +1,5 @@
 import { ChangeEvent, useState } from 'react';
+import { login, thirdPartyLogin } from '@/api/auth';
 import { removeAuthToken, setAuthToken } from '@/actions/auth';
 
 import { Button } from '@/components/ui/button';
@@ -6,7 +7,6 @@ import CONSTANTS from '@/config/constants';
 import { Input } from '@/components/ui/input';
 import { Loader2 } from 'lucide-react';
 import axios from 'axios';
-import { login } from '@/api/auth';
 import toast from 'react-hot-toast';
 import { useGoogleLogin } from '@react-oauth/google';
 import { useNavigate } from 'react-router-dom';
@@ -20,7 +20,26 @@ export default function LoginForm() {
   const navigate = useNavigate();
   const googleLogin = useGoogleLogin({
     onSuccess: (res) => {
-      console.log(res);
+      thirdPartyLogin({
+        type: 'google',
+        accesstoken: res.access_token,
+      })
+        .then((res) => {
+          if (res.message === CONSTANTS.SUCCESS) {
+            onLoginSuccess(res.token!);
+            navigate('/');
+            toast.success(res.message);
+          } else {
+            onLoginFail();
+            toast.error(res.message);
+          }
+        })
+        .catch((err) => {
+          console.log('Login Error:', err);
+        })
+        .finally(() => {
+          setLoading(false);
+        });
     },
     onError: () => {
       console.log('Failed');
@@ -31,6 +50,15 @@ export default function LoginForm() {
     email: '',
     password: '',
   });
+
+  const onLoginSuccess = (token: string) => {
+    setAuthToken(token);
+    axios.defaults.headers.common['Token'] = token;
+  };
+  const onLoginFail = () => {
+    removeAuthToken();
+    delete axios.defaults.headers.common['Token'];
+  };
 
   const onInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.currentTarget;
@@ -45,13 +73,11 @@ export default function LoginForm() {
     login(input)
       .then((res) => {
         if (res.code === CONSTANTS.SUCCESS) {
-          setAuthToken(res.token!);
-          axios.defaults.headers.common['Token'] = res.token;
+          onLoginSuccess(res.token!);
           navigate('/');
           toast.success(res.message);
         } else {
-          removeAuthToken();
-          delete axios.defaults.headers.common['Token'];
+          onLoginFail();
           toast.error(res.message);
         }
       })
@@ -69,7 +95,10 @@ export default function LoginForm() {
         <Button
           variant="secondary"
           className="flex justify-start rounded-lg flex-1 gap-4 h-[60px] px-8 text-base text-black"
-          onClick={() => googleLogin()}
+          onClick={() => {
+            setLoading(true);
+            googleLogin();
+          }}
         >
           <img src="/images/google.svg" width={26} height={26} />
           Sign in with Google

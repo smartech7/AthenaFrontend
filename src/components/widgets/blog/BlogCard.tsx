@@ -28,7 +28,7 @@ const BlogCard: React.FunctionComponent<IBlogCardProps> = ({ item }) => {
         }}
       >
         <div className="absolute bottom-0 w-full h-1/2">
-          <div className="h-2/3 w-full absolute bottom-0 bg-gradient-to-b from-black/0 via-black/80 to-black flex flex-col p-4 overflow-hidden">
+          <div className="h-2/3 w-full absolute bottom-0 bg-gradient-to-b from-black/0 via-black/90 to-black flex flex-col p-4 overflow-hidden">
             <h6 className="text-white text-[18px] font-bold leading-6">
               {item.title}
             </h6>

@@ -130,8 +130,7 @@ export const login = async (data: LoginUser) => {
   );
 };
 
-export const thirdLogin = async (data: {
-  email: string;
+export const thirdPartyLogin = async (data: {
   type: string;
   accesstoken: string;
 }) => {
