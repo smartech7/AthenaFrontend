@@ -29,7 +29,7 @@ const BlogCard: React.FunctionComponent<IBlogCardProps> = ({ item }) => {
           navigate(`/blog/${item._id}`);
         }}
       >
-        <div className="absolute right-4 top-4 bg-white rounded-lg px-4 py-2">
+        <div className="absolute right-4 top-4 bg-white rounded-lg px-3 py-3 text-[14px] font-bold font-sans">
           {categories?.find((val) => val.value === item.tag)?.label}
         </div>
         <div className="absolute bottom-0 w-full h-3/4">

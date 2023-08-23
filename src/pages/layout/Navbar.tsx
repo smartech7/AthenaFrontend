@@ -5,10 +5,7 @@ import {
   BiSearch,
   BiSolidBell,
 } from 'react-icons/bi';
-import {
-  BsFillChatSquareDotsFill,
-  BsPeopleFill,
-} from 'react-icons/bs';
+import { BsFillChatSquareDotsFill, BsPeopleFill } from 'react-icons/bs';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -41,7 +38,13 @@ const Navbar = () => {
         </Button>
       </MenuHandler>
       <MenuList className="text-base shadow-lg z-[9999] p-2">
-        <MenuItem>Home</MenuItem>
+        <MenuItem
+          onClick={() => {
+            navigate('/');
+          }}
+        >
+          Home
+        </MenuItem>
         <Menu placement="right-start" offset={15}>
           <MenuHandler>
             <MenuItem className="flex justify-between">
@@ -65,7 +68,13 @@ const Navbar = () => {
           </MenuHandler>
           <MenuList>
             <MenuItem>View My Profile</MenuItem>
-            <MenuItem>Edit Profile</MenuItem>
+            <MenuItem
+              onClick={() => {
+                navigate('/profile/edit/?page=info');
+              }}
+            >
+              Edit Profile
+            </MenuItem>
             <MenuItem>Profile Picture</MenuItem>
             <MenuItem>My Articles</MenuItem>
             <MenuItem>My Classifieds</MenuItem>
@@ -108,7 +117,13 @@ const Navbar = () => {
             <MenuItem>Forums</MenuItem>
             <MenuItem>Who we are?</MenuItem>
             <MenuItem>Contact Us</MenuItem>
-            <MenuItem>Logout</MenuItem>
+            <MenuItem
+              onClick={() => {
+                navigate('/logout');
+              }}
+            >
+              Logout
+            </MenuItem>
           </MenuList>
         </Menu>
       </MenuList>
@@ -117,8 +132,10 @@ const Navbar = () => {
 
   return (
     <div className="fixed top-0 left-0 w-screen px-[25px] z-[9900] bg-white h-[72px] flex items-center justify-between gap-5">
-      <div className="basis-[200px] w-[200px] h-[60px] bg-contain bg-center bg-no-repeat" style={{backgroundImage: "url(/images/black_logo.svg)"}}>
-      </div>
+      <div
+        className="basis-[200px] w-[200px] h-[60px] bg-contain bg-center bg-no-repeat"
+        style={{ backgroundImage: 'url(/images/black_logo.svg)' }}
+      ></div>
       <div className="flex-1 xl:hidden">{MobileNavs}</div>
       <div className="hidden gap-0 xl:flex xl:justify-center">
         <DropdownMenu>
@@ -300,26 +317,42 @@ const Navbar = () => {
           </DropdownMenuContent>
         </DropdownMenu>
 
-        <Button variant="ghost" size="icon" className='text-[26px] text-[#A6AAB5]'>
+        <Button
+          variant="ghost"
+          size="icon"
+          className="text-[26px] text-[#A6AAB5]"
+        >
           <BiSearch />
         </Button>
       </div>
 
       <div className="flex items-center gap-3">
-        <Button className="hidden rounded-full md:flex w-[29.65px] h-[29.65px] text-[14px]" size="icon">
+        <Button
+          className="hidden rounded-full md:flex w-[29.65px] h-[29.65px] text-[14px]"
+          size="icon"
+        >
           <BsFillChatSquareDotsFill />
         </Button>
-        <Button className="hidden rounded-full md:flex w-[29.65px] h-[29.65px]" size="icon">
+        <Button
+          className="hidden rounded-full md:flex w-[29.65px] h-[29.65px]"
+          size="icon"
+        >
           <BiSolidBell />
         </Button>
-        <Button className="hidden rounded-full md:flex w-[29.65px] h-[29.65px]" size="icon">
+        <Button
+          className="hidden rounded-full md:flex w-[29.65px] h-[29.65px]"
+          size="icon"
+        >
           <BsPeopleFill />
         </Button>
         {/* <Button className="hidden rounded-full md:flex w-[29.65px] h-[29.65px] text-[14px]" size="icon">
           <BsMoonFill />
         </Button> */}
         <div className="flex items-center gap-2">
-          <Avatar user={user} className='w-[38px] h-[38px] border-2 border-[#DADADA]' />
+          <Avatar
+            user={user}
+            className="w-[38px] h-[38px] border-2 border-[#DADADA]"
+          />
           <div className="flex items-center gap-1 cursor-pointer select-none">
             <p className="text-[#202020] font-montserrat font-bold text-[12px] hidden lg:block">
               {user?.name}
