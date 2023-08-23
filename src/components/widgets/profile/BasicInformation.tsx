@@ -51,7 +51,9 @@ const BasicInformation = () => {
     );
   }
 
-  const onInputChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const onInputChange = (
+    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     const { name, value } = e.currentTarget;
     setInput((prev) => ({
       ...prev,
@@ -74,27 +76,30 @@ const BasicInformation = () => {
       birthday: {
         yy: input.year,
         mm: input.month,
-        dd: input.day
+        dd: input.day,
       },
       status: input.status,
       city: input.city,
       country: input.country,
-      description: input.description
-    })
+      description: input.description,
+    });
 
-    updateUser(user._id, newUser).then((res) => {
-      if (res.code === CONSTANTS.SUCCESS) {
-        reload();
-        console.log(res);
-        toast.success(res.message);
-      } else {
-        toast.error(res.message);
-      }
-    }).catch((err) => {
-      console.warn(err);
-    }).finally(() => {
-      setIsSaving(false);
-    })
+    updateUser(user._id, newUser)
+      .then((res) => {
+        if (res.code === CONSTANTS.SUCCESS) {
+          reload();
+          console.log(res);
+          toast.success(res.message);
+        } else {
+          toast.error(res.message);
+        }
+      })
+      .catch((err) => {
+        console.warn(err);
+      })
+      .finally(() => {
+        setIsSaving(false);
+      });
   };
 
   return (
@@ -110,47 +115,47 @@ const BasicInformation = () => {
       </p>
 
       <div className="flex flex-col gap-5 mt-5">
-        <div className="flex justify-between gap-3">
+        <div className="grid grid-cols-12 gap-3 w-full">
           <Input
             name="firstName"
             value={input.firstName}
             onChange={onInputChange}
             placeholder="First Name"
-            className="flex-1 h-[60px] rounded-[9px]"
+            className="flex-1 h-[60px] rounded-[9px] col-span-12 md:col-span-6"
           />
           <Input
             name="lastName"
             value={input.lastName}
             onChange={onInputChange}
             placeholder="Last Name"
-            className="flex-1 h-[60px] rounded-[9px]"
+            className="flex-1 h-[60px] rounded-[9px] col-span-12 md:col-span-6"
           />
         </div>
         <div>
           <h6 className="text-black font-poppins text-[18px] font-semibold">
             Date of Birth
           </h6>
-          <div className="flex justify-between gap-3 mt-3">
+          <div className="grid grid-cols-12 gap-3 mt-3">
             <Input
               name="day"
               value={input.day}
               onChange={onInputChange}
               placeholder="Day"
-              className="flex-1 h-[60px] rounded-[9px]"
+              className="flex-1 h-[60px] rounded-[9px] col-span-12 md:col-span-4"
             />
             <Input
               name="month"
               value={input.month}
               onChange={onInputChange}
               placeholder="Month"
-              className="flex-1 h-[60px] rounded-[9px]"
+              className="flex-1 h-[60px] rounded-[9px] col-span-12 md:col-span-4"
             />
             <Input
               name="year"
               value={input.year}
               onChange={onInputChange}
               placeholder="Year"
-              className="flex-1 h-[60px] rounded-[9px]"
+              className="flex-1 h-[60px] rounded-[9px] col-span-12 md:col-span-4"
             />
           </div>
         </div>
@@ -166,15 +171,15 @@ const BasicInformation = () => {
             onValueChange={(value: string) => {
               onRadioSelect('status', value);
             }}
-            className="flex gap-3 mt-3 text-[#808080]"
+            className="grid grid-cols-12 gap-3 mt-3 text-[#808080]"
           >
-            <div className="flex items-center flex-1 gap-3 h-[57px] bg-secondary border border-[#E7E7E7] px-3 rounded-lg">
+            <div className="flex items-center flex-1 gap-3 h-[57px] bg-secondary border border-[#E7E7E7] px-3 rounded-lg col-span-12 md:col-span-6">
               <RadioGroupItem value="Single" id="option-single" />
               <Label htmlFor="option-single" className="font-normal">
                 Single
               </Label>
             </div>
-            <div className="flex items-center flex-1 gap-3 h-[57px] bg-secondary border border-[#E7E7E7] px-3 rounded-lg">
+            <div className="flex items-center flex-1 gap-3 h-[57px] bg-secondary border border-[#E7E7E7] px-3 rounded-lg col-span-12 md:col-span-6">
               <RadioGroupItem value="Married" id="option-married" />
               <Label htmlFor="option-married" className="font-normal">
                 Married
@@ -188,20 +193,20 @@ const BasicInformation = () => {
           <h6 className="text-black font-poppins text-[18px] font-semibold">
             Location
           </h6>
-          <div className="flex justify-between gap-3 mt-3">
+          <div className="grid grid-cols-12 gap-3 mt-3">
             <Input
               name="city"
               value={input.city}
               onChange={onInputChange}
               placeholder="City"
-              className="flex-1 h-[60px] rounded-[9px]"
+              className="flex-1 h-[60px] rounded-[9px] col-span-12 md:col-span-6"
             />
             <Input
               name="country"
               value={input.country}
               onChange={onInputChange}
               placeholder="Country"
-              className="flex-1 h-[60px] rounded-[9px]"
+              className="flex-1 h-[60px] rounded-[9px] col-span-12 md:col-span-6"
             />
             <div className="flex-1"></div>
           </div>

@@ -1,15 +1,8 @@
 import { FaCircleUser, FaGraduationCap } from 'react-icons/fa6';
 import { MdBlock, MdFavorite } from 'react-icons/md';
-import {
-  Spinner,
-  Tab,
-  TabPanel,
-  Tabs,
-  TabsBody,
-  TabsHeader,
-} from '@material-tailwind/react';
 import { User, userValidator } from '@/lib/validation/user';
 import { useEffect, useState } from 'react';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 
 import AccountSettings from '@/components/widgets/profile/AccountSettings';
 import Albums from '@/components/widgets/profile/Albums';
@@ -24,6 +17,7 @@ import FileUpload from '@/components/common/FileUpload';
 import { HiLockClosed } from 'react-icons/hi';
 import Interests from '@/components/widgets/profile/Interests';
 import { IoMdInformationCircle } from 'react-icons/io';
+import { Spinner } from '@material-tailwind/react';
 import UpdateProfilePicture from '@/components/widgets/profile/UpdateProfilePicture';
 import { cn } from '@/lib/utils';
 import { toast } from 'react-hot-toast';
@@ -32,27 +26,27 @@ import { useAuthContext } from '@/context/AuthContext';
 
 const options = [
   {
-    value: '0',
+    value: 'info',
     icon: <IoMdInformationCircle />,
     title: 'Basic Information',
   },
   {
-    value: '1',
+    value: 'education',
     icon: <FaGraduationCap />,
     title: 'Education and Work',
   },
   {
-    value: '2',
+    value: 'interests',
     icon: <MdFavorite />,
     title: 'My Interests',
   },
   {
-    value: '3',
+    value: 'album',
     icon: <BiSolidPhotoAlbum />,
     title: 'My Album',
   },
   {
-    value: '4',
+    value: 'settings',
     icon: (
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -72,17 +66,17 @@ const options = [
     title: 'Account Settings',
   },
   {
-    value: '5',
+    value: 'change-password',
     icon: <HiLockClosed />,
     title: 'Change Password',
   },
   {
-    value: '6',
+    value: 'profile-picture',
     icon: <FaCircleUser />,
     title: 'Update Profile Picture',
   },
   {
-    value: '7',
+    value: 'blocked-user',
     icon: <MdBlock />,
     title: 'Blocked User',
   },
@@ -110,7 +104,9 @@ const pages = [
 interface IProfileEditProps {}
 
 const ProfileEdit: React.FC<IProfileEditProps> = () => {
-  const [tab, setTab] = useState<string>('0');
+  const navigate = useNavigate();
+  const [params] = useSearchParams();
+  const [tab, setTab] = useState<string>('info');
   const { user, reload } = useAuthContext();
   const [coverPhoto, setCoverPhoto] = useState<string | null | undefined>(null);
   const [isSavingCoverPhoto, setIsSavingCoverPhoto] = useState<boolean>(false);
@@ -120,6 +116,14 @@ const ProfileEdit: React.FC<IProfileEditProps> = () => {
       setCoverPhoto(user.banner);
     }
   }, [user]);
+
+  useEffect(() => {
+    console.log(params);
+    if (params) {
+      const page = params.get('page') as string;
+      setTab(page || 'info');
+    }
+  }, [params]);
 
   if (!user) {
     return (
@@ -183,7 +187,65 @@ const ProfileEdit: React.FC<IProfileEditProps> = () => {
         </FileUpload>
       </div>
       <div className="relative z-30 w-full">
-        <Tabs value={tab} orientation="vertical" className="overflow-visible">
+        <div className="flex">
+          <div className="w-[50px] basis-[50px] lg:basis-[380px] lg:w-[380px] bg-white transition-all duration-100">
+            <div id="profile-edit-userinfo">
+              <div className="flex justify-center h-[60px] mt-5 lg:mt-0 lg:h-[85px] transition-all duration-100">
+                <Avatar
+                  className="w-[50px] h-[50px] lg:w-[170px] lg:h-[170px] lg:-translate-y-1/2 text-[40px] font-bold border-white border-4 p-0"
+                  user={user}
+                />
+              </div>
+
+              <div className="lg:flex flex-col items-center gap-1 hidden">
+                <h4 className="text-black font-inter text-[21px] font-bold mt-4">
+                  {user?.name}
+                </h4>
+                <h5 className="text-[#818181] font-medium text-[18px] font-inter">
+                  {user?.username}
+                </h5>
+              </div>
+            </div>
+
+            <div id="profile-edit-options" className="mt-[30px]">
+              {options.map((option, i) => (
+                <div
+                  key={`tab-${i}`}
+                  className={cn(
+                    'w-full lg:px-[50px] py-5 text-[20px] font-medium cursor-pointer flex gap-6 hover:opacity-100 items-center justify-center lg:justify-start',
+                    tab === option.value ? 'opacity-100' : 'opacity-60'
+                  )}
+                  onClick={() => {
+                    navigate(`/profile/edit?page=${option.value}`);
+                  }}
+                >
+                  <span className="text-[25px]">{option.icon}</span>
+                  <span className="lg:block hidden">{option.title}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+          <div className="flex-1 px-2 lg:px-[84px] py-[50px]">
+            {tab === options[0].value ? (
+              <BasicInformation />
+            ) : tab === options[1].value ? (
+              <EducationAndWork />
+            ) : tab === options[2].value ? (
+              <Interests />
+            ) : tab === options[3].value ? (
+              <Albums />
+            ) : tab === options[4].value ? (
+              <AccountSettings />
+            ) : tab === options[5].value ? (
+              <ChangePassword />
+            ) : tab === options[6].value ? (
+              <UpdateProfilePicture />
+            ) : (
+              <></>
+            )}
+          </div>
+        </div>
+        {/* <Tabs value={tab} orientation="vertical" className="overflow-visible">
           <div className="w-[50px] lg:w-[380px] bg-white">
             <div className="flex justify-center h-[60px] lg:h-[85px]">
               <Avatar
@@ -253,9 +315,7 @@ const ProfileEdit: React.FC<IProfileEditProps> = () => {
                 ))}
               </TabsHeader>
 
-              <TabsBody
-                className="overflow-visible"
-              >
+              <TabsBody className="overflow-visible">
                 <TabPanel value="0">
                   <BasicInformation />
                 </TabPanel>
@@ -265,7 +325,10 @@ const ProfileEdit: React.FC<IProfileEditProps> = () => {
                 <TabPanel value="2" className="overflow-visible">
                   <Interests />
                 </TabPanel>
-                <TabPanel value="3" className="overflow-visible lg:profile-edit-panel-lg profile-edit-panel">
+                <TabPanel
+                  value="3"
+                  className="overflow-visible lg:profile-edit-panel-lg profile-edit-panel"
+                >
                   <Albums />
                 </TabPanel>
                 <TabPanel value="4" className="overflow-visible">
@@ -282,7 +345,7 @@ const ProfileEdit: React.FC<IProfileEditProps> = () => {
               </TabsBody>
             </div>
           </div>
-        </Tabs>
+        </Tabs> */}
       </div>
     </div>
   );

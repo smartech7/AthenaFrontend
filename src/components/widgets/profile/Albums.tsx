@@ -47,7 +47,7 @@ const Albums = () => {
   };
 
   return (
-    <div>
+    <div className='w-full'>
       <CreateAlbumDialog
         open={isCreateModalOpen}
         onClose={onCloseCreateModal}
