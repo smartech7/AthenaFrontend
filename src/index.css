@@ -82,7 +82,7 @@
     font-size: 34px;
   }
   .profile-edit-panel-lg {
-    width: calc(100vw - 600px) !important;
+    width: calc(100vw - 560px) !important;
   }
   .profile-edit-panel {
     width: calc(100vw - 66px) !important;

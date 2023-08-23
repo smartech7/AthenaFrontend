@@ -225,24 +225,34 @@ const ProfileEdit: React.FC<IProfileEditProps> = () => {
               ))}
             </div>
           </div>
-          <div className="flex-1 px-2 lg:px-[84px] py-[50px]">
-            {tab === options[0].value ? (
-              <BasicInformation />
-            ) : tab === options[1].value ? (
-              <EducationAndWork />
-            ) : tab === options[2].value ? (
-              <Interests />
-            ) : tab === options[3].value ? (
-              <Albums />
-            ) : tab === options[4].value ? (
-              <AccountSettings />
-            ) : tab === options[5].value ? (
-              <ChangePassword />
-            ) : tab === options[6].value ? (
-              <UpdateProfilePicture />
-            ) : (
-              <></>
-            )}
+          <div className="flex-1 px-2 lg:px-[84px] py-[20px]">
+            <div className="flex gap-10 border-b-2 border-b-[#C9C9C9] px-5 items-center">
+              <div className="text-base text-[#818181] font-poppins font-semibold cursor-pointer select-none py-3 text-center">
+                Timeline
+              </div>
+              <div className="text-base text-[#818181] font-poppins font-semibold cursor-pointer select-none py-3 text-center">
+                Complete Profile
+              </div>
+            </div>
+            <div className="mt-[30px]">
+              {tab === options[0].value ? (
+                <BasicInformation />
+              ) : tab === options[1].value ? (
+                <EducationAndWork />
+              ) : tab === options[2].value ? (
+                <Interests />
+              ) : tab === options[3].value ? (
+                <Albums />
+              ) : tab === options[4].value ? (
+                <AccountSettings />
+              ) : tab === options[5].value ? (
+                <ChangePassword />
+              ) : tab === options[6].value ? (
+                <UpdateProfilePicture />
+              ) : (
+                <></>
+              )}
+            </div>
           </div>
         </div>
         {/* <Tabs value={tab} orientation="vertical" className="overflow-visible">
