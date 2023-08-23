@@ -47,7 +47,7 @@ const Albums = () => {
   };
 
   return (
-    <div className='w-full'>
+    <div className='overflow-visible lg:profile-edit-panel-lg profile-edit-panel'>
       <CreateAlbumDialog
         open={isCreateModalOpen}
         onClose={onCloseCreateModal}

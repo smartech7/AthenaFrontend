@@ -44,9 +44,23 @@ const AlbumCard: React.FC<IAlbumCardProps> = ({ item }) => {
           renderButtonGroupOutside={false}
           renderDotsOutside={false}
           responsive={{
-            desktop: {
+            desktopxl: {
               breakpoint: {
                 max: 3000,
+                min: 2400,
+              },
+              items: 5,
+            },
+            desktoplg: {
+              breakpoint: {
+                max: 2400,
+                min: 1800,
+              },
+              items: 4,
+            },
+            desktop: {
+              breakpoint: {
+                max: 1800,
                 min: 1400,
               },
               items: 3,

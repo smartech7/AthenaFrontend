@@ -85,6 +85,6 @@
     width: calc(100vw - 600px) !important;
   }
   .profile-edit-panel {
-    width: calc(100vw - 150px) !important;
+    width: calc(100vw - 66px) !important;
   }
 }
