@@ -2,6 +2,8 @@ import * as React from 'react';
 
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 
+import { cn } from '@/lib/utils';
+
 export type FeaturedMember = {
   avatar: string;
   name: string;
@@ -27,10 +29,10 @@ const FeaturedMemberItem: React.FunctionComponent<IFeaturedMemberItemProps> = ({
         </AvatarFallback>
       </Avatar>
       <div>
-        <h5 className="font-poppins text-black text-[18px] font-medium">
+        <h5 className="font-poppins text-black text-[17.2px] font-medium">
           {item.name}
         </h5>
-        <p>{item.role}</p>
+        <p className={cn('font-poppins text-[12.62px] font-medium', item.role === 'VIP' ? 'text-[#8874DC]' : item.role === 'Moderator' ? 'text-[#4C7737]' : 'text-[#AAA]')}>{item.role}</p>
       </div>
     </div>
   );

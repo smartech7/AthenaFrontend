@@ -1,6 +1,7 @@
 import * as React from 'react';
 
 import { Blog } from '@/lib/validation/blog';
+import { cn } from '@/lib/utils';
 import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
 import { useBlogContext } from '@/context/BlogContext';
@@ -10,15 +11,22 @@ dayjs.extend(relativeTime);
 
 interface IBlogCardProps {
   item: Blog;
+  className?: string;
 }
 
-const BlogCard: React.FunctionComponent<IBlogCardProps> = ({ item }) => {
+const BlogCard: React.FunctionComponent<IBlogCardProps> = ({
+  item,
+  className,
+}) => {
   const navigate = useNavigate();
   const { categories } = useBlogContext();
 
   return (
     <div
-      className={`relative rounded-t-2xl !bg-cover !bg-center w-full h-[250px] overflow-hidden p-0`}
+      className={cn(
+        `relative rounded-t-2xl !bg-cover !bg-center w-full h-[250px] overflow-hidden p-0`,
+        className
+      )}
       style={{
         backgroundImage: item.banner ? `url(${item.banner})` : '',
       }}

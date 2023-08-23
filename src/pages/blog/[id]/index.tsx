@@ -1,8 +1,13 @@
 import { useEffect, useState } from 'react';
 
+import { BiShareAlt } from 'react-icons/bi';
 import { Blog } from '@/lib/validation/blog';
+import { BsFillEyeFill } from 'react-icons/bs';
+import Button from '@/components/common/Button';
 import CONSTANTS from '@/config/constants';
+import RecentBlogs from '@/components/widgets/blog/RecentBlogs';
 import { Spinner } from '@material-tailwind/react';
+import { TiArrowForward } from 'react-icons/ti';
 import { formatDate } from '@/lib/utils';
 import { getBlogById } from '@/api/blog';
 import { toast } from 'react-hot-toast';
@@ -45,7 +50,7 @@ const BlogDetail = () => {
     );
 
   return (
-    <div className="w-full p-6">
+    <div className="w-full p-3 md:p-6">
       <div
         className="h-[370px] rounded-t-2xl relative flex flex-col justify-end bg-cover bg-center"
         style={{ backgroundImage: `url(${item.banner})` }}
@@ -53,14 +58,34 @@ const BlogDetail = () => {
         <div className="absolute right-4 top-4 bg-white rounded-lg px-3 py-3 text-[14px] font-bold font-sans">
           {categories?.find((val) => val.value === item.tag)?.label}
         </div>
+        <div className="absolute bottom-0 left-0 w-full h-1/2 bg-gradient-to-b from-black/0 via-black/80 to-black"></div>
+        <div className="absolute bottom-0 px-4 w-full left-0 flex justify-between items-center py-2">
+          <div className="flex gap-5 lg:gap-10 items-center">
+            <div className="text-gray-300 font-poppins flex text-[18px] items-center">
+              {formatDate(item.createdAt, 'MMM DD, YYYY')}
+            </div>
+            <div className="flex gap-1 items-center text-gray-300">
+              <BiShareAlt />
+              1K
+              <span className="hidden sm:block">shares</span>
+            </div>
+            <div className="flex gap-1 items-center text-gray-300">
+              <BsFillEyeFill />
+              475
+              <span className="hidden sm:block">views</span>
+            </div>
+          </div>
+          <div className="">
+            <Button className="text-white bg-white/20 rounded-full p-2 text-[24px]">
+              <TiArrowForward />
+            </Button>
+          </div>
+        </div>
       </div>
       {/* <div className="flex flex-col justify-end w-full p-8 h-1/2 bg-gradient-to-b from-black/0 via-black/80 to-black"> */}
       <h2 className="text-black font-poppins text-[30px] leading-[35px] font-bold mt-5">
         {item.title}
       </h2>
-      <p className="text-black font-poppins text-[18px] mt-2">
-        {formatDate(item.createdAt, 'MMMM DD, YYYY')}
-      </p>
       {/* </div> */}
       <div className="mt-5">
         <div
@@ -69,6 +94,8 @@ const BlogDetail = () => {
           }}
         ></div>
       </div>
+      
+      {/* <RecentBlogs /> */}
       {/* <div className='mt-5'>
         <CommentBox blog={item} />
       </div> */}

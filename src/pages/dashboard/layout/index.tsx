@@ -6,10 +6,10 @@ import RightSidebar from '@/pages/dashboard/layout/RightSidebar';
 const DashboardLayout = () => {
   return (
     <BlogProvider>
-      <div className="flex flex-col lg:flex-row">
+      <div className="w-screen flex flex-col gap-5 lg:flex-row lg:gap-0 mb-20">
         <LeftSidebar />
         <div className="flex-1 bg-white">
-          <div className="w-full h-full bg-dashboard-background">
+          <div className="w-full xl:container h-full bg-dashboard-background">
             <Outlet />
           </div>
         </div>
