@@ -21,10 +21,22 @@ module.exports = withMT({
     },
     screens: {
       '5xl': '2400px',
-      '4xl': '2200px',
-      '3xl': '1600px',
-      '2xl': '1400px',
-      '1hlg': '1100px'
+      '4xl': {
+        min: '2200px',
+        max: '2400px'
+      },
+      '3xl': {
+        min: '1600px',
+        max: '2200px',
+      },
+      '1hxl': {
+        min: '1400px',
+        max: '1600px'
+      },
+      '1hlg': {
+        min: '1100px',
+        max: '1400px'
+      }
     },
     extend: {
       fontFamily: {

@@ -56,7 +56,7 @@ const SidebarMenuItem: React.FC<ISidebarMenuItemProps> = ({
           >
             <div
               className={cn(
-                'bg-white rounded-full h-full flex items-center gap-3 px-4 py-2 text-[19px] font-montserrat hover:text-black hover:font-bold',
+                'bg-white rounded-full h-full flex items-center gap-3 px-4 py-2 text-[18.94px] font-montserrat hover:text-black hover:font-bold',
                 selected === true ? 'text-black font-bold' : 'text-[#828282]'
               )}
             >
@@ -80,7 +80,7 @@ const LeftSidebar = () => {
         // open === false ? 'hidden' : 'block'
       )}
     >
-      <div className="w-full py-4 bg-white rounded-br-lg">
+      <div className="w-full py-4 bg-white rounded-br-lg pt-10">
         <div className="w-full bg-dashboard-background">
           <SidebarMenuItem
             selected={selectedMenu === 0}

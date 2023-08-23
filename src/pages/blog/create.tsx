@@ -77,8 +77,7 @@ const BlogCreate = () => {
         if (res.code === CONSTANTS.SUCCESS) {
           navigate('/blog');
           toast.success(res.message);
-        }
-        else toast.error(res.message);
+        } else toast.error(res.message);
       })
       .catch((err) => {
         console.log('Error while creating a blog:', err);
@@ -129,11 +128,12 @@ const BlogCreate = () => {
             <Select
               value={input.tag}
               options={categories}
-              onChange={(newVal: Option) => {
+              onChange={(newVal) => {
                 console.log(newVal);
+                const newOption = newVal as Option;
                 setInput((prev) => ({
                   ...prev,
-                  tag: newVal,
+                  tag: newOption,
                 }));
               }}
               theme={(theme: Theme) => ({
