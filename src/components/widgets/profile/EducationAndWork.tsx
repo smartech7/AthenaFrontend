@@ -151,7 +151,7 @@ const EducationAndWork = () => {
           >
             <div
               className={cn(
-                'flex items-center h-[62px] gap-2 font-poppins text-[24px] font-semibold',
+                'flex items-center h-[62px] gap-2 font-poppins text-[18px] lg:text-[24px] font-semibold',
                 tab === 'education' ? 'text-black' : 'text-[#6A6A6A]'
               )}
             >
@@ -166,7 +166,7 @@ const EducationAndWork = () => {
           >
             <div
               className={cn(
-                'flex items-center h-[62px] gap-2 font-poppins text-[24px] font-semibold',
+                'flex items-center h-[62px] gap-2 font-poppins text-[18px] lg:text-[24px] font-semibold',
                 tab === 'experience' ? 'text-black' : 'text-[#6A6A6A]'
               )}
             >

@@ -117,11 +117,10 @@ const Navbar = () => {
 
   return (
     <div className="fixed top-0 left-0 w-screen px-[25px] z-[9900] bg-white h-[72px] flex items-center justify-between gap-5">
-      <div className="basis-[200px] w-[200px]">
-        <img src="/images/black_logo.svg" width={200} height={60} className='object-cover' />
+      <div className="basis-[200px] w-[200px] h-[60px] bg-contain bg-center bg-no-repeat" style={{backgroundImage: "url(/images/black_logo.svg)"}}>
       </div>
-      <div className="flex-1 2xl:hidden">{MobileNavs}</div>
-      <div className="hidden gap-5 2xl:flex flex-1 2xl:justify-center">
+      <div className="flex-1 xl:hidden">{MobileNavs}</div>
+      <div className="hidden gap-0 xl:flex xl:justify-center">
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <Button
@@ -182,7 +181,7 @@ const Navbar = () => {
             <DropdownMenuItem
               className="font-montserrat font-medium text-[13.24px]"
               onClick={() => {
-                navigate('/profile/edit');
+                navigate('/profile/edit/?page=info');
               }}
             >
               <span>Edit Profile</span>

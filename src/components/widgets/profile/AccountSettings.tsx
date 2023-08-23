@@ -99,7 +99,7 @@ const AccountSettings = () => {
   };
 
   return (
-    <div>
+    <div className="w-full">
       <h3 className="text-black font-poppins text-[24px] font-semibold">
         Account Privacy Settings
       </h3>
@@ -109,8 +109,8 @@ const AccountSettings = () => {
         Complete your profile 100% to reach more people.
       </p>
 
-      <div className="flex flex-col gap-3 mt-5">
-        <div className="bg-white rounded-[9px] flex gap-3 justify-between items-center px-5 py-4">
+      <div className="mt-5 px-0">
+        <div className="bg-white rounded-[9px] flex gap-3 justify-between items-center px-2 py-2 md:px-5 md:py-4">
           <div>
             <h6 className="text-base font-semibold text-black font-poppins">
               Enable friend requests
@@ -138,7 +138,7 @@ const AccountSettings = () => {
           />
         </div>
 
-        <div className="bg-white rounded-[9px] flex gap-3 justify-between items-center px-5 py-4">
+        <div className="bg-white rounded-[9px] flex gap-3 justify-between items-center px-2 py-2 md:px-5 md:py-4 mt-3">
           <div>
             <h6 className="text-base font-semibold text-black font-poppins">
               Enable private messages
@@ -166,7 +166,7 @@ const AccountSettings = () => {
           />
         </div>
 
-        <div className="bg-white rounded-[9px] flex gap-3 justify-between items-center px-5 py-4">
+        <div className="bg-white rounded-[9px] flex gap-3 justify-between items-center px-2 py-2 md:px-5 md:py-4 mt-3">
           <div>
             <h6 className="text-base font-semibold text-black font-poppins">
               Enable tagging
@@ -194,7 +194,7 @@ const AccountSettings = () => {
           />
         </div>
 
-        <div className="bg-white rounded-[9px] flex gap-3 justify-between items-center px-5 py-4">
+        <div className="bg-white rounded-[9px] flex gap-3 justify-between items-center px-2 py-2 md:px-5 md:py-4 mt-3">
           <div>
             <h6 className="text-base font-semibold text-black font-poppins">
               Enable private profile
@@ -222,7 +222,7 @@ const AccountSettings = () => {
           />
         </div>
 
-        <div className="bg-white rounded-[9px] flex gap-3 justify-between items-center px-5 py-4">
+        <div className="bg-white rounded-[9px] flex gap-3 justify-between items-center px-2 py-2 md:px-5 md:py-4 mt-3">
           <div>
             <h6 className="text-base font-semibold text-black font-poppins">
               Activate/Deactivate Account
@@ -251,7 +251,7 @@ const AccountSettings = () => {
           />
         </div>
 
-        <div className="bg-white rounded-[9px] flex gap-3 justify-between items-center px-5 py-4">
+        <div className="bg-white rounded-[9px] flex gap-3 justify-between items-center px-2 py-2 md:px-5 md:py-4 mt-3">
           <div>
             <h6 className="text-base font-semibold text-black font-poppins">
               Remove Ads
@@ -279,7 +279,7 @@ const AccountSettings = () => {
           />
         </div>
 
-        <div className="bg-white rounded-[9px] flex gap-3 justify-between items-center px-5 py-4">
+        <div className="bg-white rounded-[9px] flex gap-3 justify-between items-center px-2 py-2 md:px-5 md:py-4 mt-3">
           <div>
             <h6 className="text-base font-semibold text-black font-poppins">
               Delete my Account
@@ -290,7 +290,7 @@ const AccountSettings = () => {
           </div>
 
           <Button
-            className="text-white bg-red-600 hover:bg-red-400"
+            className="text-white bg-red-600 hover:bg-red-400 h-[50px]"
             onClick={onDeleteAccount}
             disabled={isDeleting}
           >
@@ -299,7 +299,7 @@ const AccountSettings = () => {
         </div>
 
         <Button
-          className="w-full h-[50px]"
+          className="w-full h-[50px] mt-4"
           onClick={onSubmit}
           disabled={isSaving}
         >
