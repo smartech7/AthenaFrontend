@@ -130,6 +130,49 @@ export const login = async (data: LoginUser) => {
   );
 };
 
+export const thirdLogin = async (data: {
+  email: string;
+  type: string;
+  accesstoken: string;
+}) => {
+  return new Promise<{ code: string; token?: string; message: string }>(
+    (resolve, reject) => {
+      axios
+        .post(`${apiUrl}/auth/thirdlogin`, data)
+        .then((res) => {
+          if (res.data.message === CONSTANTS.SUCCESS) {
+            resolve({
+              code: CONSTANTS.SUCCESS,
+              token: res.data.status,
+              message: 'Successfully Logged In!',
+            });
+          } else {
+            console.log(res);
+            reject({
+              code: CONSTANTS.FAILED,
+              message: res.data.status,
+            });
+          }
+        })
+        .catch((err: AxiosError) => {
+          console.log('Error while logging in:', err);
+          reject({
+            code: CONSTANTS.FAILED,
+            message: err.response
+              ? err.response.status
+              : 'Failed with unknown error.',
+          });
+        })
+        .finally(() => {
+          reject({
+            code: CONSTANTS.FAILED,
+            message: 'Failed with unknown error.',
+          });
+        });
+    }
+  );
+};
+
 export const logout = async () => {
   removeAuthToken();
   delete axios.defaults.headers.common['Token'];

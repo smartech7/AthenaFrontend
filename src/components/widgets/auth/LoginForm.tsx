@@ -8,6 +8,7 @@ import { Loader2 } from 'lucide-react';
 import axios from 'axios';
 import { login } from '@/api/auth';
 import toast from 'react-hot-toast';
+import { useGoogleLogin } from '@react-oauth/google';
 import { useNavigate } from 'react-router-dom';
 
 export type LoginUser = {
@@ -17,6 +18,14 @@ export type LoginUser = {
 
 export default function LoginForm() {
   const navigate = useNavigate();
+  const googleLogin = useGoogleLogin({
+    onSuccess: (res) => {
+      console.log(res);
+    },
+    onError: () => {
+      console.log('Failed');
+    },
+  });
   const [isLoading, setLoading] = useState<boolean>(false);
   const [input, setInput] = useState<LoginUser>({
     email: '',
@@ -53,8 +62,6 @@ export default function LoginForm() {
         setLoading(false);
       });
   };
-  const onGoogleLogin = () => {
-  }
 
   return (
     <div className="flex flex-col mt-10 gap-7">
@@ -62,6 +69,7 @@ export default function LoginForm() {
         <Button
           variant="secondary"
           className="flex justify-start rounded-lg flex-1 gap-4 h-[60px] px-8 text-base text-black"
+          onClick={() => googleLogin()}
         >
           <img src="/images/google.svg" width={26} height={26} />
           Sign in with Google
@@ -70,7 +78,6 @@ export default function LoginForm() {
           variant="secondary"
           size="icon"
           className="w-[60px] h-[60px] rounded-lg"
-          onClick={onGoogleLogin}
         >
           <img src="/images/facebook.svg" width={35} height={35} />
         </Button>
