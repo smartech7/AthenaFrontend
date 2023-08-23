@@ -73,7 +73,7 @@ const BlogHome = () => {
       </div>
 
       <div className="mt-5">
-        <div className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-1 1hlg:grid-cols-2 3xl:grid-cols-3 4xl:grid-cols-4 5xl:grid-cols-4">
+        <div className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-1 5xl:grid-cols-5 4xl:grid-cols-4 3xl:grid-cols-3 1hxl:grid-cols-2 1hlg:grid-cols-2">
           {blogs.map((blog: Blog, i: number) => (
             <BlogCard key={`blog-${i}`} item={blog} />
           ))}

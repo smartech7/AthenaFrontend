@@ -1,4 +1,6 @@
-import FeaturedMemberItem, { FeaturedMember } from '@/components/common/FeaturedMemberItem';
+import FeaturedMemberItem, {
+  FeaturedMember,
+} from '@/components/common/FeaturedMemberItem';
 import {
   Tooltip,
   TooltipContent,
@@ -20,19 +22,19 @@ const featuredMembers: FeaturedMember[] = [
   {
     avatar: '/images/avatar_1.jpg',
     name: 'John Walton',
-    role: 'Moderator'
+    role: 'Moderator',
   },
   {
     avatar: '/images/avatar_2.jpg',
     name: 'Monica Randawa',
-    role: 'VIP'
+    role: 'VIP',
   },
   {
     avatar: '/images/avatar_3.jpg',
     name: 'Innoxent Jay',
-    role: 'VIP'
+    role: 'VIP',
   },
-]
+];
 
 const RightSidebar: React.FC<IRightSidebarProps> = ({ open }) => {
   const { user } = useAuthContext();
@@ -47,9 +49,9 @@ const RightSidebar: React.FC<IRightSidebarProps> = ({ open }) => {
         <div className="bg-[url(/images/demo_1.jpg)] bg-cover w-full h-[300px] bg-center rounded-t-2xl"></div>
       </div>
 
-      <div className="px-6 py-6 mt-10 bg-white rounded-t-2xl">
+      <div className="px-6 py-6 mt-10 bg-[#f2f2f2] rounded-t-2xl">
         <div className="flex items-center gap-4">
-          <Avatar user={user} />
+          <Avatar user={user} className="w-[60px] h-[60px]" />
           <div>
             <h6 className="font-bold text-base text-[#151515]">{user?.name}</h6>
             <a href="#" className="text-[#959595] font-semibold text-[15px]">
@@ -85,11 +87,13 @@ const RightSidebar: React.FC<IRightSidebarProps> = ({ open }) => {
             </Tooltip>
           </TooltipProvider>
         </div>
-        <div className="flex items-center justify-between gap-4 px-10 mt-5 bg-white">
+        <div className="flex items-center justify-between gap-4 px-6 py-4 mt-5 bg-white rounded-md">
           <p className="font-semibold text-[17px] text-[#515151]">Wallet</p>
           <div className="flex gap-1">
             <img src="/images/money.svg" width={24} height={24} />
-            <p className="text-[#515151] font-semibold text-[19px] font-inter">1600</p>
+            <p className="text-[#515151] font-semibold text-[19px] font-inter">
+              1600
+            </p>
           </div>
         </div>
       </div>
@@ -108,15 +112,18 @@ const RightSidebar: React.FC<IRightSidebarProps> = ({ open }) => {
       </div>
 
       <div className="px-6 py-6 mt-10 bg-white rounded-t-2xl">
-        <div className='flex items-center justify-between'>
+        <div className="flex items-center justify-between">
           <h4 className="text-[18px] text-[#B5B5B5] font-semibold font-inter">
             Featured Members
           </h4>
-          <Button className='bg-[#F4F4F4] rounded-full h-[30px] text-[13px] font-inter' variant='ghost'>
+          <Button
+            className="bg-[#F4F4F4] rounded-full h-[30px] text-[13px] font-inter"
+            variant="ghost"
+          >
             See all
           </Button>
         </div>
-        <div className='flex flex-col gap-6 mt-6'>
+        <div className="flex flex-col gap-6 mt-6">
           {featuredMembers.map((item, i) => (
             <FeaturedMemberItem key={`featured-member-${i}`} item={item} />
           ))}
