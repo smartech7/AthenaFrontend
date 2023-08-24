@@ -75,10 +75,9 @@ const RecentBlogs: React.FC<IRecentBlogsProps> = ({ className }) => {
           <Carousel
             additionalTransfrom={0}
             arrows
-            customLeftArrow={}
             autoPlaySpeed={3000}
             centerMode={false}
-            className="mt-3 w-full"
+            className="w-full mt-3"
             containerClass="gap-2"
             dotListClass=""
             draggable={false}

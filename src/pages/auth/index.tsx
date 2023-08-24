@@ -11,7 +11,7 @@ import RegisterForm from '@/components/widgets/auth/RegisterForm';
 
 export default function Auth() {
   return (
-    <div className="pt-5 lg:pt-[130px] lg:pb-[40px] flex justify-center h-full">
+    <div className="flex justify-center h-full pt-5">
       <div className="w-[540px] flex flex-col gap-[30px] py-4 my-auto">
         <h2 className="font-bold text-black text-center md:text-[30px] text-[26px]">Welcome to DONAMIX</h2>
         <Card className="px-4 py-7 lg:px-[44px] lg:py-[56px] rounded-[30px]">
