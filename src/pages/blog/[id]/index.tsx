@@ -95,7 +95,7 @@ const BlogDetail = () => {
         ></div>
       </div>
       
-      {/* <RecentBlogs /> */}
+      <RecentBlogs className='mt-5' />
       {/* <div className='mt-5'>
         <CommentBox blog={item} />
       </div> */}
