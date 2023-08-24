@@ -10,7 +10,9 @@ const DashboardLayout = () => {
         <LeftSidebar />
         <div className="flex-1 bg-white">
           <div className="w-full h-full bg-dashboard-background">
-            <Outlet />
+            <div className="w-full 2xl:container h-full">
+              <Outlet />
+            </div>
           </div>
         </div>
         <RightSidebar />
