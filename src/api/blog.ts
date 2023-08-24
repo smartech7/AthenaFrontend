@@ -26,7 +26,43 @@ export const createBlog = async (data: Blog) => {
         }
       })
       .catch((err: AxiosError) => {
-        console.log('Error while changing the password:', err);
+        console.log('Error while creating blog:', err);
+        reject({
+          code: CONSTANTS.FAILED,
+          message: err.response
+            ? err.response.status
+            : 'Failed with unknown error.',
+        });
+      })
+      .finally(() => {
+        reject({
+          code: CONSTANTS.FAILED,
+          message: 'Failed with unknown error.',
+        });
+      });
+  });
+};
+
+export const updateBlog = async (id: string, data: Blog) => {
+  return new Promise<{ code: string; message: string }>((resolve, reject) => {
+    axios
+      .put(`${apiUrl}/blog/editblog/${id}`, data)
+      .then((res) => {
+        if (res.data.message === CONSTANTS.SUCCESS) {
+          resolve({
+            code: CONSTANTS.SUCCESS,
+            message: 'Saved Successfully!',
+          });
+        } else {
+          console.log(res);
+          reject({
+            code: CONSTANTS.FAILED,
+            message: res.data.status,
+          });
+        }
+      })
+      .catch((err: AxiosError) => {
+        console.log('Error while updating blog:', err);
         reject({
           code: CONSTANTS.FAILED,
           message: err.response
@@ -64,7 +100,7 @@ export const getBlogs = async () => {
           }
         })
         .catch((err: AxiosError) => {
-          console.log('Error while creating a blog:', err);
+          console.log('Error while fetching blog:', err);
           reject({
             code: CONSTANTS.FAILED,
             message: err.response
@@ -119,47 +155,54 @@ export const getBlogCount = async () => {
         });
     }
   );
-}
+};
 
-export const getBlogsByRange = async (data: {total_count: number; from: number; count: number}) => {
-  return new Promise<{ code: string; data?: Blog[]; totalCount?: number; message: string }>(
-    (resolve, reject) => {
-      axios
-        .post(`${apiUrl}/blog/filterblogs`, data)
-        .then((res) => {
-          if (res.data.message === CONSTANTS.SUCCESS) {
-            resolve({
-              code: CONSTANTS.SUCCESS,
-              data: res.data.data,
-              totalCount: res.data.totalcount,
-              message: 'Saved Successfully!',
-            });
-          } else {
-            console.log(res);
-            reject({
-              code: CONSTANTS.FAILED,
-              message: res.data.status,
-            });
-          }
-        })
-        .catch((err: AxiosError) => {
-          console.log('Error while filtering blogs:', err);
+export const getBlogsByRange = async (data: {
+  total_count: number;
+  from: number;
+  count: number;
+}) => {
+  return new Promise<{
+    code: string;
+    data?: Blog[];
+    totalCount?: number;
+    message: string;
+  }>((resolve, reject) => {
+    axios
+      .post(`${apiUrl}/blog/filterblogs`, data)
+      .then((res) => {
+        if (res.data.message === CONSTANTS.SUCCESS) {
+          resolve({
+            code: CONSTANTS.SUCCESS,
+            data: res.data.data,
+            totalCount: res.data.totalcount,
+            message: 'Saved Successfully!',
+          });
+        } else {
+          console.log(res);
           reject({
             code: CONSTANTS.FAILED,
-            message: err.response
-              ? err.response.status
-              : 'Failed with unknown error.',
+            message: res.data.status,
           });
-        })
-        .finally(() => {
-          reject({
-            code: CONSTANTS.FAILED,
-            message: 'Failed with unknown error.',
-          });
+        }
+      })
+      .catch((err: AxiosError) => {
+        console.log('Error while filtering blogs:', err);
+        reject({
+          code: CONSTANTS.FAILED,
+          message: err.response
+            ? err.response.status
+            : 'Failed with unknown error.',
         });
-    }
-  );
-}
+      })
+      .finally(() => {
+        reject({
+          code: CONSTANTS.FAILED,
+          message: 'Failed with unknown error.',
+        });
+      });
+  });
+};
 
 export const getBlogById = async (id: string) => {
   return new Promise<{ code: string; data?: Blog; message: string }>(
@@ -201,40 +244,78 @@ export const getBlogById = async (id: string) => {
 };
 
 export const getBlogCategories = async () => {
-  return new Promise<{ code: string; data?: BlogCategoryOption[]; message: string }>(
-    (resolve, reject) => {
-      axios
-        .get(`${adminApi}/blogcategories`)
-        .then((res) => {
-          if (res.data.message === CONSTANTS.SUCCESS) {
-            resolve({
-              code: CONSTANTS.SUCCESS,
-              data: res.data.data,
-              message: 'Saved Successfully!',
-            });
-          } else {
-            console.log(res);
-            reject({
-              code: CONSTANTS.FAILED,
-              message: res.data.status,
-            });
-          }
-        })
-        .catch((err: AxiosError) => {
-          console.log('Error while getting blog categories:', err);
+  return new Promise<{
+    code: string;
+    data?: BlogCategoryOption[];
+    message: string;
+  }>((resolve, reject) => {
+    axios
+      .get(`${adminApi}/blogcategories`)
+      .then((res) => {
+        if (res.data.message === CONSTANTS.SUCCESS) {
+          resolve({
+            code: CONSTANTS.SUCCESS,
+            data: res.data.data,
+            message: 'Saved Successfully!',
+          });
+        } else {
+          console.log(res);
           reject({
             code: CONSTANTS.FAILED,
-            message: err.response
-              ? err.response.status
-              : 'Failed with unknown error.',
+            message: res.data.status,
           });
-        })
-        .finally(() => {
-          reject({
-            code: CONSTANTS.FAILED,
-            message: 'Failed with unknown error.',
-          });
+        }
+      })
+      .catch((err: AxiosError) => {
+        console.log('Error while getting blog categories:', err);
+        reject({
+          code: CONSTANTS.FAILED,
+          message: err.response
+            ? err.response.status
+            : 'Failed with unknown error.',
         });
-    }
-  );
+      })
+      .finally(() => {
+        reject({
+          code: CONSTANTS.FAILED,
+          message: 'Failed with unknown error.',
+        });
+      });
+  });
+};
+
+export const deleteBlog = async (id: string) => {
+  return new Promise<{ code: string; message: string }>((resolve, reject) => {
+    axios
+      .delete(`${apiUrl}/blog/deleteblog/${id}`)
+      .then((res) => {
+        if (res.data.message === CONSTANTS.SUCCESS) {
+          resolve({
+            code: CONSTANTS.SUCCESS,
+            message: 'Deleted Successfully!',
+          });
+        } else {
+          console.log(res);
+          reject({
+            code: CONSTANTS.FAILED,
+            message: res.data.status,
+          });
+        }
+      })
+      .catch((err: AxiosError) => {
+        console.log('Error while deleting blog:', err);
+        reject({
+          code: CONSTANTS.FAILED,
+          message: err.response
+            ? err.response.status
+            : 'Failed with unknown error.',
+        });
+      })
+      .finally(() => {
+        reject({
+          code: CONSTANTS.FAILED,
+          message: 'Failed with unknown error.',
+        });
+      });
+  });
 };

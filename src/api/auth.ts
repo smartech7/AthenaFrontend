@@ -104,7 +104,7 @@ export const login = async (data: LoginUser) => {
               message: 'Successfully Logged In!',
             });
           } else {
-            console.log(res);
+            console.log('Failed:', res);
             reject({
               code: CONSTANTS.FAILED,
               message: res.data.status,

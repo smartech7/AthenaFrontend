@@ -1,6 +1,8 @@
 import {
+  BiMenu,
   BiSolidCalendarEdit,
   BiSolidChevronDownCircle,
+  BiSolidChevronUpCircle,
   BiSolidImage,
   BiSolidMessageDots,
   BiSolidMessageRoundedDetail,
@@ -17,11 +19,11 @@ import {
   BsPlayCircleFill,
 } from 'react-icons/bs';
 import { FaHandsHelping, FaShoppingBasket } from 'react-icons/fa';
+import { IoClose, IoDiamondOutline } from 'react-icons/io5';
 
 import { Button } from '@/components/ui/button';
 import { FaRadio } from 'react-icons/fa6';
 import { HiUserGroup } from 'react-icons/hi2';
-import { IoDiamondOutline } from 'react-icons/io5';
 import { LiaHandPaper } from 'react-icons/lia';
 import { cn } from '@/lib/utils';
 import { useState } from 'react';
@@ -39,24 +41,24 @@ const SidebarMenuItem: React.FC<ISidebarMenuItemProps> = ({
   return (
     <div
       className={cn(
-        'w-full h-[81px] p-0 cursor-pointer hover:!text-black',
+        'w-full h-[80px] p-0 cursor-pointer hover:!text-black transition-all',
         selected === true ? 'bg-dashboard-background' : 'bg-white'
       )}
       onClick={onSelect}
     >
       <div className="h-2 bg-white rounded-br-full"></div>
-      <div className="relative w-full h-[65px]">
+      <div className="relative w-full h-[64px]">
         <div className="absolute top-0 left-0 z-0 w-10 h-full bg-white"></div>
         <div className="w-full h-full px-2">
           <div
             className={cn(
-              'rounded-full w-full h-full p-[6px] relative z-2',
+              'rounded-full w-full h-full p-[6px] relative z-2 transition-all',
               selected === true ? 'bg-dashboard-background' : 'bg-white'
             )}
           >
             <div
               className={cn(
-                'bg-white rounded-full h-full flex items-center gap-3 px-4 py-2 text-[17px] font-montserrat hover:text-black hover:font-bold',
+                'bg-white rounded-full h-full flex items-center gap-3 px-4 py-2 text-[17px] font-montserrat hover:text-black hover:font-bold transition-all',
                 selected === true ? 'text-black font-bold' : 'text-[#828282]'
               )}
             >
@@ -73,15 +75,26 @@ const SidebarMenuItem: React.FC<ISidebarMenuItemProps> = ({
 const LeftSidebar = () => {
   const [selectedMenu, setSelectedMenu] = useState(0);
   const [isExpanded, setExpanded] = useState(false);
+  const [open, setOpen] = useState<boolean>(false);
+
   return (
-    <div
+    <aside
+      id="left-sidebar"
       className={cn(
-        'w-[230px] bg-dashboard-background hidden 2xl:block',
-        // open === false ? 'hidden' : 'block'
+        'w-[230px] absolute left-0 top-0 2xl:relative bg-transparent -translate-x-[230px] 2xl:!translate-x-0 transition-all z-50',
+        open === false ? '-translate-x-[230px]' : 'translate-x-0'
       )}
     >
-      <div className="w-full py-4 bg-white rounded-br-lg">
-        <div className="w-full bg-dashboard-background">
+      <div
+        className="absolute top-0 block bg-white 2xl:hidden left-full text-[30px] -translate-x-2 pl-2 rounded-br-md hover:text-gray-600 cursor-pointer select-none"
+        onClick={() => {
+          setOpen((prev) => !prev);
+        }}
+      >
+        {open === true ? <IoClose /> : <BiMenu />}
+      </div>
+      <div className="w-full pt-[22px] pb-4 bg-white rounded-br-lg">
+        <div className="w-full bg-transparent">
           <SidebarMenuItem
             selected={selectedMenu === 0}
             onSelect={() => setSelectedMenu(0)}
@@ -220,6 +233,15 @@ const LeftSidebar = () => {
                 </big>
                 Events
               </SidebarMenuItem>
+              <SidebarMenuItem
+                selected={false}
+                onSelect={() => setExpanded(false)}
+              >
+                <big>
+                  <BiSolidChevronUpCircle />
+                </big>
+                See Less
+              </SidebarMenuItem>
             </div>
           )}
         </div>
@@ -263,7 +285,7 @@ const LeftSidebar = () => {
           </Button>
         </div>
       </div>
-    </div>
+    </aside>
   );
 };
 

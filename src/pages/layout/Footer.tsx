@@ -12,14 +12,12 @@ import { FiArrowUpRight } from 'react-icons/fi';
 const Footer = () => {
   return (
     <div className="w-full bg-white pt-[80px]">
-      <div
-        className="relative w-full lg:px-[75px] px-[15px] sm:px-[25px] md:px-[50px]"
-      >
-        <div className="w-full absolute left-0 top-0 h-full overflow-hidden z-0">
-          <img src='/images/footer_bg.svg' className='w-[120vw] h-auto' />
-          <div className='bg-black w-full h-full'></div>
+      <div className="relative w-full lg:px-[75px] px-[15px] sm:px-[25px] md:px-[50px]">
+        <div className="absolute top-0 left-0 z-0 w-full h-full overflow-hidden">
+          <img src="/images/footer_bg.svg" className="w-[120vw] h-auto" />
+          <div className="w-full h-screen -mt-1 bg-black"></div>
         </div>
-        <div className="xl:flex relative z-10">
+        <div className="relative z-10 xl:flex">
           <div className="xl:flex-[4]">
             <div className="pt-[60px] pb-[40px]">
               <img
@@ -55,7 +53,7 @@ const Footer = () => {
                 <li className="font-urbanist">Suggestions?</li>
               </ul>
               <div className="flex justify-center mt-12 lg:flex-1 lg:mt-0 lg:block lg:pr-5">
-                <div className='flex flex-col gap-8 items-center lg:items-start'>
+                <div className="flex flex-col items-center gap-8 lg:items-start">
                   <h4 className="text-white font-extrabold uppercase text-[30px] font-urbanist">
                     GET IN TOUCH
                   </h4>

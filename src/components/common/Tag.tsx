@@ -5,7 +5,7 @@ interface ITagProps {
 }
 
 const Tag: React.FC<ITagProps> = ({children}) => {
-  return <div className='bg-dashboard-background px-[18px] py-[14px] text-black font-semibold text-base rounded-md font-inter'>
+  return <div className='bg-dashboard-background px-[18px] py-[12px] text-black font-semibold text-[15px] rounded-md font-inter'>
     {children}
   </div>;
 };

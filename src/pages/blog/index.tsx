@@ -56,7 +56,7 @@ const BlogHome = () => {
   }, []);
 
   return (
-    <div className="w-full py-6 px-2 sm:px-6">
+    <div className="w-full px-2 py-6 md:px-5">
       <div className="flex items-center justify-between gap-2">
         <h1 className="text-black font-poppins text-[33px] font-bold">Blogs</h1>
         <Button

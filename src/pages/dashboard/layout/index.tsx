@@ -2,15 +2,23 @@ import { BlogProvider } from '@/context/BlogContext';
 import LeftSidebar from '@/pages/dashboard/layout/LeftSidebar';
 import { Outlet } from 'react-router-dom';
 import RightSidebar from '@/pages/dashboard/layout/RightSidebar';
+import { useAppContext } from '@/context/AppContext';
+import { useEffect } from 'react';
 
 const DashboardLayout = () => {
+  const { setIsLeftSidebarOpen } = useAppContext();
+
+  useEffect(() => {
+    return () => setIsLeftSidebarOpen(true);
+  }, []);
+  
   return (
     <BlogProvider>
-      <div className="flex flex-col gap-5 lg:flex-row lg:gap-0 mb-20">
+      <div className="relative flex flex-col gap-5 mb-20 lg:flex-row lg:gap-0">
         <LeftSidebar />
         <div className="flex-1 bg-white">
           <div className="w-full h-full bg-dashboard-background">
-            <div className="w-full 2xl:container h-full">
+            <div className="w-full h-full 2xl:container">
               <Outlet />
             </div>
           </div>

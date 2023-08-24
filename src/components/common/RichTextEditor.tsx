@@ -3,7 +3,7 @@ import 'suneditor/dist/css/suneditor.min.css'; // Import Sun Editor's CSS File
 import ReactSunEditor from 'suneditor-react';
 import { type SunEditorReactProps } from 'suneditor-react/dist/types/SunEditorReactProps';
 
-const MyComponent = (props: SunEditorReactProps) => {
+const MyComponent = (editorProps: SunEditorReactProps) => {
   return (
     <div>
       <ReactSunEditor
@@ -43,9 +43,10 @@ const MyComponent = (props: SunEditorReactProps) => {
             ['preview'],
           ],
         }}
-        setDefaultStyle={props.setDefaultStyle}
-        defaultValue={props.defaultValue}
-        onChange={props.onChange}
+        setDefaultStyle={editorProps.setDefaultStyle}
+        defaultValue={editorProps.defaultValue}
+        getSunEditorInstance={editorProps.getSunEditorInstance}
+        onChange={editorProps.onChange}
       />
     </div>
   );
