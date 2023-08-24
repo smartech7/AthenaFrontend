@@ -12,14 +12,14 @@ import RegisterForm from '@/components/widgets/auth/RegisterForm';
 export default function Auth() {
   return (
     <div className="flex justify-center h-full pt-5">
-      <div className="w-[540px] flex flex-col gap-[30px] py-4 my-auto">
+      <div className="w-[540px] py-4 my-auto">
         <div className="flex justify-center lg:hidden">
-          <img src="/images/black_logo.svg" width={400} height={67} />
+          <img src="/images/black_logo.svg" width="60%" />
         </div>
-        <h2 className="font-bold text-black text-center md:text-[30px] text-[26px]">
+        <h2 className="font-bold text-black text-center md:text-[30px] text-[26px] mt-[60px]">
           Welcome to DONAMIX
         </h2>
-        <Card className="px-4 py-7 lg:px-[44px] lg:py-[56px] rounded-[30px]">
+        <Card className="px-4 py-7 lg:px-[44px] lg:py-[56px] rounded-[30px] mt-[30px]">
           <CardContent className="flex flex-col gap-10 p-0">
             <CustomTabs defaultValue="signin">
               <CustomTabList>

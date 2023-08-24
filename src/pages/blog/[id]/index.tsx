@@ -57,35 +57,6 @@ const BlogDetail = () => {
         className="h-[370px] rounded-t-2xl relative flex flex-col justify-end bg-cover bg-center"
         style={{ backgroundImage: `url(${item.banner})` }}
       >
-        <div className="absolute top-4 left-4">
-          <Button
-            className="text-white bg-white/20 rounded-full p-2 text-[24px]"
-            onClick={() => {
-              navigate(`/blog/${item._id}/edit`);
-            }}
-          >
-            <BiEdit />
-          </Button>
-          <Button
-            className="text-white bg-white/20 rounded-full p-2 text-[24px] ml-2"
-            onClick={() => {
-              deleteBlog(item._id!)
-                .then((res) => {
-                  if (res.code === CONSTANTS.SUCCESS) {
-                    navigate('/blog');
-                    toast.success(res.message);
-                  } else {
-                    toast.error(res.message);
-                  }
-                })
-                .catch((err) => {
-                  console.log('Delete Error:', err);
-                });
-            }}
-          >
-            <BiTrash />
-          </Button>
-        </div>
         <div className="absolute right-4 top-4 bg-white rounded-lg px-3 py-3 text-[14px] font-bold font-sans">
           {categories?.find((val) => val.value === item.tag)?.label}
         </div>
@@ -106,7 +77,34 @@ const BlogDetail = () => {
               <span className="hidden sm:block">views</span>
             </div>
           </div>
-          <div className="">
+          <div className="flex items-center gap-2">
+            <Button
+              className="text-white bg-white/20 rounded-full p-2 text-[24px]"
+              onClick={() => {
+                navigate(`/blog/${item._id}/edit`);
+              }}
+            >
+              <BiEdit />
+            </Button>
+            <Button
+              className="text-white bg-white/20 rounded-full p-2 text-[24px]"
+              onClick={() => {
+                deleteBlog(item._id!)
+                  .then((res) => {
+                    if (res.code === CONSTANTS.SUCCESS) {
+                      navigate('/blog');
+                      toast.success(res.message);
+                    } else {
+                      toast.error(res.message);
+                    }
+                  })
+                  .catch((err) => {
+                    console.log('Delete Error:', err);
+                  });
+              }}
+            >
+              <BiTrash />
+            </Button>
             <SharePopup link={'https://donamix.com'}>
               <Button className="text-white bg-white/20 rounded-full p-2 text-[24px]">
                 <TiArrowForward />
