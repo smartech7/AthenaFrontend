@@ -7,14 +7,33 @@ import BlogCard from './BlogCard';
 import CONSTANTS from '@/config/constants';
 import Carousel from 'react-multi-carousel';
 import { Spinner } from '@material-tailwind/react';
+import { cn } from '@/lib/utils';
 import { getBlogsByRange } from '@/api/blog';
+
+// import 'react-alice-carousel/lib/alice-carousel.css';
+
+
+
+// import AliceCarousel from 'react-alice-carousel';
+
+
+
+
+
+
+
+
 
 // import { Carousel } from '@material-tailwind/react';
 
 // import { BiDotsVerticalRounded } from 'react-icons/bi';
 // import { Button } from '@/components/ui/button';
 
-const RecentBlogs = () => {
+interface IRecentBlogsProps {
+  className?: string;
+}
+
+const RecentBlogs: React.FC<IRecentBlogsProps> = ({ className }) => {
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [blogs, setBlogs] = useState<Blog[]>([]);
 
@@ -47,7 +66,7 @@ const RecentBlogs = () => {
   }
 
   return (
-    <div className="bg-white rounded-t-[26px] p-4 recent-blog">
+    <div className={cn('bg-white rounded-t-[26px] p-4 lg:recent-blog-lg xl:recent-blog-xl 2xl:recent-blog-2xl', className)}>
       <div className="flex justify-between gap-3 mx-auto">
         <h4 className="text-black text-[24px] font-medium">Recent Blogs</h4>
 
@@ -56,14 +75,15 @@ const RecentBlogs = () => {
         </Button> */}
       </div>
 
-      {blogs && blogs.length > 0 ? (
+      <div className="mt-4 thumbs">
+        {blogs && blogs.length > 0 ? (
         <Carousel
           additionalTransfrom={0}
           arrows
           autoPlaySpeed={3000}
           centerMode={false}
-          className="mt-3 recent-blog"
-          containerClass="w-[50%]"
+          className="mt-3 w-full"
+          containerClass='gap-2'
           dotListClass=""
           draggable={false}
           focusOnSelect={false}
@@ -83,6 +103,7 @@ const RecentBlogs = () => {
                 min: 2400,
               },
               items: 5,
+              partialVisibilityGutter: 30
             },
             desktoplg: {
               breakpoint: {
@@ -90,6 +111,7 @@ const RecentBlogs = () => {
                 min: 1800,
               },
               items: 4,
+              partialVisibilityGutter: 30
             },
             desktop: {
               breakpoint: {
@@ -97,6 +119,23 @@ const RecentBlogs = () => {
                 min: 1400,
               },
               items: 3,
+              partialVisibilityGutter: 30
+            },
+            mobilelg: {
+              breakpoint: {
+                max: 1100,
+                min: 960,
+              },
+              items: 1,
+              partialVisibilityGutter: 30
+            },
+            mobilemd: {
+              breakpoint: {
+                max: 960,
+                min: 850,
+              },
+              items: 3,
+              partialVisibilityGutter: 30
             },
             mobilesm: {
               breakpoint: {
@@ -104,6 +143,7 @@ const RecentBlogs = () => {
                 min: 650,
               },
               items: 2,
+              partialVisibilityGutter: 30
             },
             mobilexs: {
               breakpoint: {
@@ -111,6 +151,7 @@ const RecentBlogs = () => {
                 min: 0,
               },
               items: 1,
+              partialVisibilityGutter: 30
             },
             tablet: {
               breakpoint: {
@@ -118,6 +159,7 @@ const RecentBlogs = () => {
                 min: 1100,
               },
               items: 2,
+              partialVisibilityGutter: 30
             },
           }}
           rewind={false}
@@ -125,23 +167,40 @@ const RecentBlogs = () => {
           rtl={false}
           shouldResetAutoplay
           showDots={false}
-          sliderClass=""
+          sliderClass="gap-2"
           slidesToSlide={1}
           swipeable
         >
           {blogs.map((blog, i) => (
             <BlogCard
-              key={`blog-${i}`}
+              key={`recent-blog-${i}`}
+              className="h-[200px]"
               item={blog}
-              className="h-[250px] w-[300px]"
-            />
+            ></BlogCard>
           ))}
-        </Carousel>
-      ) : (
-        <h4 className="w-full text-center text-gray-800 text-[20px]">
-          No blogs
-        </h4>
-      )}
+          </Carousel>
+          // <AliceCarousel
+          // responsive={{
+          //   0: {items: 1},
+          //   670:{items:2},
+          //   960: {items: 1},
+          //   1170: {items: 2},
+          //   1700: {items: 3}
+          // }}
+          //   items={blogs.map((blog, i) => (
+          //     <BlogCard
+          //       key={`blog-${i}`}
+          //       item={blog}
+          //       className="h-[250px]"
+          //     />
+          //   ))}
+          // />
+        ) : (
+          <h4 className="w-full text-center text-gray-800 text-[20px]">
+            No blogs
+          </h4>
+        )}
+      </div>
     </div>
   );
 };

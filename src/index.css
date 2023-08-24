@@ -87,10 +87,13 @@
   .profile-edit-panel {
     width: calc(100vw - 66px) !important;
   }
-  .recent-blog-lg {
-    width: calc(100vw - 900px) !important;
+  .recent-blog-2xl {
+    width: calc(100vw - 650px) !important;
   }
-  .recent-blog {
-    width: calc(100% - 200px) !important;
+  .recent-blog-xl {
+    width: calc(100vw - 450px) !important;
+  }
+  .recent-blog-lg {
+    width: calc(100vw - 450px) !important;
   }
 }
