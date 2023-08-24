@@ -16,7 +16,7 @@ export default function Auth() {
         <div className="flex justify-center lg:hidden">
           <img src="/images/black_logo.svg" width="60%" />
         </div>
-        <h2 className="font-bold text-black text-center md:text-[30px] text-[26px] mt-[60px]">
+        <h2 className="font-bold text-black text-center md:text-[30px] text-[26px] mt-[60px] hidden lg:block">
           Welcome to DONAMIX
         </h2>
         <Card className="px-4 py-7 lg:px-[44px] lg:py-[56px] rounded-[30px] mt-[30px]">
