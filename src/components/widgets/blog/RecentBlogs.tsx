@@ -12,17 +12,7 @@ import { getBlogsByRange } from '@/api/blog';
 
 // import 'react-alice-carousel/lib/alice-carousel.css';
 
-
-
 // import AliceCarousel from 'react-alice-carousel';
-
-
-
-
-
-
-
-
 
 // import { Carousel } from '@material-tailwind/react';
 
@@ -66,7 +56,12 @@ const RecentBlogs: React.FC<IRecentBlogsProps> = ({ className }) => {
   }
 
   return (
-    <div className={cn('bg-white rounded-t-[26px] p-4 lg:recent-blog-lg xl:recent-blog-xl 2xl:recent-blog-2xl', className)}>
+    <div
+      className={cn(
+        'bg-white rounded-t-[26px] p-4 lg:recent-blog-lg xl:recent-blog-xl 2xl:recent-blog-2xl',
+        className
+      )}
+    >
       <div className="flex justify-between gap-3 mx-auto">
         <h4 className="text-black text-[24px] font-medium">Recent Blogs</h4>
 
@@ -77,108 +72,110 @@ const RecentBlogs: React.FC<IRecentBlogsProps> = ({ className }) => {
 
       <div className="mt-4 thumbs">
         {blogs && blogs.length > 0 ? (
-        <Carousel
-          additionalTransfrom={0}
-          arrows
-          autoPlaySpeed={3000}
-          centerMode={false}
-          className="mt-3 w-full"
-          containerClass='gap-2'
-          dotListClass=""
-          draggable={false}
-          focusOnSelect={false}
-          infinite={false}
-          itemClass=""
-          keyBoardControl
-          minimumTouchDrag={80}
-          partialVisible
-          pauseOnHover
-          renderArrowsWhenDisabled={false}
-          renderButtonGroupOutside={false}
-          renderDotsOutside={false}
-          responsive={{
-            desktopxl: {
-              breakpoint: {
-                max: 3000,
-                min: 2400,
+          <Carousel
+            additionalTransfrom={0}
+            arrows
+            customLeftArrow={}
+            autoPlaySpeed={3000}
+            centerMode={false}
+            className="mt-3 w-full"
+            containerClass="gap-2"
+            dotListClass=""
+            draggable={false}
+            focusOnSelect={false}
+            infinite={false}
+            itemClass=""
+            keyBoardControl
+            minimumTouchDrag={80}
+            partialVisible
+            pauseOnHover
+            renderArrowsWhenDisabled={false}
+            renderButtonGroupOutside={false}
+            renderDotsOutside={false}
+            responsive={{
+              desktopxl: {
+                breakpoint: {
+                  max: 3000,
+                  min: 2400,
+                },
+                items: 5,
+                partialVisibilityGutter: 30,
               },
-              items: 5,
-              partialVisibilityGutter: 30
-            },
-            desktoplg: {
-              breakpoint: {
-                max: 2400,
-                min: 1800,
+              desktoplg: {
+                breakpoint: {
+                  max: 2400,
+                  min: 1800,
+                },
+                items: 4,
+                partialVisibilityGutter: 30,
               },
-              items: 4,
-              partialVisibilityGutter: 30
-            },
-            desktop: {
-              breakpoint: {
-                max: 1800,
-                min: 1400,
+              desktop: {
+                breakpoint: {
+                  max: 1800,
+                  min: 1400,
+                },
+                items: 3,
+                partialVisibilityGutter: 30,
               },
-              items: 3,
-              partialVisibilityGutter: 30
-            },
-            mobilelg: {
-              breakpoint: {
-                max: 1100,
-                min: 960,
+              mobilelg: {
+                breakpoint: {
+                  max: 1100,
+                  min: 960,
+                },
+                items: 1,
+                partialVisibilityGutter: 30,
               },
-              items: 1,
-              partialVisibilityGutter: 30
-            },
-            mobilemd: {
-              breakpoint: {
-                max: 960,
-                min: 850,
+              mobilemd: {
+                breakpoint: {
+                  max: 960,
+                  min: 850,
+                },
+                items: 3,
+                partialVisibilityGutter: 30,
               },
-              items: 3,
-              partialVisibilityGutter: 30
-            },
-            mobilesm: {
-              breakpoint: {
-                max: 850,
-                min: 650,
+              mobilesm: {
+                breakpoint: {
+                  max: 850,
+                  min: 650,
+                },
+                items: 2,
+                partialVisibilityGutter: 30,
               },
-              items: 2,
-              partialVisibilityGutter: 30
-            },
-            mobilexs: {
-              breakpoint: {
-                max: 650,
-                min: 0,
+              mobilexs: {
+                breakpoint: {
+                  max: 650,
+                  min: 0,
+                },
+                items: 1,
+                partialVisibilityGutter: 30,
               },
-              items: 1,
-              partialVisibilityGutter: 30
-            },
-            tablet: {
-              breakpoint: {
-                max: 1400,
-                min: 1100,
+              tablet: {
+                breakpoint: {
+                  max: 1400,
+                  min: 1100,
+                },
+                items: 2,
+                partialVisibilityGutter: 30,
               },
-              items: 2,
-              partialVisibilityGutter: 30
-            },
-          }}
-          rewind={false}
-          rewindWithAnimation={false}
-          rtl={false}
-          shouldResetAutoplay
-          showDots={false}
-          sliderClass="gap-2"
-          slidesToSlide={1}
-          swipeable
-        >
-          {blogs.map((blog, i) => (
-            <BlogCard
-              key={`recent-blog-${i}`}
-              className="h-[200px]"
-              item={blog}
-            ></BlogCard>
-          ))}
+            }}
+            rewind={false}
+            rewindWithAnimation={false}
+            rtl={false}
+            shouldResetAutoplay
+            showDots={false}
+            sliderClass="gap-2"
+            slidesToSlide={1}
+            swipeable
+          >
+            {blogs.map((blog, i) => (
+              <BlogCard
+                key={`recent-blog-${i}`}
+                className="h-[200px]"
+                item={blog}
+              ></BlogCard>
+            ))}
           </Carousel>
+        ) : (
           // <AliceCarousel
           // responsive={{
           //   0: {items: 1},
@@ -195,7 +192,6 @@ const RecentBlogs: React.FC<IRecentBlogsProps> = ({ className }) => {
           //     />
           //   ))}
           // />
-        ) : (
           <h4 className="w-full text-center text-gray-800 text-[20px]">
             No blogs
           </h4>
