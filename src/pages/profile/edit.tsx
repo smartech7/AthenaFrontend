@@ -82,24 +82,24 @@ const options = [
   },
 ];
 
-const pages = [
-  {
-    value: 'timeline',
-    title: 'Timeline',
-  },
-  {
-    value: 'about',
-    title: 'About',
-  },
-  {
-    value: 'albums',
-    title: 'Albums',
-  },
-  {
-    value: 'friends',
-    title: 'Friends',
-  },
-];
+// const pages = [
+//   {
+//     value: 'timeline',
+//     title: 'Timeline',
+//   },
+//   {
+//     value: 'about',
+//     title: 'About',
+//   },
+//   {
+//     value: 'albums',
+//     title: 'Albums',
+//   },
+//   {
+//     value: 'friends',
+//     title: 'Friends',
+//   },
+// ];
 
 interface IProfileEditProps {}
 

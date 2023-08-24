@@ -8,6 +8,7 @@ import { useEffect, useState } from 'react';
 import { Button } from '@/components/ui/button';
 import FileUpload from '@/components/common/FileUpload';
 import RichTextEditor from '@/components/common/RichTextEditor';
+import { cn } from '@/lib/utils';
 import { toast } from 'react-hot-toast';
 import { useAuthContext } from '@/context/AuthContext';
 import { useNavigate } from 'react-router-dom';
@@ -28,6 +29,7 @@ const BlogCreate = () => {
   });
   const [isSaving, setIsSaving] = useState<boolean>(false);
   const [categories, setCategories] = useState<readonly Option[]>([]);
+  const [isCategoryMenuOpen, setIsCategoryMenuOpen] = useState<boolean>(false);
 
   useEffect(() => {
     getBlogCategories()
@@ -88,32 +90,32 @@ const BlogCreate = () => {
   };
 
   return (
-    <div className="w-full p-6">
-      <h1 className="text-black font-poppins text-[33px] font-bold">
+    <div className="w-full p-2 lg:p-6">
+      <h1 className="text-black font-poppins text-[28px] font-bold">
         Add new Blog
       </h1>
 
-      <Card className="mt-10">
-        <CardBody>
-          <h4 className="text-black font-inter text-[22px]">Create Blog</h4>
+      <Card className="mt-2 lg:mt-5">
+        <CardBody className='p-3 lg:p-6'>
+          <h4 className="text-black font-inter text-[20px]">Create Blog</h4>
           <div
-            className="bg-primary h-[300px] w-full mt-5 rounded-t-3xl flex items-center justify-center bg-cover bg-center"
+            className="bg-primary h-[300px] w-full mt-2 lg:mt-4 rounded-t-3xl flex items-center justify-center bg-cover bg-center"
             style={{
               backgroundImage: input.banner ? `url(${input.banner})` : '',
             }}
           >
             <FileUpload onSuccess={onBannerChange}>
-              <Button variant="secondary">Edit Photo</Button>
+              <Button variant="secondary" className='text-[14px]'>Edit Photo</Button>
             </FileUpload>
           </div>
-          <div className="mt-8">
+          <div className="mt-5 lg:mt-8">
             <h6 className="text-base font-bold text-black">Title of Blog</h6>
             <Input
               name="title"
               value={input.title}
               onChange={onInputChange}
               placeholder="Enter Title of Discussion"
-              className="!border-t-gray-400 focus:!border-t-gray-900 mt-2 !h-[50px]"
+              className="!border-t-gray-400 focus:!border-t-gray-900 mt-2 !h-[50px] placeholder:text-[14px]"
               labelProps={{
                 className: 'before:content-none after:content-none',
               }}
@@ -124,8 +126,11 @@ const BlogCreate = () => {
             />
           </div>
           <div className="mt-8">
-            <h6 className="text-base font-bold text-black">Blog tag</h6>
+            <h6 className="text-base font-bold text-black">Blog category</h6>
             <Select
+              menuIsOpen={isCategoryMenuOpen}
+              onMenuOpen={() => setIsCategoryMenuOpen(true)}
+              onMenuClose={() => setIsCategoryMenuOpen(false)}
               value={input.tag}
               options={categories}
               onChange={(newVal) => {
@@ -144,11 +149,13 @@ const BlogCreate = () => {
                   primary: 'black',
                 },
               })}
+              classNamePrefix="blog-category"
               styles={{
                 control: (base) => ({
                   ...base,
                   height: 50,
                   borderRadius: 6,
+                  zIndex: 5,
                   'input:focus-visible': {
                     boxShadow: 'none',
                     outline: 'none',
@@ -156,8 +163,11 @@ const BlogCreate = () => {
                   },
                 }),
               }}
-              className="z-50 text-[13px] font-poppins mt-2"
-              placeholder="Enter tag here"
+              className={cn(
+                'text-[13px] font-poppins mt-2',
+                isCategoryMenuOpen ? 'z-10' : 'z-5'
+              )}
+              placeholder="Enter category here"
             />
             {/* <Input
               name="tag"
@@ -176,7 +186,7 @@ const BlogCreate = () => {
           </div>
           <div className="mt-8">
             <RichTextEditor
-              setDefaultStyle="font-family: Poppins; font-size: 12px;"
+              setDefaultStyle="font-family: Poppins; font-size: 12px; z-index: 5;"
               defaultValue={input.body}
               placeholder="Type your discussion here"
               onChange={(content) => {

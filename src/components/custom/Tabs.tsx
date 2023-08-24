@@ -6,6 +6,8 @@ import {
   TabsTriggerProps,
 } from '@radix-ui/react-tabs';
 
+import { cn } from '@/lib/utils';
+
 interface ITabsProps extends TabsProps {
   defaultValue?: string;
   children: React.ReactNode;
@@ -33,7 +35,7 @@ export const CustomTabList: React.FC<ITabListProps> = ({
 }) => {
   return (
     <TabsList
-      className="flex w-full h-[67px] p-0 rounded-lg bg-secondary"
+      className="flex w-full h-[55px] sm:h-[60px] p-0 rounded-lg bg-secondary"
       {...props}
     >
       {children}
@@ -53,9 +55,12 @@ export const CustomTab: React.FC<ITabProps> = ({
 }) => {
   return (
     <TabsTrigger
-      className="flex-1 h-full rounded-lg text-black data-[state=active]:bg-black data-[state=active]:text-white"
-      value={value}
       {...props}
+      className={cn(
+        'flex-1 h-full rounded-lg text-black data-[state=active]:bg-black data-[state=active]:text-white',
+        props.className
+      )}
+      value={value}
     >
       {children}
     </TabsTrigger>

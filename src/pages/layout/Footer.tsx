@@ -12,9 +12,15 @@ import { FiArrowUpRight } from 'react-icons/fi';
 const Footer = () => {
   return (
     <div className="w-full bg-white pt-[80px]">
-      <div className="w-full bg-cover bg-[url(/images/footer_bg.svg)] lg:px-[75px] px-[15px] sm:px-[25px] md:px-[50px]">
-        <div className="xl:flex">
-          <div className="xl:flex-[3]">
+      <div
+        className="relative w-full lg:px-[75px] px-[15px] sm:px-[25px] md:px-[50px]"
+      >
+        <div className="w-full absolute left-0 top-0 h-full overflow-hidden z-0">
+          <img src='/images/footer_bg.svg' className='w-[120vw] h-auto' />
+          <div className='bg-black w-full h-full'></div>
+        </div>
+        <div className="xl:flex relative z-10">
+          <div className="xl:flex-[4]">
             <div className="pt-[60px] pb-[40px]">
               <img
                 src="/images/black_logo.svg"
@@ -48,13 +54,13 @@ const Footer = () => {
                 <li className="font-urbanist">Earn Free Credits</li>
                 <li className="font-urbanist">Suggestions?</li>
               </ul>
-              <div className="flex justify-center mt-12 lg:flex-1 lg:mt-0 lg:block">
-                <div>
+              <div className="flex justify-center mt-12 lg:flex-1 lg:mt-0 lg:block lg:pr-5">
+                <div className='flex flex-col gap-8 items-center lg:items-start'>
                   <h4 className="text-white font-extrabold uppercase text-[30px] font-urbanist">
                     GET IN TOUCH
                   </h4>
                   <Button
-                    className="rounded-full text-black font-urbanist text-[18px] font-bold mt-8 w-[143px] h-[49px]"
+                    className="rounded-full text-black font-urbanist text-[18px] font-bold w-[143px] h-[49px]"
                     variant="secondary"
                   >
                     Ask in Forum
@@ -63,7 +69,7 @@ const Footer = () => {
               </div>
             </div>
           </div>
-          <div className="mt-12 xl:flex-1 xl:m-0">
+          <div className="mt-12 xl:flex-[2] xl:m-0">
             <div className="bg-white rounded-[19px] shadow-[0_0_44px_0_rgba(0,0,0,0.15)] p-5">
               <p className="font-sans text-[13px] leading-[30px] text-black">
                 Discover the endless possibilities with Donamix! Immerse
@@ -84,7 +90,7 @@ const Footer = () => {
 
         <div className="relative mt-[64px]">
           <div className="relative z-20 w-full lg:h-[110px] flex lg:flex-row flex-col lg:justify-between gap-5">
-            <div className="z-20 flex items-center justify-center h-full gap-5">
+            <div className="z-20 flex items-center justify-center h-full gap-2 md:gap-5">
               <Button
                 variant="ghost"
                 className="rounded-full border border-[#A6A6A6] gap-2 text-[#A6A6A6] text-base"
@@ -102,7 +108,7 @@ const Footer = () => {
             </div>
 
             {/* Begin Social Buttons */}
-            <div className="z-20 flex items-center justify-center h-full gap-8">
+            <div className="z-20 flex items-center justify-center h-full gap-4 md:gap-8">
               <Button
                 variant="outline"
                 size="icon"
