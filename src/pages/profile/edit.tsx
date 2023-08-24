@@ -212,7 +212,7 @@ const ProfileEdit: React.FC<IProfileEditProps> = () => {
                 <div
                   key={`tab-${i}`}
                   className={cn(
-                    'w-full lg:px-[50px] py-5 text-[20px] font-medium cursor-pointer flex gap-6 hover:opacity-100 items-center justify-center lg:justify-start',
+                    'w-full lg:px-[50px] py-5 text-base font-medium cursor-pointer flex gap-6 hover:opacity-100 items-center justify-center lg:justify-start',
                     tab === option.value ? 'opacity-100' : 'opacity-60'
                   )}
                   onClick={() => {
