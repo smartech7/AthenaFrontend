@@ -8,6 +8,7 @@ import { BsFillEyeFill } from 'react-icons/bs';
 import Button from '@/components/common/Button';
 import CONSTANTS from '@/config/constants';
 import RecentBlogs from '@/components/widgets/blog/RecentBlogs';
+import SharePopup from '@/components/common/SharePopup';
 import { Spinner } from '@material-tailwind/react';
 import { TiArrowForward } from 'react-icons/ti';
 import { formatDate } from '@/lib/utils';
@@ -79,7 +80,7 @@ const BlogDetail = () => {
                 })
                 .catch((err) => {
                   console.log('Delete Error:', err);
-                })
+                });
             }}
           >
             <BiTrash />
@@ -106,9 +107,11 @@ const BlogDetail = () => {
             </div>
           </div>
           <div className="">
-            <Button className="text-white bg-white/20 rounded-full p-2 text-[24px]">
-              <TiArrowForward />
-            </Button>
+            <SharePopup link={'https://donamix.com'}>
+              <Button className="text-white bg-white/20 rounded-full p-2 text-[24px]">
+                <TiArrowForward />
+              </Button>
+            </SharePopup>
           </div>
         </div>
       </div>
