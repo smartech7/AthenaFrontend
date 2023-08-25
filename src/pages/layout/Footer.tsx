@@ -15,7 +15,7 @@ const Footer = () => {
       <div className="relative w-full lg:px-[75px] px-[15px] sm:px-[25px] md:px-[50px]">
         <div className="absolute top-0 left-0 z-0 w-full h-full overflow-hidden">
           <img src="/images/footer_bg.svg" className="w-[120vw] h-auto" />
-          <div className="w-full h-screen -mt-1 bg-black"></div>
+          <div className="w-full h-full -mt-1 bg-black"></div>
         </div>
         <div className="relative z-10 xl:flex">
           <div className="xl:flex-[4]">
