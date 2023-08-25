@@ -111,10 +111,14 @@ const Navbar = () => {
             </MenuItem>
           </MenuHandler>
           <MenuList>
-            <MenuItem>Classifieds</MenuItem>
+            <MenuItem>Trending Topics</MenuItem>
+            <MenuItem>Featured Users</MenuItem>
+            <MenuItem>Marketplace</MenuItem>
+            <MenuItem>Browse</MenuItem>
             <MenuItem>Banners</MenuItem>
             <MenuItem>Radio</MenuItem>
-            <MenuItem>Browse</MenuItem>
+            <MenuItem>Events</MenuItem>
+            <MenuItem>Groups</MenuItem>
             <MenuItem>Forums</MenuItem>
           </MenuList>
         </Menu>
@@ -128,6 +132,7 @@ const Navbar = () => {
         className="basis-[200px] w-[200px] h-[60px] bg-contain bg-center bg-no-repeat"
         style={{ backgroundImage: 'url(/images/black_logo.svg)' }}
       ></div>
+
       <div className="flex-1 xl:hidden">{MobileNavs}</div>
       <div className="hidden gap-0 xl:flex xl:justify-center">
         <DropdownMenu>
@@ -278,7 +283,16 @@ const Navbar = () => {
           </DropdownMenuTrigger>
           <DropdownMenuContent className="w-56 z-[9900]">
             <DropdownMenuItem className="font-montserrat font-medium text-[13.24px]">
-              <span>Classifieds</span>
+              <span>Trending Topics</span>
+            </DropdownMenuItem>
+            <DropdownMenuItem className="font-montserrat font-medium text-[13.24px]">
+              <span>Featured Users</span>
+            </DropdownMenuItem>
+            <DropdownMenuItem className="font-montserrat font-medium text-[13.24px]">
+              <span>Marketplace</span>
+            </DropdownMenuItem>
+            <DropdownMenuItem className="font-montserrat font-medium text-[13.24px]">
+              <span>Browse</span>
             </DropdownMenuItem>
             <DropdownMenuItem className="font-montserrat font-medium text-[13.24px]">
               <span>Banners</span>
@@ -287,7 +301,10 @@ const Navbar = () => {
               <span>Radio</span>
             </DropdownMenuItem>
             <DropdownMenuItem className="font-montserrat font-medium text-[13.24px]">
-              <span>Browse</span>
+              <span>Events</span>
+            </DropdownMenuItem>
+            <DropdownMenuItem className="font-montserrat font-medium text-[13.24px]">
+              <span>Groups</span>
             </DropdownMenuItem>
             <DropdownMenuItem className="font-montserrat font-medium text-[13.24px]">
               <span>Forums</span>
@@ -367,7 +384,7 @@ const Navbar = () => {
               </svg>
               <span>Settings</span>
             </DropdownMenuItem>
-            <hr/>
+            <hr />
             <DropdownMenuItem
               className="font-montserrat font-medium text-[13.24px] gap-2"
               onClick={() => {

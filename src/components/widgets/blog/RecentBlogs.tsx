@@ -63,7 +63,7 @@ const RecentBlogs: React.FC<IRecentBlogsProps> = ({ className }) => {
       )}
     >
       <div className="flex justify-between gap-3 mx-auto">
-        <h4 className="text-black text-[24px] font-medium">Recent Blogs</h4>
+        <h4 className="text-black text-[20px] font-medium">Recent Blogs</h4>
 
         {/* <Button size="icon" variant="ghost">
           <BiDotsVerticalRounded />
@@ -98,7 +98,6 @@ const RecentBlogs: React.FC<IRecentBlogsProps> = ({ className }) => {
                   min: 2400,
                 },
                 items: 5,
-                partialVisibilityGutter: 30,
               },
               desktoplg: {
                 breakpoint: {
@@ -106,7 +105,6 @@ const RecentBlogs: React.FC<IRecentBlogsProps> = ({ className }) => {
                   min: 1800,
                 },
                 items: 4,
-                partialVisibilityGutter: 30,
               },
               desktop: {
                 breakpoint: {
@@ -114,7 +112,6 @@ const RecentBlogs: React.FC<IRecentBlogsProps> = ({ className }) => {
                   min: 1400,
                 },
                 items: 3,
-                partialVisibilityGutter: 30,
               },
               mobilelg: {
                 breakpoint: {
@@ -122,7 +119,6 @@ const RecentBlogs: React.FC<IRecentBlogsProps> = ({ className }) => {
                   min: 960,
                 },
                 items: 1,
-                partialVisibilityGutter: 30,
               },
               mobilemd: {
                 breakpoint: {
@@ -130,7 +126,6 @@ const RecentBlogs: React.FC<IRecentBlogsProps> = ({ className }) => {
                   min: 850,
                 },
                 items: 3,
-                partialVisibilityGutter: 30,
               },
               mobilesm: {
                 breakpoint: {
@@ -138,7 +133,6 @@ const RecentBlogs: React.FC<IRecentBlogsProps> = ({ className }) => {
                   min: 650,
                 },
                 items: 2,
-                partialVisibilityGutter: 30,
               },
               mobilexs: {
                 breakpoint: {
@@ -146,7 +140,6 @@ const RecentBlogs: React.FC<IRecentBlogsProps> = ({ className }) => {
                   min: 0,
                 },
                 items: 1,
-                partialVisibilityGutter: 30,
               },
               tablet: {
                 breakpoint: {
@@ -154,7 +147,6 @@ const RecentBlogs: React.FC<IRecentBlogsProps> = ({ className }) => {
                   min: 1100,
                 },
                 items: 2,
-                partialVisibilityGutter: 30,
               },
             }}
             rewind={false}
@@ -162,7 +154,7 @@ const RecentBlogs: React.FC<IRecentBlogsProps> = ({ className }) => {
             rtl={false}
             shouldResetAutoplay
             showDots={false}
-            sliderClass="gap-2"
+            sliderClass="gap-2 overflow-auto"
             slidesToSlide={1}
             swipeable
           >

@@ -4,6 +4,7 @@ import Auth from '@/pages/auth';
 import AuthLayout from '@/pages/auth/layout';
 import BlogCreate from './pages/blog/create';
 import BlogDetail from './pages/blog/[id]';
+import BlogEdit from './pages/blog/[id]/edit';
 import BlogHome from './pages/blog';
 import DashboardLayout from '@/pages/dashboard/layout';
 import Layout from '@/pages/layout';
@@ -35,6 +36,7 @@ export default function Router() {
             <Route index element={<BlogHome />} />
             <Route path="create" element={<BlogCreate />} />
             <Route path=":id" element={<BlogDetail />} />
+            <Route path=":id/edit" element={<BlogEdit />} />
           </Route>
         </Route>
       )}

@@ -1,4 +1,8 @@
 import { ChangeEvent, useState } from 'react';
+import {
+  CountryDropdown,
+  RegionDropdown,
+} from 'react-country-region-selector';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { register, thirdPartyLogin } from '@/api/auth';
 import { removeAuthToken, setAuthToken } from '@/actions/auth';
@@ -106,7 +110,7 @@ export default function RegisterForm() {
   };
 
   return (
-    <div className="flex flex-col mt-6 gap-4 md:gap-6">
+    <div className="flex flex-col gap-4 mt-6 md:gap-6">
       <div className="flex gap-4">
         <Button
           variant="secondary"
@@ -254,22 +258,45 @@ export default function RegisterForm() {
         <div className="flex gap-3 mt-5">
           <div className="flex-1">
             <h6>Enter Country</h6>
-            <Input
+            <CountryDropdown
+              value={input.country}
+              name="country"
+              onChange={(val) => {
+                setInput((prev) => ({
+                  ...prev,
+                  country: val,
+                }));
+              }}
+              classes="mt-4 p-2 h-[57px] bg-secondary placeholder:text-[14px] rounded-lg border border-[#E7E7E7] w-full"
+            />
+            {/* <Input
               name="country"
               placeholder="USA"
               onChange={onInputChange}
               value={input.country}
               className="mt-4 h-[57px] bg-secondary placeholder:text-[14px]"
-            />
+            /> */}
           </div>
           <div className="flex-1">
             <h6>Enter City</h6>
-            <Input
+            {/* <Input
               name="city"
               placeholder="California"
               onChange={onInputChange}
               value={input.city}
               className="mt-4 h-[57px] bg-secondary placeholder:text-[14px]"
+            /> */}
+            <RegionDropdown
+              country={input.country}
+              value={input.city}
+              name="city"
+              onChange={(val) => {
+                setInput((prev) => ({
+                  ...prev,
+                  city: val,
+                }));
+              }}
+              classes="p-2 mt-4 h-[57px] bg-secondary placeholder:text-[14px] rounded-lg border border-[#E7E7E7] w-full"
             />
           </div>
         </div>

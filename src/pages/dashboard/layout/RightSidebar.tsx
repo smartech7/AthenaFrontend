@@ -127,7 +127,7 @@ const RightSidebar: React.FC<IRightSidebarProps> = ({ open }) => {
         </div>
       </div>
 
-      <div className="px-6 py-6 mt-5 lg:mt-10 bg-white rounded-t-2xl">
+      <div className="px-6 py-6 mt-5 bg-white lg:mt-10 rounded-t-2xl">
         <h4 className="text-[18px] text-[#B5B5B5] font-semibold font-inter">
           Trending Topics
         </h4>
@@ -140,7 +140,7 @@ const RightSidebar: React.FC<IRightSidebarProps> = ({ open }) => {
         </div>
       </div>
 
-      <div className="px-6 py-6 mt-5 lg:mt-10 bg-white rounded-t-2xl">
+      <div className="px-6 py-6 mt-5 bg-white lg:mt-10 rounded-t-2xl">
         <div className="flex items-center justify-between">
           <h4 className="text-[18px] text-[#B5B5B5] font-semibold font-inter">
             Featured Members
@@ -159,7 +159,7 @@ const RightSidebar: React.FC<IRightSidebarProps> = ({ open }) => {
         </div>
       </div>
 
-      <div className="relative px-6 py-6 mt-5 lg:mt-10 bg-white rounded-t-2xl">
+      <div className="relative px-6 py-6 mt-5 bg-white lg:mt-10 rounded-t-2xl">
         <div className="flex items-center justify-between">
           <h4 className="text-[18px] text-[#B5B5B5] font-semibold font-inter">
             Friend Requests
@@ -176,9 +176,9 @@ const RightSidebar: React.FC<IRightSidebarProps> = ({ open }) => {
             <FriendRequestItem key={`featured-member-${i}`} item={item} />
           ))}
         </div>
-        <div className="absolute -bottom-4 flex w-full justify-center">
+        <div className="absolute flex justify-center w-[340px] -bottom-4">
           <Button
-            className="h-8 rounded-full gap-2"
+            className="h-8 gap-2 rounded-full"
             onClick={() => {
               console.log(document.scrollingElement?.scrollTop)
               document.scrollingElement?.scroll({

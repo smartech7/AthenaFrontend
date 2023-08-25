@@ -24,7 +24,7 @@ const BlogCard: React.FunctionComponent<IBlogCardProps> = ({
   return (
     <div
       className={cn(
-        `relative rounded-t-2xl !bg-cover !bg-center w-full h-[250px] overflow-hidden p-0`,
+        `relative rounded-t-2xl !bg-cover !bg-center w-full h-[250px] overflow-hidden p-0 select-none`,
         className
       )}
       style={{
@@ -41,8 +41,8 @@ const BlogCard: React.FunctionComponent<IBlogCardProps> = ({
           {categories?.find((val) => val.value === item.tag)?.label}
         </div>
         <div className="absolute bottom-0 w-full h-3/4">
-          <div className="h-2/3 w-full absolute bottom-0 bg-gradient-to-b from-black/0 via-black/90 to-black p-4 overflow-hidden">
-            <div className="flex flex-col overflow-hidden h-full opacit-y">
+          <div className="absolute bottom-0 w-full p-4 overflow-hidden h-2/3 bg-gradient-to-b from-black/0 via-black/90 to-black">
+            <div className="flex flex-col h-full overflow-hidden opacit-y">
               <h6 className="text-white text-[18px] font-bold leading-6">
                 {item.title}
               </h6>

@@ -33,7 +33,7 @@ const FriendRequestItem: React.FunctionComponent<IFriendRequestItemProps> = ({
           </AvatarFallback>
         </Avatar>
         <div className="flex-1">
-          <h5 className="font-poppins text-black text-[17.2px] font-medium">
+          <h5 className="text-[15px] font-medium text-black font-poppins">
             {item.name}
           </h5>
           <p className="font-poppins text-[12.62px] font-medium text-[#999]">{`${item.mutualFriends} mutual Friends`}</p>
@@ -61,7 +61,7 @@ const FriendRequestItem: React.FunctionComponent<IFriendRequestItemProps> = ({
         <div className="flex-1">
           <Button
             variant="filled"
-            className="max-w-[200px] mx-auto"
+            className="max-w-[150px] mx-auto h-[40px] flex items-center justify-center"
             fullWidth
           >
             Accept
@@ -70,7 +70,7 @@ const FriendRequestItem: React.FunctionComponent<IFriendRequestItemProps> = ({
         <div className="flex-1">
         <Button
           variant="filled"
-          className="bg-[#F4F4F4] text-[#434343] flex-1 max-w-[200px] mx-auto"
+          className="bg-[#F4F4F4] text-[#434343] flex-1 max-w-[150px] mx-auto h-[40px] flex items-center justify-center"
           fullWidth
         >
           Decline
