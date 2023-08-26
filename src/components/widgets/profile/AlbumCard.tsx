@@ -16,7 +16,7 @@ const AlbumCard: React.FC<IAlbumCardProps> = ({ item }) => {
   return (
     <div className="bg-white rounded-t-[26px] p-4">
       <div className="flex justify-between gap-3 mx-auto">
-        <h4 className="text-black text-[24px] font-medium">{item.title}</h4>
+        <h4 className="text-base font-medium text-black">{item.title}</h4>
 
         {/* <Button size="icon" variant="ghost">
           <BiDotsVerticalRounded />
@@ -29,7 +29,7 @@ const AlbumCard: React.FC<IAlbumCardProps> = ({ item }) => {
           arrows
           autoPlaySpeed={3000}
           centerMode={false}
-          className="mt-3 w-full"
+          className="w-full mt-3"
           containerClass='w-[50%]'
           dotListClass=""
           draggable={false}
@@ -119,7 +119,7 @@ const AlbumCard: React.FC<IAlbumCardProps> = ({ item }) => {
           ))}
         </Carousel>
       ) : (
-        <h4 className="w-full text-center text-gray-800 text-[20px]">
+        <h4 className="w-full text-center text-gray-800 text-xl">
           No Images
         </h4>
       )}

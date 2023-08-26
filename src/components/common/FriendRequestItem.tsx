@@ -22,7 +22,7 @@ const FriendRequestItem: React.FunctionComponent<IFriendRequestItemProps> = ({
 }) => {
   return (
     <div>
-      <div className="flex gap-4">
+      <div className="flex items-start gap-4">
         <Avatar className="w-[50px] h-[50px]">
           <AvatarImage src={item.avatar} alt="" />
           <AvatarFallback>
@@ -33,13 +33,13 @@ const FriendRequestItem: React.FunctionComponent<IFriendRequestItemProps> = ({
           </AvatarFallback>
         </Avatar>
         <div className="flex-1">
-          <h5 className="text-[15px] font-medium text-black font-poppins">
+          <h5 className="font-medium text-black font-poppins">
             {item.name}
           </h5>
-          <p className="font-poppins text-[12.62px] font-medium text-[#999]">{`${item.mutualFriends} mutual Friends`}</p>
+          <p className="font-poppins text-xs font-medium text-[#999]">{`${item.mutualFriends} mutual Friends`}</p>
           <p
             className={cn(
-              'font-poppins text-[12.62px] font-medium',
+              'font-poppins text-xs font-medium',
               item.role === 'VIP'
                 ? 'text-[#8874DC]'
                 : item.role === 'Moderator'
@@ -51,7 +51,7 @@ const FriendRequestItem: React.FunctionComponent<IFriendRequestItemProps> = ({
           </p>
         </div>
         <div>
-          <p className="text-[#999] text-[12px] font-medium">
+          <p className="text-[#999] text-xs font-medium">
             {item.createdAt}
           </p>
         </div>
@@ -61,7 +61,7 @@ const FriendRequestItem: React.FunctionComponent<IFriendRequestItemProps> = ({
         <div className="flex-1">
           <Button
             variant="filled"
-            className="max-w-[150px] mx-auto h-[40px] flex items-center justify-center"
+            className="max-w-[150px] mx-auto flex items-center justify-center text-base"
             fullWidth
           >
             Accept

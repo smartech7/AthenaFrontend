@@ -58,12 +58,12 @@ const RecentBlogs: React.FC<IRecentBlogsProps> = ({ className }) => {
   return (
     <div
       className={cn(
-        'bg-white rounded-t-[26px] p-4 lg:recent-blog-lg xl:recent-blog-xl 2xl:recent-blog-2xl',
+        'bg-white rounded-t-[26px] p-4 lg:recent-blog-lg xl:recent-blog-xl 2xl:recent-blog-2xl mx-auto',
         className
       )}
     >
       <div className="flex justify-between gap-3 mx-auto">
-        <h4 className="text-black text-[20px] font-medium">Recent Blogs</h4>
+        <h4 className="text-black text-xl font-medium">Recent Blogs</h4>
 
         {/* <Button size="icon" variant="ghost">
           <BiDotsVerticalRounded />
@@ -183,7 +183,7 @@ const RecentBlogs: React.FC<IRecentBlogsProps> = ({ className }) => {
           //     />
           //   ))}
           // />
-          <h4 className="w-full text-center text-gray-800 text-[20px]">
+          <h4 className="w-full text-center text-gray-800 text-xl">
             No blogs
           </h4>
         )}

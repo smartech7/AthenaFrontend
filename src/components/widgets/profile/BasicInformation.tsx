@@ -1,8 +1,9 @@
 import { ChangeEvent, useEffect, useState } from 'react';
+import { CountryDropdown, RegionDropdown } from 'react-country-region-selector';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { User, userValidator } from '@/lib/validation/user';
 
-import { Button } from '@/components/ui/button';
+import Button from '@/components/common/Button';
 import CONSTANTS from '@/config/constants';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
@@ -104,10 +105,10 @@ const BasicInformation = () => {
 
   return (
     <div>
-      <h3 className="text-black font-poppins text-[24px] font-semibold">
+      <h3 className="text-xl font-semibold text-black font-poppins">
         Edit Basic Information
       </h3>
-      <p className="text-[#7D7D7D] font-medium text-base font-poppins mt-[14px]">
+      <p className="text-[#7D7D7D] font-medium font-poppins mt-[14px]">
         Control your profile information, both what it says and what other
         people see. User profiles are shown across all Donamix website. Complete
         your profile 100% to reach more people. Note: accounts not verified will
@@ -115,24 +116,24 @@ const BasicInformation = () => {
       </p>
 
       <div className="flex flex-col gap-5 mt-5">
-        <div className="grid grid-cols-12 gap-3 w-full">
+        <div className="grid w-full grid-cols-12 gap-3">
           <Input
             name="firstName"
             value={input.firstName}
             onChange={onInputChange}
             placeholder="First Name"
-            className="flex-1 h-[60px] rounded-[9px] col-span-12 md:col-span-6"
+            className="flex-1 rounded-[9px] col-span-12 md:col-span-6"
           />
           <Input
             name="lastName"
             value={input.lastName}
             onChange={onInputChange}
             placeholder="Last Name"
-            className="flex-1 h-[60px] rounded-[9px] col-span-12 md:col-span-6"
+            className="flex-1 rounded-[9px] col-span-12 md:col-span-6"
           />
         </div>
         <div>
-          <h6 className="text-black font-poppins text-[18px] font-semibold">
+          <h6 className="text-base font-semibold text-black font-poppins">
             Date of Birth
           </h6>
           <div className="grid grid-cols-12 gap-3 mt-3">
@@ -141,27 +142,27 @@ const BasicInformation = () => {
               value={input.day}
               onChange={onInputChange}
               placeholder="Day"
-              className="flex-1 h-[60px] rounded-[9px] col-span-12 md:col-span-4"
+              className="flex-1 rounded-[9px] col-span-12 md:col-span-4"
             />
             <Input
               name="month"
               value={input.month}
               onChange={onInputChange}
               placeholder="Month"
-              className="flex-1 h-[60px] rounded-[9px] col-span-12 md:col-span-4"
+              className="flex-1 rounded-[9px] col-span-12 md:col-span-4"
             />
             <Input
               name="year"
               value={input.year}
               onChange={onInputChange}
               placeholder="Year"
-              className="flex-1 h-[60px] rounded-[9px] col-span-12 md:col-span-4"
+              className="flex-1 rounded-[9px] col-span-12 md:col-span-4"
             />
           </div>
         </div>
 
         <div>
-          <h6 className="text-black font-poppins text-[18px] font-semibold">
+          <h6 className="text-base font-semibold text-black font-poppins">
             Status
           </h6>
           <RadioGroup
@@ -173,13 +174,13 @@ const BasicInformation = () => {
             }}
             className="grid grid-cols-12 gap-3 mt-3 text-[#808080]"
           >
-            <div className="flex items-center flex-1 gap-3 h-[57px] bg-secondary border border-[#E7E7E7] px-3 rounded-lg col-span-12 md:col-span-6">
+            <div className="flex items-center flex-1 gap-3 h-[42px] bg-secondary border border-[#E7E7E7] px-3 rounded-lg col-span-12 md:col-span-6">
               <RadioGroupItem value="Single" id="option-single" />
               <Label htmlFor="option-single" className="font-normal">
                 Single
               </Label>
             </div>
-            <div className="flex items-center flex-1 gap-3 h-[57px] bg-secondary border border-[#E7E7E7] px-3 rounded-lg col-span-12 md:col-span-6">
+            <div className="flex items-center flex-1 gap-3 h-[42px] bg-secondary border border-[#E7E7E7] px-3 rounded-lg col-span-12 md:col-span-6">
               <RadioGroupItem value="Married" id="option-married" />
               <Label htmlFor="option-married" className="font-normal">
                 Married
@@ -190,30 +191,39 @@ const BasicInformation = () => {
         </div>
 
         <div>
-          <h6 className="text-black font-poppins text-[18px] font-semibold">
+          <h6 className="text-base font-semibold text-black font-poppins">
             Location
           </h6>
           <div className="grid grid-cols-12 gap-3 mt-3">
-            <Input
-              name="city"
+            <RegionDropdown
+              country={input.country}
               value={input.city}
-              onChange={onInputChange}
-              placeholder="City"
-              className="flex-1 h-[60px] rounded-[9px] col-span-12 md:col-span-6"
+              name="city"
+              onChange={(val) => {
+                setInput((prev) => ({
+                  ...prev,
+                  city: val,
+                }));
+              }}
+              classes="p-2 h-[42px] mt-4 bg-secondary placeholder:text-sm rounded-lg border border-[#E7E7E7] w-full col-span-12 md:col-span-6"
             />
-            <Input
-              name="country"
+            <CountryDropdown
               value={input.country}
-              onChange={onInputChange}
-              placeholder="Country"
-              className="flex-1 h-[60px] rounded-[9px] col-span-12 md:col-span-6"
+              name="country"
+              onChange={(val) => {
+                setInput((prev) => ({
+                  ...prev,
+                  country: val,
+                }));
+              }}
+              classes="mt-4 p-2 h-[42px] bg-secondary placeholder:text-sm rounded-lg border border-[#E7E7E7] w-full col-span-12 md:col-span-6"
             />
             <div className="flex-1"></div>
           </div>
         </div>
 
         <div>
-          <h6 className="text-black font-poppins text-[18px] font-semibold">
+          <h6 className="text-base font-semibold text-black font-poppins">
             About
           </h6>
           <div className="flex justify-between gap-3 mt-3">
@@ -228,8 +238,7 @@ const BasicInformation = () => {
 
         <div>
           <Button
-            variant="default"
-            className="w-full h-[50px]"
+            className="w-full"
             onClick={onSubmit}
             disabled={isSaving}
           >

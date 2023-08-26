@@ -97,7 +97,7 @@ const BlogCreate = () => {
 
       <Card className="mt-2 lg:mt-5">
         <CardBody className='p-3 lg:p-6'>
-          <h4 className="text-black font-inter text-[20px]">Create Blog</h4>
+          <h4 className="text-black font-inter text-xl">Create Blog</h4>
           <div
             className="bg-primary h-[300px] w-full mt-2 lg:mt-4 rounded-t-3xl flex items-center justify-center bg-cover bg-center"
             style={{
@@ -105,7 +105,7 @@ const BlogCreate = () => {
             }}
           >
             <FileUpload onSuccess={onBannerChange}>
-              <Button variant="secondary" className='text-[14px]'>Edit Photo</Button>
+              <Button variant="secondary" className='text-sm'>Edit Photo</Button>
             </FileUpload>
           </div>
           <div className="mt-5 lg:mt-8">
@@ -115,7 +115,7 @@ const BlogCreate = () => {
               value={input.title}
               onChange={onInputChange}
               placeholder="Enter Title of Discussion"
-              className="!border-t-gray-400 focus:!border-t-gray-900 mt-2 !h-[50px] placeholder:text-[14px]"
+              className="!border-t-gray-400 focus:!border-t-gray-900 mt-2 !placeholder:text-sm"
               labelProps={{
                 className: 'before:content-none after:content-none',
               }}

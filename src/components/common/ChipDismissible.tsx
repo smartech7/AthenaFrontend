@@ -16,7 +16,7 @@ const ChipDismissible: React.FC<IChipDismissibleProps> = ({
       <Chip
         open={open}
         value={value}
-        className="bg-black rounded-[9px] px-[50px] py-[20px] h-min text-white font-semibold font-poppins text-[17px]"
+        className="bg-black rounded-[9px] px-[50px] py-[10px] h-min text-white font-semibold font-poppins text-sm"
         onClose={onClose}
       />
     </>

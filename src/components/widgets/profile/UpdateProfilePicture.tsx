@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 
 import Avatar from '@/components/common/Avatar';
 import { BiSolidEdit } from 'react-icons/bi';
-import { Button } from '@/components/ui/button';
+import Button from '@/components/common/Button';
 import CONSTANTS from '@/config/constants';
 import FileUpload from '@/components/common/FileUpload';
 import { Spinner } from '@material-tailwind/react';
@@ -75,10 +75,7 @@ const UpdateProfilePicture = () => {
               setCoverPhoto(url);
             }}
           >
-            <Button
-              variant="secondary"
-              className="text-base font-medium text-black"
-            >
+            <Button className="font-medium text-black bg-secondary">
               Add Cover Photo
             </Button>
           </FileUpload>
@@ -86,7 +83,7 @@ const UpdateProfilePicture = () => {
       </div>
 
       <div className="mt-5 text-center">
-        <h3 className="text-black font-poppins text-[24px] font-semibold">
+        <h3 className="text-xl font-semibold text-black font-poppins">
           Upload profile picture
         </h3>
 
@@ -103,11 +100,7 @@ const UpdateProfilePicture = () => {
                 setAvatar(url);
               }}
             >
-              <Button
-                size="icon"
-                className="absolute bg-gray-400 rounded-full right-3 bottom-3"
-                variant="secondary"
-              >
+              <Button className="absolute rounded-full right-3 bottom-3 w-[40px] p-0 text-black text-xl h-[40px] bg-secondary">
                 <BiSolidEdit />
               </Button>
             </FileUpload>
@@ -115,7 +108,7 @@ const UpdateProfilePicture = () => {
         </div>
 
         <Button
-          className="w-full h-[60px] mt-[50px]"
+          className="w-full mt-[50px]"
           onClick={onSubmit}
           disabled={isSaving}
         >

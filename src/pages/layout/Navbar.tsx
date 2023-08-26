@@ -286,7 +286,7 @@ const Navbar = () => {
               <span>Trending Topics</span>
             </DropdownMenuItem>
             <DropdownMenuItem className="font-montserrat font-medium text-[13.24px]">
-              <span>Featured Users</span>
+              <span>Highlighted Profiles</span>
             </DropdownMenuItem>
             <DropdownMenuItem className="font-montserrat font-medium text-[13.24px]">
               <span>Marketplace</span>
@@ -323,7 +323,7 @@ const Navbar = () => {
 
       <div className="flex items-center gap-3">
         <Button
-          className="hidden rounded-full md:flex w-[29.65px] h-[29.65px] text-[14px]"
+          className="hidden rounded-full md:flex w-[29.65px] h-[29.65px] text-sm"
           size="icon"
         >
           <BsFillChatSquareDotsFill />
@@ -340,7 +340,7 @@ const Navbar = () => {
         >
           <BsPeopleFill />
         </Button>
-        {/* <Button className="hidden rounded-full md:flex w-[29.65px] h-[29.65px] text-[14px]" size="icon">
+        {/* <Button className="hidden rounded-full md:flex w-[29.65px] h-[29.65px] text-sm" size="icon">
           <BsMoonFill />
         </Button> */}
         <DropdownMenu>
@@ -351,7 +351,7 @@ const Navbar = () => {
                 className="w-[38px] h-[38px] border-2 border-[#DADADA]"
               />
               <div className="flex items-center gap-1 cursor-pointer select-none">
-                <p className="text-[#202020] font-montserrat font-bold text-[12px] hidden lg:block">
+                <p className="text-[#202020] font-montserrat font-bold text-xs hidden lg:block">
                   {user?.name}
                 </p>
                 <BiChevronDown />

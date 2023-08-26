@@ -51,19 +51,20 @@ const BlogDetail = () => {
       </div>
     );
 
+
   return (
     <div className="w-full p-3 md:p-5">
       <div
         className="h-[370px] rounded-t-2xl relative flex flex-col justify-end bg-cover bg-center"
         style={{ backgroundImage: `url(${item.banner})` }}
       >
-        <div className="absolute right-4 top-4 bg-white rounded-lg px-3 py-3 text-[14px] font-bold font-sans">
+        <div className="absolute px-3 py-3 font-sans text-sm font-bold bg-white rounded-lg right-4 top-4">
           {categories?.find((val) => val.value === item.tag)?.label}
         </div>
         <div className="absolute bottom-0 left-0 w-full h-1/2 bg-gradient-to-b from-black/0 via-black/80 to-black"></div>
         <div className="absolute bottom-0 left-0 flex items-center justify-between w-full px-4 py-2">
           <div className="flex items-center gap-5 lg:gap-10">
-            <div className="text-gray-300 font-poppins flex text-[18px] items-center">
+            <div className="flex items-center text-lg text-gray-300 font-poppins">
               {formatDate(item.createdAt, 'MMM DD, YYYY')}
             </div>
             <div className="flex items-center gap-1 text-gray-300">
@@ -79,7 +80,7 @@ const BlogDetail = () => {
           </div>
           <div className="flex items-center gap-2">
             <Button
-              className="text-white bg-white/20 rounded-full p-2 text-[24px]"
+              className="p-2 text-2xl text-white rounded-full bg-white/20"
               onClick={() => {
                 navigate(`/blog/${item._id}/edit`);
               }}
@@ -87,7 +88,7 @@ const BlogDetail = () => {
               <BiEdit />
             </Button>
             <Button
-              className="text-white bg-white/20 rounded-full p-2 text-[24px]"
+              className="p-2 text-2xl text-white rounded-full bg-white/20"
               onClick={() => {
                 deleteBlog(item._id!)
                   .then((res) => {
@@ -106,7 +107,7 @@ const BlogDetail = () => {
               <BiTrash />
             </Button>
             <SharePopup link={'https://donamix.com'}>
-              <Button className="text-white bg-white/20 rounded-full p-2 text-[24px]">
+              <Button className="p-2 text-2xl text-white rounded-full bg-white/20">
                 <TiArrowForward />
               </Button>
             </SharePopup>
@@ -126,7 +127,7 @@ const BlogDetail = () => {
         ></div>
       </div>
 
-      <RecentBlogs className="mt-5" />
+      <RecentBlogs className="mt-10" />
       {/* <div className='mt-5'>
         <CommentBox blog={item} />
       </div> */}

@@ -58,7 +58,7 @@ const Footer = () => {
                     GET IN TOUCH
                   </h4>
                   <Button
-                    className="rounded-full text-black font-urbanist text-[18px] font-bold w-[143px] h-[49px]"
+                    className="rounded-full text-black font-urbanist text-lg font-bold w-[143px] h-[49px]"
                     variant="secondary"
                   >
                     Ask in Forum
@@ -110,35 +110,35 @@ const Footer = () => {
               <Button
                 variant="outline"
                 size="icon"
-                className="w-[54px] h-[54px] rounded-full text-black text-[20px]"
+                className="w-[54px] h-[54px] rounded-full text-black text-xl"
               >
                 <FaTiktok />
               </Button>
               <Button
                 variant="outline"
                 size="icon"
-                className="w-[54px] h-[54px] rounded-full text-black text-[20px]"
+                className="w-[54px] h-[54px] rounded-full text-black text-xl"
               >
                 <FaYoutube />
               </Button>
               <Button
                 variant="outline"
                 size="icon"
-                className="w-[54px] h-[54px] rounded-full text-black text-[20px]"
+                className="w-[54px] h-[54px] rounded-full text-black text-xl"
               >
                 <FaFacebookF />
               </Button>
               <Button
                 variant="outline"
                 size="icon"
-                className="w-[54px] h-[54px] rounded-full text-black text-[20px]"
+                className="w-[54px] h-[54px] rounded-full text-black text-xl"
               >
                 <FaInstagram />
               </Button>
               <Button
                 variant="outline"
                 size="icon"
-                className="w-[54px] h-[54px] rounded-full text-black text-[20px]"
+                className="w-[54px] h-[54px] rounded-full text-black text-xl"
               >
                 <FaTwitter />
               </Button>
@@ -147,7 +147,7 @@ const Footer = () => {
           </div>
 
           <div className="xl:absolute relative z-0 w-full h-[110px] xl:bottom-0 xl:left-0 flex items-center justify-center">
-            <p className="text-[15px] leading-[26px] text-white">
+            <p className="text-base leading-[26px] text-white">
               &copy; {new Date().getFullYear()} Donamix - All rights reserved.
             </p>
           </div>

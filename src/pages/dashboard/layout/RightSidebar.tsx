@@ -79,11 +79,11 @@ const RightSidebar: React.FC<IRightSidebarProps> = ({ open }) => {
       </div>
 
       <div className="px-6 py-6 mt-5 lg:mt-10 bg-[#f2f2f2] rounded-t-2xl">
-        <div className="flex items-center gap-4">
-          <Avatar user={user} className="w-[60px] h-[60px]" />
+        <div className="flex gap-4">
+          <Avatar user={user} className="w-[50px] h-[50px]" />
           <div>
-            <h6 className="font-bold text-base text-[#151515]">{user?.name}</h6>
-            <a href="#" className="text-[#959595] font-semibold text-[15px]">
+            <h6 className="font-bold text-[#151515]">{user?.name}</h6>
+            <a href="/profile/edit" className="text-[#959595] font-semibold text-xs">
               Edit Profile
             </a>
           </div>
@@ -92,8 +92,8 @@ const RightSidebar: React.FC<IRightSidebarProps> = ({ open }) => {
           <TooltipProvider>
             <Tooltip>
               <TooltipTrigger className="flex flex-col items-center gap-2 bg-transparent border-none">
-                <p className="text-[22px] text-black font-extrabold">160</p>
-                <p className="text-[13px] text-[#151515] opacity-[0.63] font-semibold">
+                <p className="text-base font-extrabold text-black">160</p>
+                <p className="text-xs text-[#151515] opacity-[0.63] font-semibold">
                   Your daily friend requests!
                 </p>
               </TooltipTrigger>
@@ -105,8 +105,8 @@ const RightSidebar: React.FC<IRightSidebarProps> = ({ open }) => {
           <TooltipProvider>
             <Tooltip>
               <TooltipTrigger className="flex flex-col items-center gap-2 bg-transparent border-none">
-                <p className="text-[22px] text-black font-extrabold">10</p>
-                <p className="text-[13px] text-[#151515] opacity-[0.63] font-semibold">
+                <p className="text-base font-extrabold text-black">10</p>
+                <p className="text-xs text-[#151515] opacity-[0.63] font-semibold">
                   Your daily tally of gifts!
                 </p>
               </TooltipTrigger>
@@ -116,11 +116,11 @@ const RightSidebar: React.FC<IRightSidebarProps> = ({ open }) => {
             </Tooltip>
           </TooltipProvider>
         </div>
-        <div className="flex items-center justify-between gap-4 px-6 py-4 mt-5 bg-white rounded-md">
-          <p className="font-semibold text-[17px] text-[#515151]">Wallet</p>
+        <div className="flex items-center justify-between gap-4 px-8 py-4 mt-5 bg-white rounded-md">
+          <p className="font-semibold text-[#515151]">Wallet</p>
           <div className="flex gap-1">
             <img src="/images/money.svg" width={24} height={24} />
-            <p className="text-[#515151] font-semibold text-[19px] font-inter">
+            <p className="text-[#515151] font-semibold font-inter">
               1600
             </p>
           </div>
@@ -128,7 +128,7 @@ const RightSidebar: React.FC<IRightSidebarProps> = ({ open }) => {
       </div>
 
       <div className="px-6 py-6 mt-5 bg-white lg:mt-10 rounded-t-2xl">
-        <h4 className="text-[18px] text-[#B5B5B5] font-semibold font-inter">
+        <h4 className="text-lg text-[#B5B5B5] font-semibold font-inter">
           Trending Topics
         </h4>
         <div className="flex flex-wrap gap-2 mt-4">
@@ -142,7 +142,7 @@ const RightSidebar: React.FC<IRightSidebarProps> = ({ open }) => {
 
       <div className="px-6 py-6 mt-5 bg-white lg:mt-10 rounded-t-2xl">
         <div className="flex items-center justify-between">
-          <h4 className="text-[18px] text-[#B5B5B5] font-semibold font-inter">
+          <h4 className="text-lg text-[#B5B5B5] font-semibold font-inter">
             Featured Members
           </h4>
           <Button
@@ -161,7 +161,7 @@ const RightSidebar: React.FC<IRightSidebarProps> = ({ open }) => {
 
       <div className="relative px-6 py-6 mt-5 bg-white lg:mt-10 rounded-t-2xl">
         <div className="flex items-center justify-between">
-          <h4 className="text-[18px] text-[#B5B5B5] font-semibold font-inter">
+          <h4 className="text-lg text-[#B5B5B5] font-semibold font-inter">
             Friend Requests
           </h4>
           <Button

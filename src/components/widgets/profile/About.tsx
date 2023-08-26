@@ -8,7 +8,7 @@ const About: React.FC<IAboutProps> = ({}) => {
   
   return (
     <div>
-      <h3 className="text-black font-poppins text-[24px] font-semibold">
+      <h3 className="text-2xl font-semibold text-black font-poppins">
         Personal Information
       </h3>
       <p className="text-[#7D7D7D] font-medium text-base font-poppins mt-[14px]">

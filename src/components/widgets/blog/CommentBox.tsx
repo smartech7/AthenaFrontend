@@ -110,7 +110,7 @@ const CommentBox: React.FunctionComponent<ICommentBoxProps> = ({ blog }) => {
           value={comment}
           onChange={onCommentChange}
           placeholder="Enter Comment Here"
-          className="!border-t-gray-400 focus:!border-t-gray-900 !h-[50px] flex-1 items-center"
+          className="!border-t-gray-400 focus:!border-t-gray-900 !flex-1 items-center"
           labelProps={{
             className: 'before:content-none after:content-none',
           }}

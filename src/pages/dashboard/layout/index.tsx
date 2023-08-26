@@ -18,7 +18,7 @@ const DashboardLayout = () => {
         <LeftSidebar />
         <div className="flex-1 bg-white">
           <div className="w-full h-full bg-dashboard-background">
-            <div className="w-full h-full 2xl:container">
+            <div className="w-full h-full">
               <Outlet />
             </div>
           </div>

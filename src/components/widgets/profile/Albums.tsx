@@ -52,7 +52,7 @@ const Albums = () => {
         open={isCreateModalOpen}
         onClose={onCloseCreateModal}
       />
-      <h3 className="text-black font-poppins text-[24px] font-semibold">
+      <h3 className="text-black font-poppins text-xl font-semibold">
         Manage Albums
       </h3>
 
@@ -62,10 +62,10 @@ const Albums = () => {
             <AlbumCard key={`album-card-${i}`} item={val} />
           ))
         ) : (
-          <h4 className="text-center text-gray-800 text-[18px]">No albums</h4>
+          <h4 className="text-base text-center text-gray-800">No albums</h4>
         )}
 
-        <Button className="w-full h-[50px]" onClick={onAddAlbum}>
+        <Button className="w-full" onClick={onAddAlbum}>
           Add Album
         </Button>
       </div>

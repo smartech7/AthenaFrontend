@@ -2,7 +2,7 @@ import { ChangeEvent, useState } from 'react';
 import { login, thirdPartyLogin } from '@/api/auth';
 import { removeAuthToken, setAuthToken } from '@/actions/auth';
 
-import { Button } from '@/components/ui/button';
+import Button from '@/components/common/Button';
 import CONSTANTS from '@/config/constants';
 import { Input } from '@/components/ui/input';
 import { Loader2 } from 'lucide-react';
@@ -69,7 +69,8 @@ export default function LoginForm() {
     }));
   };
 
-  const onSubmit = () => {
+  const onSubmit = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
     setLoading(true);
     login(input)
       .then((res) => {
@@ -91,27 +92,25 @@ export default function LoginForm() {
   };
 
   return (
-    <div className="flex flex-col mt-6 gap-4 md:gap-6">
+    <div className="flex flex-col gap-4 mt-6 md:gap-6">
       <div className="flex gap-4">
         <Button
-          variant="secondary"
-          className="flex justify-center rounded-lg flex-1 lg:gap-4 h-[50px] sm:h-[60px] text-base text-black"
+          className="flex items-center justify-center flex-1 text-black rounded-lg bg-secondary lg:gap-4"
           onClick={() => {
             setLoading(true);
             googleLogin();
           }}
         >
           <img src="/images/google.svg" width={26} height={26} />
-          <span className="hidden lg:block">Sign in with Google</span>
+          <span className="hidden lg:block text-xs xl:text-sm font-medium leading-4">
+            Sign in with Google
+          </span>
         </Button>
-        <Button
-          variant="secondary"
-          className="h-[50px] sm:h-[60px] rounded-lg flex-1 lg:flex-none"
-        >
+        <Button className="flex-1 rounded-lg bg-secondary lg:flex-none">
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            width="35"
-            height="35"
+            width="30"
+            height="30"
             viewBox="0 0 44 44"
             fill="none"
           >
@@ -141,14 +140,11 @@ export default function LoginForm() {
             </defs>
           </svg>
         </Button>
-        <Button
-          variant="secondary"
-          className="h-[50px] sm:h-[60px] rounded-lg flex-1 lg:flex-none"
-        >
+        <Button className="flex-1 rounded-lg bg-secondary lg:flex-none">
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            width="35"
-            height="35"
+            width="30"
+            height="30"
             viewBox="0 0 45 45"
             fill="none"
           >
@@ -164,44 +160,47 @@ export default function LoginForm() {
         </Button>
       </div>
 
-      <div>
+      <form>
         <div>
-          <h6 className="text-base">Email address</h6>
-          <Input
-            name="email"
-            placeholder="Username or email address"
-            value={input.email}
-            onChange={onInputChange}
-            className="mt-4 h-[50px] sm:h-[57px] bg-secondary placeholder:text-[14px]"
-          />
+          <div>
+            <h6 className="text-base">Email address</h6>
+            <Input
+              name="email"
+              placeholder="Username or email address"
+              value={input.email}
+              onChange={onInputChange}
+              className="mt-2 bg-secondary placeholder:text-sm"
+            />
+          </div>
+
+          <div className="mt-5">
+            <label htmlFor="password">Enter your Password</label>
+            <Input
+              id="password"
+              name="password"
+              type="password"
+              placeholder="Password"
+              value={input.password}
+              onChange={onInputChange}
+              className="mt-2 bg-secondary placeholder:text-sm"
+            />
+          </div>
         </div>
 
-        <div className="mt-5">
-          <h6>Enter your Password</h6>
-          <Input
-            name="password"
-            type="password"
-            placeholder="Password"
-            value={input.password}
-            onChange={onInputChange}
-            className="mt-4 h-[50px] sm:h-[57px] bg-secondary placeholder:text-[14px]"
-          />
-        </div>
-
-        <div className="mt-4 text-right">
+        <div className="mt-2 text-right text-xs">
           <a href="#">Forgot Password</a>
         </div>
-      </div>
 
-      <Button
-        variant="default"
-        className="h-[54px] w-full"
-        onClick={onSubmit}
-        disabled={isLoading}
-      >
-        {isLoading && <Loader2 className="w-4 h-4 mr-2 animate-spin" />}
-        Sign in
-      </Button>
+        <Button
+          type="submit"
+          className="w-full mt-4 font-normal"
+          onClick={onSubmit}
+          disabled={isLoading}
+        >
+          {isLoading && <Loader2 className="w-4 h-4 mr-2 animate-spin" />}
+          Sign in
+        </Button>
+      </form>
     </div>
   );
 }

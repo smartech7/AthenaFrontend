@@ -17,12 +17,12 @@
   fill: black;
   position: absolute;
   right: 0;
-  top: 8px;
+  top: 0;
 }
 
 .react-datepicker__input-container > input {
   width: 100%;
-  padding-block: 15px !important;
+  padding-block: 8px !important;
   padding-inline: 8px !important;
   border-radius: 8px;
 }

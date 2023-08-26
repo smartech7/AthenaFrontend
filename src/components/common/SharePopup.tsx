@@ -22,7 +22,7 @@ const SharePopup: React.FC<ISharePopupProps> = ({ link, children }) => {
         <div>{children}</div>
       </PopoverHandler>
       <PopoverContent>
-        <h5 className="text-black font-bold font-montserrat text-[15px]">
+        <h5 className="text-base font-bold text-black font-montserrat">
           Share
         </h5>
         <div className="flex justify-between gap-3 mt-5">
@@ -70,7 +70,7 @@ const SharePopup: React.FC<ISharePopupProps> = ({ link, children }) => {
             value={link}
           />
           <Button
-            className="rounded-full h-[32px] flex items-center justify-center text-white text-[12px]"
+            className="rounded-full h-[32px] flex items-center justify-center text-white text-xs"
             onClick={() => {
               navigator.clipboard.writeText(link);
               setIsCopied(true);

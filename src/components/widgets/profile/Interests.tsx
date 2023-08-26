@@ -2,7 +2,7 @@ import Select, { MultiValue } from 'react-select';
 import { User, userValidator } from '@/lib/validation/user';
 import { useEffect, useState } from 'react';
 
-import { Button } from '@/components/ui/button';
+import Button from '@/components/common/Button';
 import CONSTANTS from '@/config/constants';
 import ChipDismissible from '@/components/common/ChipDismissible';
 import { Spinner } from '@material-tailwind/react';
@@ -71,7 +71,7 @@ const Interests = () => {
 
   return (
     <div className="overflow-visible">
-      <h3 className="text-black font-poppins text-[24px] font-semibold">
+      <h3 className="text-xl font-semibold text-black font-poppins">
         Interests
       </h3>
 
@@ -106,7 +106,7 @@ const Interests = () => {
       </div>
 
       <Button
-        className="w-full h-[50px]"
+        className="w-full"
         onClick={onSubmit}
         disabled={isSaving}
       >
