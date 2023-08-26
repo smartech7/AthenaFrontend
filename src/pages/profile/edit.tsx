@@ -1,9 +1,10 @@
 import { FaCircleUser, FaGraduationCap } from 'react-icons/fa6';
-import { MdBlock, MdFavorite } from 'react-icons/md';
+import { MdBlock, MdFavorite, MdInfo } from 'react-icons/md';
 import { User, userValidator } from '@/lib/validation/user';
 import { useEffect, useState } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 
+import About from '@/components/widgets/profile/About';
 import AccountSettings from '@/components/widgets/profile/AccountSettings';
 import Albums from '@/components/widgets/profile/Albums';
 import Avatar from '@/components/common/Avatar';
@@ -79,6 +80,11 @@ const options = [
     value: 'blocked-user',
     icon: <MdBlock />,
     title: 'Blocked User',
+  },
+  {
+    value: 'about',
+    icon: <MdInfo />,
+    title: 'About',
   },
 ];
 
@@ -187,11 +193,11 @@ const ProfileEdit: React.FC<IProfileEditProps> = () => {
       </div>
       <div className="relative z-30 w-full">
         <div className="flex">
-          <div className="w-[50px] basis-[50px] lg:basis-[380px] lg:w-[380px] bg-white transition-all duration-100">
+          <div className="w-[50px] basis-[50px] lg:basis-[300px] lg:w-[300px] bg-white transition-all duration-100">
             <div id="profile-edit-userinfo">
               <div className="flex justify-center h-[60px] mt-5 lg:mt-0 lg:h-[85px] transition-all duration-100">
                 <Avatar
-                  className="w-[50px] lg:w-[170px] lg:h-[170px] lg:-translate-y-1/2 text-[40px] font-bold border-white border-4 p-0"
+                  className="w-[50px] h-[50px] lg:w-[170px] lg:h-[170px] lg:-translate-y-1/2 text-[40px] font-bold border-white border-4 p-0"
                   user={user}
                 />
               </div>
@@ -249,7 +255,7 @@ const ProfileEdit: React.FC<IProfileEditProps> = () => {
               ) : tab === options[6].value ? (
                 <UpdateProfilePicture />
               ) : (
-                <></>
+                <About />
               )}
             </div>
           </div>
