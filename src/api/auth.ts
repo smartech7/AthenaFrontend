@@ -1,9 +1,8 @@
 import axios, { AxiosError } from 'axios';
 
 import CONSTANTS from '@/config/constants';
-import { LoginUser } from '@/components/widgets/auth/LoginForm';
+import { LoginUser } from '@/actions/auth';
 import { RegisterUser } from '@/components/widgets/auth/RegisterForm';
-import { removeAuthToken } from '@/actions/auth';
 
 const apiUrl = import.meta.env.VITE_BACKEND_API as string;
 console.log(apiUrl);
@@ -105,7 +104,7 @@ export const login = async (data: LoginUser) => {
             });
           } else {
             console.log('Failed:', res);
-            reject({
+            resolve({
               code: CONSTANTS.FAILED,
               message: res.data.status,
             });
@@ -113,11 +112,12 @@ export const login = async (data: LoginUser) => {
         })
         .catch((err: AxiosError) => {
           console.log('Error while logging in:', err);
-          reject({
+          resolve({
             code: CONSTANTS.FAILED,
-            message: err.response
-              ? err.response.status
-              : 'Failed with unknown error.',
+            message:
+              err.response && typeof err.response.status === 'string'
+                ? err.response.status
+                : 'Failed with unknown error.',
           });
         })
         .finally(() => {
@@ -147,7 +147,7 @@ export const thirdPartyLogin = async (data: {
             });
           } else {
             console.log(res);
-            reject({
+            resolve({
               code: CONSTANTS.FAILED,
               message: res.data.status,
             });
@@ -155,11 +155,12 @@ export const thirdPartyLogin = async (data: {
         })
         .catch((err: AxiosError) => {
           console.log('Error while logging in:', err);
-          reject({
+          resolve({
             code: CONSTANTS.FAILED,
-            message: err.response
-              ? err.response.status
-              : 'Failed with unknown error.',
+            message:
+              err.response && typeof err.response.status === 'string'
+                ? err.response.status
+                : 'Failed with unknown error.',
           });
         })
         .finally(() => {
@@ -172,10 +173,60 @@ export const thirdPartyLogin = async (data: {
   );
 };
 
-export const logout = async () => {
-  removeAuthToken();
-  delete axios.defaults.headers.common['Token'];
-  console.log('Log out');
+export const generateOtp = async (email: string) => {
+  return new Promise<{ code: string; message: string }>((resolve, reject) => {
+    axios
+      .post(`${apiUrl}/auth/generateotp`, { email })
+      .then((res) => {
+        resolve({
+          code: res.data.message,
+          message: res.data.status,
+        });
+      })
+      .catch((err: AxiosError) => {
+        console.log('Error while generating otp:', err);
+        if (err.response && typeof err.response.status === 'string') {
+          resolve({
+            code: CONSTANTS.FAILED,
+            message: err.response.status
+          });
+        }
+      })
+      .finally(() => {
+        reject({
+          code: CONSTANTS.FAILED,
+          message: 'Failed with unknown error.',
+        });
+      });
+  });
+};
+
+export const verifyOtp = async (data: { email: string; token: string }) => {
+  return new Promise<{ code: string; message: string }>((resolve, reject) => {
+    axios
+      .post(`${apiUrl}/auth/verifyotp`, data)
+      .then((res) => {
+        resolve({
+          code: res.data.message,
+          message: res.data.status
+        });
+      })
+      .catch((err: AxiosError) => {
+        console.log('Error while verifying otp:', err);
+        if (err.response && typeof err.response.status === 'string') {
+          resolve({
+            code: CONSTANTS.FAILED,
+            message: err.response.status
+          });
+        }
+      })
+      .finally(() => {
+        reject({
+          code: CONSTANTS.FAILED,
+          message: 'Failed with unknown error.',
+        });
+      });
+  });
 };
 
 export const getCurrentUser = async () => {

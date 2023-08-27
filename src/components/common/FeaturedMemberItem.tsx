@@ -29,10 +29,10 @@ const FeaturedMemberItem: React.FunctionComponent<IFeaturedMemberItemProps> = ({
         </AvatarFallback>
       </Avatar>
       <div>
-        <h5 className="font-poppins text-black text-base font-medium">
+        <h5 className="font-medium text-black font-poppins">
           {item.name}
         </h5>
-        <p className={cn('font-poppins text-[12.62px] font-medium', item.role === 'VIP' ? 'text-[#8874DC]' : item.role === 'Moderator' ? 'text-[#4C7737]' : 'text-[#AAA]')}>{item.role}</p>
+        <p className={cn('font-poppins text-xs font-medium', item.role === 'VIP' ? 'text-[#8874DC]' : item.role === 'Moderator' ? 'text-[#4C7737]' : 'text-[#AAA]')}>{item.role}</p>
       </div>
     </div>
   );

@@ -90,14 +90,14 @@ const BlogCreate = () => {
   };
 
   return (
-    <div className="w-full p-2 lg:p-6">
+    <div className="w-full px-2 py-6 lg:p-6">
       <h1 className="text-black font-poppins text-[28px] font-bold">
         Add new Blog
       </h1>
 
       <Card className="mt-2 lg:mt-5">
         <CardBody className='p-3 lg:p-6'>
-          <h4 className="text-black font-inter text-xl">Create Blog</h4>
+          <h4 className="text-xl text-black font-inter">Create Blog</h4>
           <div
             className="bg-primary h-[300px] w-full mt-2 lg:mt-4 rounded-t-3xl flex items-center justify-center bg-cover bg-center"
             style={{
@@ -153,7 +153,7 @@ const BlogCreate = () => {
               styles={{
                 control: (base) => ({
                   ...base,
-                  height: 50,
+                  height: 42,
                   borderRadius: 6,
                   zIndex: 5,
                   'input:focus-visible': {

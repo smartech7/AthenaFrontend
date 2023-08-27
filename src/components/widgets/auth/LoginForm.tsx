@@ -1,6 +1,6 @@
 import { ChangeEvent, useState } from 'react';
-import { login, thirdPartyLogin } from '@/api/auth';
-import { removeAuthToken, setAuthToken } from '@/actions/auth';
+import { login, thirdPartyLogin } from '@/actions/auth';
+import { type LoginUser } from '@/actions/auth';
 
 import AppleLogin from 'react-apple-login';
 import Button from '@/components/common/Button';
@@ -8,18 +8,12 @@ import CONSTANTS from '@/config/constants';
 import FacebookLogin from 'react-facebook-login/dist/facebook-login-render-props';
 import { Input } from '@/components/ui/input';
 import { Loader2 } from 'lucide-react';
-import axios from 'axios';
 import toast from 'react-hot-toast';
 import { useGoogleLogin } from '@react-oauth/google';
 import { useNavigate } from 'react-router-dom';
 
 const appleId = import.meta.env.VITE_APPLE_OAUTH_APP_ID as string;
 console.log(appleId);
-
-export type LoginUser = {
-  email: string;
-  password: string;
-};
 
 export default function LoginForm() {
   const navigate = useNavigate();
@@ -36,12 +30,9 @@ export default function LoginForm() {
       })
         .then((res) => {
           if (res.code === CONSTANTS.SUCCESS) {
-            console.log(res);
-            onLoginSuccess(res.token!);
             navigate('/');
             toast.success(res.message);
           } else {
-            onLoginFail();
             toast.error(res.message);
           }
         })
@@ -65,15 +56,6 @@ export default function LoginForm() {
     console.log(res);
   };
 
-  const onLoginSuccess = (token: string) => {
-    setAuthToken(token);
-    axios.defaults.headers.common['Token'] = token;
-  };
-  const onLoginFail = () => {
-    removeAuthToken();
-    delete axios.defaults.headers.common['Token'];
-  };
-
   const onInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.currentTarget;
     setInput((prev) => ({
@@ -88,12 +70,14 @@ export default function LoginForm() {
     login(input)
       .then((res) => {
         if (res.code === CONSTANTS.SUCCESS) {
-          onLoginSuccess(res.token!);
           navigate('/');
           toast.success(res.message);
         } else {
-          onLoginFail();
-          toast.error(res.message);
+          if (res.message === 'Email Not Verified...') {
+            navigate(`/verifyemail?email=${input.email}`);
+          } else {
+            toast.error(res.message);
+          }
         }
       })
       .catch((err) => {
@@ -168,8 +152,8 @@ export default function LoginForm() {
           )}
         />
         <AppleLogin
-          clientId={import.meta.env.VITE_APPLE_OAUTH_APP_ID || ''}
-          redirectURI={import.meta.env.VITE_APPLE_OAUTH_REDIRECT_URI || ''}
+          clientId="com.auth.donamix"
+          redirectURI="https://smart-demo.onrender.com/apple/callback"
           usePopup={true}
           callback={appleLogin} // Catch the response
           scope="email name"
