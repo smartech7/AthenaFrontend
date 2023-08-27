@@ -139,14 +139,14 @@ const BlogEdit = () => {
   };
 
   return (
-    <div className="w-full p-2 lg:p-6">
+    <div className="w-full px-2 py-6 lg:p-6">
       <h1 className="text-black font-poppins text-[28px] font-bold">
         Edit Blog
       </h1>
 
       <Card className="mt-2 lg:mt-5">
         <CardBody className="p-3 lg:p-6">
-          <h4 className="text-black font-inter text-xl">Edit Blog</h4>
+          <h4 className="text-xl text-black font-inter">Edit Blog</h4>
           <div
             className="bg-primary h-[300px] w-full mt-2 lg:mt-4 rounded-t-3xl flex items-center justify-center bg-cover bg-center"
             style={{
@@ -154,7 +154,7 @@ const BlogEdit = () => {
             }}
           >
             <FileUpload onSuccess={onBannerChange}>
-              <Button variant="secondary" className="text-sm">
+              <Button className="text-sm">
                 Edit Photo
               </Button>
             </FileUpload>
