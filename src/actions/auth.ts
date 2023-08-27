@@ -8,6 +8,16 @@ export type LoginUser = {
   password: string;
 };
 
+export type RegisterUser = {
+  name: string;
+  username: string;
+  email: string;
+  password: string;
+  gender: 'Male' | 'Female';
+  country: string;
+  city: string;
+};
+
 export const getAuthToken = (): string | null => {
   const token = sessionStorage.getItem('auth_token');
   return token;
@@ -21,11 +31,12 @@ export const removeAuthToken = () => {
   sessionStorage.removeItem('auth_token');
 };
 
-const loginSuccess = (token: string) => {
+export const loginSuccess = (token: string) => {
   setAuthToken(token);
   axios.defaults.headers.common['Token'] = token;
 };
-const loginFail = () => {
+
+export const loginFail = () => {
   removeAuthToken();
   delete axios.defaults.headers.common['Token'];
 };

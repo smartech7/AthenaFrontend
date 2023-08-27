@@ -1,6 +1,4 @@
-import { ChangeEvent, useState } from 'react';
 import { login, thirdPartyLogin } from '@/actions/auth';
-import { type LoginUser } from '@/actions/auth';
 
 import AppleLogin from 'react-apple-login';
 import Button from '@/components/common/Button';
@@ -11,14 +9,17 @@ import { Loader2 } from 'lucide-react';
 import toast from 'react-hot-toast';
 import { useGoogleLogin } from '@react-oauth/google';
 import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
 
-const appleId = import.meta.env.VITE_APPLE_OAUTH_APP_ID as string;
+// import { type LoginUser } from '@/actions/auth';
+
+const appleId = import.meta.env.VITE_APPLE_OAUTH_APP_ID;
 console.log(appleId);
 
 export default function LoginForm() {
   const navigate = useNavigate();
-  const [isLoading, setLoading] = useState<boolean>(false);
-  const [input, setInput] = useState<LoginUser>({
+  const [isLoading, setLoading] = useState(false);
+  const [input, setInput] = useState({
     email: '',
     password: '',
   });
@@ -56,7 +57,7 @@ export default function LoginForm() {
     console.log(res);
   };
 
-  const onInputChange = (e: ChangeEvent<HTMLInputElement>) => {
+  const onInputChange = (e) => {
     const { name, value } = e.currentTarget;
     setInput((prev) => ({
       ...prev,
@@ -64,7 +65,7 @@ export default function LoginForm() {
     }));
   };
 
-  const onSubmit = (e: React.MouseEvent<HTMLButtonElement>) => {
+  const onSubmit = (e) => {
     e.preventDefault();
     setLoading(true);
     login(input)

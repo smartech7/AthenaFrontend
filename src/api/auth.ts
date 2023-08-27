@@ -1,8 +1,7 @@
+import { LoginUser, RegisterUser } from '@/actions/auth';
 import axios, { AxiosError } from 'axios';
 
 import CONSTANTS from '@/config/constants';
-import { LoginUser } from '@/actions/auth';
-import { RegisterUser } from '@/components/widgets/auth/RegisterForm';
 
 const apiUrl = import.meta.env.VITE_BACKEND_API as string;
 console.log(apiUrl);

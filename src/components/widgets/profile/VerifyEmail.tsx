@@ -72,41 +72,53 @@ const VerifyEmail = () => {
 
         <div className="flex items-center justify-center gap-3 mt-[50px]">
           <Input
-            type="number"
             name="digit1"
             value={input[0]}
+            maxLength={1}
             onChange={(e) => {
               onDigitChange(0, e.currentTarget.value);
             }}
+            onKeyDown={(e) => {
+              if (CONSTANTS.NODIGITS.includes(e.key)) e.preventDefault();
+            }}
             className="w-[60px] h-[60px] sm:w-[70px] sm:h-[70px] rounded-2xl text-center"
           />
           <p className="text-2xl font-normal text-[#BCBCBC]">-</p>
           <Input
-            type="number"
             name="digit2"
             value={input[1]}
+            maxLength={1}
             onChange={(e) => {
               onDigitChange(1, e.currentTarget.value);
             }}
-            className="w-[60px] h-[60px] sm:w-[70px] sm:h-[70px] rounded-2xl text-center"
-          />
-          <p className="text-2xl font-normal text-[#BCBCBC]">-</p>
-          <Input
-            type="number"
-            name="digit3"
-            value={input[2]}
-            onChange={(e) => {
-              onDigitChange(2, e.currentTarget.value);
+            onKeyDown={(e) => {
+              if (CONSTANTS.NODIGITS.includes(e.key)) e.preventDefault();
             }}
             className="w-[60px] h-[60px] sm:w-[70px] sm:h-[70px] rounded-2xl text-center"
           />
           <p className="text-2xl font-normal text-[#BCBCBC]">-</p>
           <Input
-            type="number"
+            name="digit3"
+            value={input[2]}
+            maxLength={1}
+            onChange={(e) => {
+              onDigitChange(2, e.currentTarget.value);
+            }}
+            onKeyDown={(e) => {
+              if (CONSTANTS.NODIGITS.includes(e.key)) e.preventDefault();
+            }}
+            className="w-[60px] h-[60px] sm:w-[70px] sm:h-[70px] rounded-2xl text-center"
+          />
+          <p className="text-2xl font-normal text-[#BCBCBC]">-</p>
+          <Input
             name="digit4"
             value={input[3]}
+            maxLength={1}
             onChange={(e) => {
               onDigitChange(3, e.currentTarget.value);
+            }}
+            onKeyDown={(e) => {
+              if (CONSTANTS.NODIGITS.includes(e.key)) e.preventDefault();
             }}
             className="w-[60px] h-[60px] sm:w-[70px] sm:h-[70px] rounded-2xl text-center"
           />
