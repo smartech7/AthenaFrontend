@@ -14,7 +14,6 @@ import { useState } from 'react';
 // import { type LoginUser } from '@/actions/auth';
 
 const appleId = import.meta.env.VITE_APPLE_OAUTH_APP_ID;
-console.log(appleId);
 
 export default function LoginForm() {
   const navigate = useNavigate();
@@ -73,6 +72,7 @@ export default function LoginForm() {
   };
 
   const appleLogin = (res) => {
+    console.log(res);
     if (res.authorization && res.authorization.id_token) {
       thirdPartyLogin({
         type: 'apple',
