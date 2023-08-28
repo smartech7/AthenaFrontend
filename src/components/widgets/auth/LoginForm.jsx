@@ -73,7 +73,26 @@ export default function LoginForm() {
   };
 
   const appleLogin = (res) => {
-    console.log(res);
+    if (res.authorization && res.authorization.id_token) {
+      thirdPartyLogin({
+        type: 'apple',
+        accesstoken: res.id_token,
+      })
+        .then((res) => {
+          if (res.code === CONSTANTS.SUCCESS) {
+            navigate('/');
+            toast.success(res.message);
+          } else {
+            toast.error(res.message);
+          }
+        })
+        .catch((err) => {
+          console.log('Login Error:', err);
+        })
+        .finally(() => {
+          setLoading(false);
+        });
+    }
   };
 
   const onInputChange = (e) => {
