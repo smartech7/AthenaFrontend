@@ -154,7 +154,7 @@ export default function LoginForm() {
         />
         <AppleLogin
           clientId="com.auth.donamix"
-          redirectURI="https://smart-demo.onrender.com/apple/callback"
+          redirectURI="https://donamix.org/apple/callback"
           usePopup={true}
           callback={appleLogin} // Catch the response
           scope="email name"
