@@ -153,7 +153,7 @@ export default function LoginForm() {
           )}
         />
         <AppleLogin
-          clientId="com.auth.donamix"
+          clientId="KZ2YZ6W6ZK.com.auth.donamix"
           redirectURI="https://donamix.org/apple/callback"
           usePopup={true}
           callback={appleLogin} // Catch the response
