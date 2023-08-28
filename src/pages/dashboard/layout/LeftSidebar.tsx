@@ -58,7 +58,7 @@ const SidebarMenuItem: React.FC<ISidebarMenuItemProps> = ({
           >
             <div
               className={cn(
-                'bg-white rounded-full h-full flex items-center gap-3 px-4 py-2 text-[17px] font-montserrat hover:text-black hover:font-bold transition-all',
+                'bg-white rounded-full h-full flex items-center gap-3 px-4 py-2 font-montserrat hover:text-black hover:font-bold transition-all',
                 selected === true ? 'text-black font-bold' : 'text-[#828282]'
               )}
             >
@@ -275,7 +275,7 @@ const LeftSidebar = () => {
 
       <div className="w-full py-[46px] px-[42px] flex flex-col items-center gap-3 bg-white rounded-tr-lg mt-8">
         <img src="/images/get_the_app.png" width="100%" height="100%" />
-        <p className="text-[12px] font-bold">Get the app</p>
+        <p className="text-xs font-bold">Get the app</p>
         <div className="flex gap-3">
           <Button variant="default" size="icon">
             <BsApple />

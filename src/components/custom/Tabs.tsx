@@ -35,7 +35,7 @@ export const CustomTabList: React.FC<ITabListProps> = ({
 }) => {
   return (
     <TabsList
-      className="flex w-full h-[55px] sm:h-[60px] p-0 rounded-lg bg-secondary"
+      className="flex w-full h-[42px] p-0 rounded-lg bg-secondary"
       {...props}
     >
       {children}

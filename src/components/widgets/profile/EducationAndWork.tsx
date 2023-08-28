@@ -11,7 +11,7 @@ import {
 import { User, userValidator } from '@/lib/validation/user';
 import { cn, formatDate } from '@/lib/utils';
 
-import { Button } from '@/components/ui/button';
+import Button from '@/components/common/Button';
 import CONSTANTS from '@/config/constants';
 import DatePicker from 'react-datepicker';
 import { Input } from '@/components/ui/input';
@@ -151,7 +151,7 @@ const EducationAndWork = () => {
           >
             <div
               className={cn(
-                'flex items-center h-[62px] gap-2 font-poppins text-[18px] lg:text-[24px] font-semibold',
+                'flex items-center py-2 gap-2 font-poppins text-base lg:text-lg font-semibold',
                 tab === 'education' ? 'text-black' : 'text-[#6A6A6A]'
               )}
             >
@@ -166,7 +166,7 @@ const EducationAndWork = () => {
           >
             <div
               className={cn(
-                'flex items-center h-[62px] gap-2 font-poppins text-[18px] lg:text-[24px] font-semibold',
+                'flex items-center py-2 gap-2 font-poppins text-base lg:text-lg font-semibold',
                 tab === 'experience' ? 'text-black' : 'text-[#6A6A6A]'
               )}
             >
@@ -175,7 +175,7 @@ const EducationAndWork = () => {
           </Tab>
         </TabsHeader>
 
-        <p className="text-[#7D7D7D] font-medium text-base font-poppins mt-[14px]">
+        <p className="text-[#7D7D7D] font-medium font-poppins mt-[14px]">
           Control your profile information, both what it says and what other
           people see. User profiles are shown across all Donamix website.
           Complete your profile 100% to reach more people. Note: accounts not
@@ -190,7 +190,7 @@ const EducationAndWork = () => {
                 value={education.university}
                 onChange={onEducationChange}
                 placeholder="University"
-                className="flex-1 h-[60px] rounded-[9px] col-span-12"
+                className="flex-1 rounded-[9px] col-span-12"
               />
               <div className="col-span-12 lg:col-span-6">
                 <DatePicker
@@ -202,7 +202,7 @@ const EducationAndWork = () => {
                     }));
                   }}
                   showIcon
-                  placeholderText='From'
+                  placeholderText="From"
                   className="w-full"
                 />
               </div>
@@ -216,13 +216,13 @@ const EducationAndWork = () => {
                     }));
                   }}
                   showIcon
-                  placeholderText='To'
+                  placeholderText="To"
                   className="w-full"
                 />
               </div>
 
               <div className="col-span-12">
-                <h6 className="text-black font-poppins text-[18px] font-semibold">
+                <h6 className="text-base font-semibold text-black font-poppins">
                   Description
                 </h6>
                 <div className="flex justify-between gap-3 mt-3">
@@ -236,8 +236,7 @@ const EducationAndWork = () => {
               </div>
 
               <Button
-                variant="default"
-                className="w-full col-span-12 h-[50px]"
+                className="w-full col-span-12"
                 onClick={onSubmit}
                 disabled={isSaving}
               >
@@ -253,7 +252,7 @@ const EducationAndWork = () => {
                 value={experience.company}
                 onChange={onExperienceChange}
                 placeholder="Company"
-                className="flex-1 h-[60px] rounded-[9px] col-span-12 lg:col-span-6"
+                className="flex-1 rounded-[9px] col-span-12 lg:col-span-6"
               />
 
               <Input
@@ -261,7 +260,7 @@ const EducationAndWork = () => {
                 value={experience.position}
                 onChange={onExperienceChange}
                 placeholder="Position"
-                className="flex-1 h-[60px] rounded-[9px] col-span-12 lg:col-span-6"
+                className="flex-1 rounded-[9px] col-span-12 lg:col-span-6"
               />
 
               <div className="col-span-12 lg:col-span-6">
@@ -274,7 +273,7 @@ const EducationAndWork = () => {
                     }));
                   }}
                   showIcon
-                  placeholderText='From'
+                  placeholderText="From"
                   className="w-full"
                 />
               </div>
@@ -289,7 +288,7 @@ const EducationAndWork = () => {
                     }));
                   }}
                   showIcon
-                  placeholderText='To'
+                  placeholderText="To"
                   className="w-full"
                 />
               </div>
@@ -299,11 +298,11 @@ const EducationAndWork = () => {
                 value={experience.location}
                 onChange={onExperienceChange}
                 placeholder="City/Town"
-                className="flex-1 h-[60px] rounded-[9px] col-span-12"
+                className="flex-1 rounded-[9px] col-span-12"
               />
 
               <div className="col-span-12">
-                <h6 className="text-black font-poppins text-[18px] font-semibold">
+                <h6 className="text-base font-semibold text-black font-poppins">
                   Description
                 </h6>
                 <div className="flex justify-between gap-3 mt-3">
@@ -317,8 +316,7 @@ const EducationAndWork = () => {
               </div>
 
               <Button
-                variant="default"
-                className="w-full col-span-12 h-[50px]"
+                className="w-full col-span-12"
                 onClick={onSubmit}
                 disabled={isSaving}
               >

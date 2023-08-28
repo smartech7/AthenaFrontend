@@ -9,7 +9,7 @@ const Button: React.FC<ButtonProps> = (props) => {
     <MuiRawButton
       {...props}
       className={cn(
-        'shadow-none font-semibold font-inter text-base normal-case',
+        'shadow-none font-semibold text-sm font-inter normal-case flex justify-center items-center py-2 h-[42px] hover:shadow-sm',
         props.className
       )}
       ref={buttonRef}

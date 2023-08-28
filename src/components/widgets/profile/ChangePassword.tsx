@@ -77,16 +77,16 @@ const ChangePassword = () => {
 
   return (
     <div>
-      <h3 className="text-black font-poppins text-[24px] font-semibold">
+      <h3 className="text-xl font-semibold text-black font-poppins">
         Change Password
       </h3>
-      <p className="text-[#7D7D7D] font-medium text-base font-poppins mt-[14px]">
+      <p className="text-[#7D7D7D] font-medium font-poppins mt-1">
         Choose a strong password and don't reuse it for other account. It's a
         good idea to use a strong password that you don't use elsewhere. Never
         give your password to anyone we never ask our members for password.
       </p>
 
-      <div className="flex flex-col gap-5 mt-5">
+      <div className="flex flex-col gap-2 mt-2">
         <Input
           id="old-password"
           name="oldPassword"
@@ -94,7 +94,7 @@ const ChangePassword = () => {
           placeholder="Old Password"
           value={input.oldPassword}
           onChange={onInputChange}
-          className="mt-4 h-[57px] placeholder:text-[14px]"
+          className="mt-4"
         />
         {errors && errors.oldPassword && (
           <Label htmlFor="old-password" className="text-red-500">
@@ -109,7 +109,7 @@ const ChangePassword = () => {
           placeholder="New Password"
           value={input.newPassword}
           onChange={onInputChange}
-          className="mt-4 h-[57px] placeholder:text-[14px]"
+          className="mt-4"
         />
         {errors && errors.newPassword && (
           <Label htmlFor="new-password" className="text-red-500">
@@ -123,17 +123,16 @@ const ChangePassword = () => {
           placeholder="Confirm Password"
           value={input.newPasswordConfirm}
           onChange={onInputChange}
-          className="mt-4 h-[57px] placeholder:text-[14px]"
+          className="mt-4"
         />
 
-        <p className="w-full text-right text-[#f00] text-base font-medium font-poppins">
+        <p className="w-full text-right text-[#f00] font-medium font-poppins">
           <a href="#">Forgot Password?</a>
         </p>
 
         <div>
           <Button
-            variant="default"
-            className="w-full h-[50px]"
+            className="w-full"
             onClick={onSubmit}
             disabled={isSaving}
           >

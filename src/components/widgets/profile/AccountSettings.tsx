@@ -2,7 +2,7 @@ import { Spinner, Switch } from '@material-tailwind/react';
 import { User, userValidator } from '@/lib/validation/user';
 import { useEffect, useState } from 'react';
 
-import { Button } from '@/components/ui/button';
+import Button from '@/components/common/Button';
 import CONSTANTS from '@/config/constants';
 import { toast } from 'react-hot-toast';
 import { updateUser } from '@/api/users';
@@ -100,22 +100,22 @@ const AccountSettings = () => {
 
   return (
     <div className="w-full">
-      <h3 className="text-black font-poppins text-[24px] font-semibold">
+      <h3 className="text-black font-poppins text-xl font-semibold">
         Account Privacy Settings
       </h3>
-      <p className="text-[#7D7D7D] font-medium text-base font-poppins mt-[14px]">
+      <p className="text-[#7D7D7D] font-medium font-poppins mt-[14px]">
         Control who can see your profile, who can send you message, and who can
         add you as a friend. User profiles are shown across all Donamix website.
         Complete your profile 100% to reach more people.
       </p>
 
-      <div className="mt-5 px-0">
+      <div className="px-0 mt-5">
         <div className="bg-white rounded-[9px] flex gap-3 justify-between items-center px-2 py-2 md:px-5 md:py-4">
           <div>
             <h6 className="text-base font-semibold text-black font-poppins">
               Enable friend requests
             </h6>
-            <p className="text-[#666] font-poppins text-base font-medium">
+            <p className="text-[#666] font-poppins font-medium">
               Enable this if you want people to add you as friend.
             </p>
           </div>
@@ -143,7 +143,7 @@ const AccountSettings = () => {
             <h6 className="text-base font-semibold text-black font-poppins">
               Enable private messages
             </h6>
-            <p className="text-[#666] font-poppins text-base font-medium">
+            <p className="text-[#666] font-poppins font-medium">
               Allow users to send you private messages.
             </p>
           </div>
@@ -171,7 +171,7 @@ const AccountSettings = () => {
             <h6 className="text-base font-semibold text-black font-poppins">
               Enable tagging
             </h6>
-            <p className="text-[#666] font-poppins text-base font-medium">
+            <p className="text-[#666] font-poppins font-medium">
               Allow users to tag you in their posts.
             </p>
           </div>
@@ -199,7 +199,7 @@ const AccountSettings = () => {
             <h6 className="text-base font-semibold text-black font-poppins">
               Enable private profile
             </h6>
-            <p className="text-[#666] font-poppins text-base font-medium">
+            <p className="text-[#666] font-poppins font-medium">
               Enable this if only your friends are view your activites.
             </p>
           </div>
@@ -227,7 +227,7 @@ const AccountSettings = () => {
             <h6 className="text-base font-semibold text-black font-poppins">
               Activate/Deactivate Account
             </h6>
-            <p className="text-[#666] font-poppins text-base font-medium">
+            <p className="text-[#666] font-poppins font-medium">
               When you re activate then all your data will show again on
               website.
             </p>
@@ -256,7 +256,7 @@ const AccountSettings = () => {
             <h6 className="text-base font-semibold text-black font-poppins">
               Remove Ads
             </h6>
-            <p className="text-[#666] font-poppins text-base font-medium">
+            <p className="text-[#666] font-poppins font-medium">
               Enable this to remove ads.
             </p>
           </div>
@@ -284,13 +284,13 @@ const AccountSettings = () => {
             <h6 className="text-base font-semibold text-black font-poppins">
               Delete my Account
             </h6>
-            <p className="text-[#666] font-poppins text-base font-medium">
+            <p className="text-[#666] font-poppins font-medium">
               Permanently delete my Account.
             </p>
           </div>
 
           <Button
-            className="text-white bg-red-600 hover:bg-red-400 h-[50px]"
+            className="text-white bg-red-600 hover:bg-red-400"
             onClick={onDeleteAccount}
             disabled={isDeleting}
           >
@@ -299,7 +299,7 @@ const AccountSettings = () => {
         </div>
 
         <Button
-          className="w-full h-[50px] mt-4"
+          className="w-full mt-4"
           onClick={onSubmit}
           disabled={isSaving}
         >

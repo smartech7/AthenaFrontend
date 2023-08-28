@@ -1,15 +1,16 @@
 import { FaCircleUser, FaGraduationCap } from 'react-icons/fa6';
-import { MdBlock, MdFavorite } from 'react-icons/md';
+import { MdBlock, MdFavorite, MdInfo } from 'react-icons/md';
 import { User, userValidator } from '@/lib/validation/user';
 import { useEffect, useState } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 
+import About from '@/components/widgets/profile/About';
 import AccountSettings from '@/components/widgets/profile/AccountSettings';
 import Albums from '@/components/widgets/profile/Albums';
 import Avatar from '@/components/common/Avatar';
 import BasicInformation from '@/components/widgets/profile/BasicInformation';
 import { BiSolidPhotoAlbum } from 'react-icons/bi';
-import { Button } from '@/components/ui/button';
+import Button from '@/components/common/Button';
 import CONSTANTS from '@/config/constants';
 import ChangePassword from '@/components/widgets/profile/ChangePassword';
 import EducationAndWork from '@/components/widgets/profile/EducationAndWork';
@@ -79,6 +80,11 @@ const options = [
     value: 'blocked-user',
     icon: <MdBlock />,
     title: 'Blocked User',
+  },
+  {
+    value: 'about',
+    icon: <MdInfo />,
+    title: 'About',
   },
 ];
 
@@ -178,8 +184,7 @@ const ProfileEdit: React.FC<IProfileEditProps> = () => {
           }}
         >
           <Button
-            variant="secondary"
-            className="absolute text-base font-medium text-black right-4 bottom-4"
+            className="absolute font-medium text-black right-4 bottom-4 bg-secondary"
             disabled={isSavingCoverPhoto}
           >
             Edit Cover Photo
@@ -188,7 +193,7 @@ const ProfileEdit: React.FC<IProfileEditProps> = () => {
       </div>
       <div className="relative z-30 w-full">
         <div className="flex">
-          <div className="w-[50px] basis-[50px] lg:basis-[380px] lg:w-[380px] bg-white transition-all duration-100">
+          <div className="w-[50px] basis-[50px] lg:basis-[300px] lg:w-[300px] bg-white transition-all duration-100">
             <div id="profile-edit-userinfo">
               <div className="flex justify-center h-[60px] mt-5 lg:mt-0 lg:h-[85px] transition-all duration-100">
                 <Avatar
@@ -197,11 +202,11 @@ const ProfileEdit: React.FC<IProfileEditProps> = () => {
                 />
               </div>
 
-              <div className="lg:flex flex-col items-center gap-1 hidden">
-                <h4 className="text-black font-inter text-[21px] font-bold mt-4">
+              <div className="flex-col items-center hidden gap-1 lg:flex">
+                <h4 className="mt-4 text-lg font-bold text-black font-inter">
                   {user?.name}
                 </h4>
-                <h5 className="text-[#818181] font-medium text-[18px] font-inter">
+                <h5 className="text-[#818181] font-medium text-base font-inter">
                   {user?.username}
                 </h5>
               </div>
@@ -219,8 +224,8 @@ const ProfileEdit: React.FC<IProfileEditProps> = () => {
                     navigate(`/profile/edit?page=${option.value}`);
                   }}
                 >
-                  <span className="text-[25px]">{option.icon}</span>
-                  <span className="lg:block hidden">{option.title}</span>
+                  <span className="text-2xl">{option.icon}</span>
+                  <span className="hidden lg:block">{option.title}</span>
                 </div>
               ))}
             </div>
@@ -250,7 +255,7 @@ const ProfileEdit: React.FC<IProfileEditProps> = () => {
               ) : tab === options[6].value ? (
                 <UpdateProfilePicture />
               ) : (
-                <></>
+                <About />
               )}
             </div>
           </div>
@@ -259,16 +264,16 @@ const ProfileEdit: React.FC<IProfileEditProps> = () => {
           <div className="w-[50px] lg:w-[380px] bg-white">
             <div className="flex justify-center h-[60px] lg:h-[85px]">
               <Avatar
-                className="w-[50px] h-[50px] lg:w-[170px] lg:h-[170px] lg:-translate-y-1/2 text-[40px] font-bold border-white border-4 p-0"
+                className="w-[50px] lg:w-[170px] lg:h-[170px] lg:-translate-y-1/2 text-[40px] font-bold border-white border-4 p-0"
                 user={user}
               />
             </div>
 
-            <div className="lg:flex flex-col items-center gap-1 hidden">
+            <div className="flex-col items-center hidden gap-1 lg:flex">
               <h4 className="text-black font-inter text-[21px] font-bold mt-4">
                 {user?.name}
               </h4>
-              <h5 className="text-[#818181] font-medium text-[18px] font-inter">
+              <h5 className="text-[#818181] font-medium text-lg font-inter">
                 {user?.username}
               </h5>
             </div>
@@ -291,12 +296,12 @@ const ProfileEdit: React.FC<IProfileEditProps> = () => {
                   >
                     <div
                       className={cn(
-                        'flex items-center h-[62px] gap-2 font-poppins text-[20px] font-medium',
+                        'flex items-center h-[62px] gap-2 font-poppins text-xl font-medium',
                         tab === option.value ? 'opacity-100' : 'opacity-60'
                       )}
                     >
                       <span className="text-[25px]">{option.icon}</span>
-                      <span className="lg:block hidden">{option.title}</span>
+                      <span className="hidden lg:block">{option.title}</span>
                     </div>
                   </Tab>
                 ))}

@@ -1,7 +1,7 @@
 export default function LeftPanel() {
   return (
     <div className="relative h-full pb-5 overflow-hidden bg-black">
-      <div className="w-full h-full">
+      <div className="container w-full h-full">
         <img
           src="/images/login_bg.png"
           className="bg-cover"
@@ -24,10 +24,12 @@ export default function LeftPanel() {
           </p>
         </div>
         <img
-          src="/images/donamix_text.svg"
-          width={400}
+          src="/images/donamix_logo.png"
+          width="70%"
           height={67}
-          className="-translate-x-[15%]"
+          style={{
+            maxWidth: 400
+          }}
         />
       </div>
     </div>

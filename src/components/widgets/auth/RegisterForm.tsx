@@ -1,13 +1,10 @@
 import { ChangeEvent, useState } from 'react';
-import {
-  CountryDropdown,
-  RegionDropdown,
-} from 'react-country-region-selector';
+import { CountryDropdown, RegionDropdown } from 'react-country-region-selector';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { register, thirdPartyLogin } from '@/api/auth';
 import { removeAuthToken, setAuthToken } from '@/actions/auth';
 
-import { Button } from '@/components/ui/button';
+import Button from '@/components/common/Button';
 import CONSTANTS from '@/config/constants';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
@@ -110,27 +107,25 @@ export default function RegisterForm() {
   };
 
   return (
-    <div className="flex flex-col gap-4 mt-6 md:gap-6">
+    <div className="flex flex-col gap-10 mt-10 md:gap-6">
       <div className="flex gap-4">
         <Button
-          variant="secondary"
-          className="flex justify-center rounded-lg flex-1 lg:gap-4 h-[50px] sm:h-[60px] text-base text-black"
+          className="flex justify-center flex-1 text-base text-black rounded-lg bg-secondary lg:gap-4"
           onClick={() => {
             setLoading(true);
             googleLogin();
           }}
         >
           <img src="/images/google.svg" width={26} height={26} />
-          <span className="hidden lg:block">Sign in with Google</span>
+          <span className="hidden lg:block text-xs xl:text-sm leading-4 font-medium">
+            Sign in with Google
+          </span>
         </Button>
-        <Button
-          variant="secondary"
-          className="h-[50px] sm:h-[60px] rounded-lg flex-1 lg:flex-none"
-        >
+        <Button className="flex-1 rounded-lg lg:flex-none bg-secondary">
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            width="35"
-            height="35"
+            width="30"
+            height="30"
             viewBox="0 0 44 44"
             fill="none"
           >
@@ -160,14 +155,11 @@ export default function RegisterForm() {
             </defs>
           </svg>
         </Button>
-        <Button
-          variant="secondary"
-          className="h-[50px] sm:h-[60px] rounded-lg flex-1 lg:flex-none"
-        >
+        <Button className="flex-1 rounded-lg lg:flex-none bg-secondary">
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            width="35"
-            height="35"
+            width="30"
+            height="30"
             viewBox="0 0 45 45"
             fill="none"
           >
@@ -191,7 +183,7 @@ export default function RegisterForm() {
             name="name"
             onChange={onInputChange}
             value={input.name}
-            className="mt-4 h-[57px] bg-secondary placeholder:text-[14px]"
+            className="mt-2 bg-secondary placeholder:text-sm"
           />
         </div>
 
@@ -202,7 +194,7 @@ export default function RegisterForm() {
             name="email"
             onChange={onInputChange}
             value={input.email}
-            className="mt-4 h-[57px] bg-secondary placeholder:text-[14px]"
+            className="mt-4 bg-secondary placeholder:text-sm"
           />
         </div>
 
@@ -213,7 +205,7 @@ export default function RegisterForm() {
             name="username"
             onChange={onInputChange}
             value={input.username}
-            className="mt-4 h-[57px] bg-secondary placeholder:text-[14px]"
+            className="mt-4 bg-secondary placeholder:text-sm"
           />
         </div>
 
@@ -225,7 +217,7 @@ export default function RegisterForm() {
             name="password"
             onChange={onInputChange}
             value={input.password}
-            className="mt-4 h-[57px] bg-secondary placeholder:text-[14px]"
+            className="mt-4 bg-secondary placeholder:text-sm"
           />
         </div>
 
@@ -240,13 +232,13 @@ export default function RegisterForm() {
             }}
             className="flex gap-3 mt-4 text-[#808080]"
           >
-            <div className="flex items-center flex-1 gap-3 h-[57px] bg-secondary border border-[#E7E7E7] px-3 rounded-lg">
+            <div className="flex items-center flex-1 gap-3 h-[42px] bg-secondary border border-[#E7E7E7] px-3 rounded-lg">
               <RadioGroupItem value="Male" id="option-male" />
               <Label htmlFor="option-male" className="font-normal">
                 Male
               </Label>
             </div>
-            <div className="flex items-center flex-1 gap-3 h-[57px] bg-secondary border border-[#E7E7E7] px-3 rounded-lg">
+            <div className="flex items-center flex-1 gap-3 h-[42px] bg-secondary border border-[#E7E7E7] px-3 rounded-lg">
               <RadioGroupItem value="Female" id="option-female" />
               <Label htmlFor="option-female" className="font-normal">
                 Female
@@ -267,14 +259,14 @@ export default function RegisterForm() {
                   country: val,
                 }));
               }}
-              classes="mt-4 p-2 h-[57px] bg-secondary placeholder:text-[14px] rounded-lg border border-[#E7E7E7] w-full"
+              classes="mt-4 p-2 h-[42px] bg-secondary placeholder:text-sm rounded-lg border border-[#E7E7E7] w-full"
             />
             {/* <Input
               name="country"
               placeholder="USA"
               onChange={onInputChange}
               value={input.country}
-              className="mt-4 h-[57px] bg-secondary placeholder:text-[14px]"
+              className="mt-4 bg-secondary placeholder:text-sm"
             /> */}
           </div>
           <div className="flex-1">
@@ -284,7 +276,7 @@ export default function RegisterForm() {
               placeholder="California"
               onChange={onInputChange}
               value={input.city}
-              className="mt-4 h-[57px] bg-secondary placeholder:text-[14px]"
+              className="mt-4 bg-secondary placeholder:text-sm"
             /> */}
             <RegionDropdown
               country={input.country}
@@ -296,18 +288,13 @@ export default function RegisterForm() {
                   city: val,
                 }));
               }}
-              classes="p-2 mt-4 h-[57px] bg-secondary placeholder:text-[14px] rounded-lg border border-[#E7E7E7] w-full"
+              classes="p-2 h-[42px] mt-4 bg-secondary placeholder:text-sm rounded-lg border border-[#E7E7E7] w-full"
             />
           </div>
         </div>
       </div>
 
-      <Button
-        variant="default"
-        className="h-[54px] w-full"
-        onClick={onSubmit}
-        disabled={isLoading}
-      >
+      <Button className="w-full" onClick={onSubmit} disabled={isLoading}>
         {isLoading && <Spinner className="w-4 h-4 mr-2 animate-spin" />}
         Sign Up
       </Button>
