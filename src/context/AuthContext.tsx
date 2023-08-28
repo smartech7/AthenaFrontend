@@ -21,7 +21,7 @@ const AuthContext: React.Context<AuthContextType> =
     setIsAuth: () => {},
     user: null,
     setUser: () => {},
-    reload: () => {}
+    reload: () => {},
   });
 
 export const useAuthContext = () => useContext(AuthContext);
@@ -37,20 +37,22 @@ export const AuthProvider: React.FC<IAuthProviderProps> = ({ children }) => {
   const navigate = useNavigate();
 
   const reload = () => {
-    getCurrentUser().then((res) => {
-      if (res.code === CONSTANTS.SUCCESS) {
-        const curUser = userValidator.parse(res.data);
-        setUser(curUser);
-      } else {
-        removeAuthToken();
-        setIsAuth(false);
-        delete axios.defaults.headers.common['Token'];
-        console.log(res.message);
-      }
-    }).catch(err => {
-      console.log(err);
-    });
-  }
+    getCurrentUser()
+      .then((res) => {
+        if (res.code === CONSTANTS.SUCCESS) {
+          const curUser = userValidator.parse(res.data);
+          setUser(curUser);
+        } else {
+          removeAuthToken();
+          setIsAuth(false);
+          delete axios.defaults.headers.common['Token'];
+          console.log(res.message);
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
   useEffect(() => {
     const authToken = getAuthToken();
@@ -65,7 +67,12 @@ export const AuthProvider: React.FC<IAuthProviderProps> = ({ children }) => {
       return;
     }
 
-    if (location.pathname !== '/auth') {
+    const ignoreAuthPaths = ['/auth', '/verifyemail'];
+    if (
+      !ignoreAuthPaths.find(
+        (val) => location.pathname.slice(0, val.length) === val
+      )
+    ) {
       if (!authToken) navigate('/auth');
     }
   }, [isAuth, location, navigate]);
@@ -76,7 +83,7 @@ export const AuthProvider: React.FC<IAuthProviderProps> = ({ children }) => {
       console.log(isAuth);
       reload();
     }
-  }, [isAuth, user])
+  }, [isAuth, user]);
 
   return (
     <AuthContext.Provider value={{ isAuth, setIsAuth, user, setUser, reload }}>

@@ -1,28 +1,17 @@
-import { ChangeEvent, useState } from 'react';
 import { CountryDropdown, RegionDropdown } from 'react-country-region-selector';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
-import { register, thirdPartyLogin } from '@/api/auth';
-import { removeAuthToken, setAuthToken } from '@/actions/auth';
 
 import Button from '@/components/common/Button';
 import CONSTANTS from '@/config/constants';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Spinner } from '@material-tailwind/react';
-import axios from 'axios';
+import { register } from '@/api/auth';
+import { thirdPartyLogin } from '@/actions/auth';
 import toast from 'react-hot-toast';
 import { useGoogleLogin } from '@react-oauth/google';
 import { useNavigate } from 'react-router-dom';
-
-export type RegisterUser = {
-  name: string;
-  username: string;
-  email: string;
-  password: string;
-  gender: 'Male' | 'Female';
-  country: string;
-  city: string;
-};
+import { useState } from 'react';
 
 export default function RegisterForm() {
   const navigate = useNavigate();
@@ -34,12 +23,9 @@ export default function RegisterForm() {
       })
         .then((res) => {
           if (res.code === CONSTANTS.SUCCESS) {
-            console.log(res);
-            onLoginSuccess(res.token!);
             navigate('/');
             toast.success(res.message);
           } else {
-            onLoginFail();
             toast.error(res.message);
           }
         })
@@ -54,8 +40,8 @@ export default function RegisterForm() {
       console.log('Failed');
     },
   });
-  const [isLoading, setLoading] = useState<boolean>(false);
-  const [input, setInput] = useState<RegisterUser>({
+  const [isLoading, setLoading] = useState(false);
+  const [input, setInput] = useState({
     name: '',
     username: '',
     email: '',
@@ -65,23 +51,14 @@ export default function RegisterForm() {
     password: '',
   });
 
-  const onLoginSuccess = (token: string) => {
-    setAuthToken(token);
-    axios.defaults.headers.common['Token'] = token;
-  };
-  const onLoginFail = () => {
-    removeAuthToken();
-    delete axios.defaults.headers.common['Token'];
-  };
-
-  const onInputChange = (e: ChangeEvent<HTMLInputElement>) => {
+  const onInputChange = (e) => {
     const { name, value } = e.currentTarget;
     setInput((prev) => ({
       ...prev,
       [name]: value,
     }));
   };
-  const onRadioSelect = (name: string, value: string) => {
+  const onRadioSelect = (name, value) => {
     setInput((prev) => ({
       ...prev,
       [name]: value,
@@ -117,7 +94,7 @@ export default function RegisterForm() {
           }}
         >
           <img src="/images/google.svg" width={26} height={26} />
-          <span className="hidden lg:block text-xs xl:text-sm leading-4 font-medium">
+          <span className="hidden text-xs font-medium leading-4 lg:block xl:text-sm">
             Sign in with Google
           </span>
         </Button>
@@ -227,7 +204,7 @@ export default function RegisterForm() {
             defaultValue="Male"
             value={input.gender}
             name="gender"
-            onValueChange={(value: string) => {
+            onValueChange={(value) => {
               onRadioSelect('gender', value);
             }}
             className="flex gap-3 mt-4 text-[#808080]"

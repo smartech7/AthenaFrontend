@@ -1,6 +1,7 @@
 const CONSTANTS = {
   SUCCESS: 'success',
   FAILED: 'failed',
+  NODIGITS: 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ`~!@#$%^&*()_+-=,./?><;\'"[]{}:'
 };
 
 export interface Option {
