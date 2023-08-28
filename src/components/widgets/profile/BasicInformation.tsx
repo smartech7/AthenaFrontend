@@ -139,44 +139,6 @@ const BasicInformation = () => {
             Date of Birth
           </h6>
           <div className="grid grid-cols-12 gap-3 mt-3">
-            <Select
-              value={input.day}
-              options={[...Array(12)].map((_, i) => i + 1)}
-              onChange={(newVal) => {
-                console.log(newVal);
-                const val = newVal?.toString();
-                setInput((prev) => ({
-                  ...prev,
-                  day: val ? parseInt(val) : 1,
-                }));
-              }}
-              theme={(theme: Theme) => ({
-                ...theme,
-                borderRadius: 0,
-                colors: {
-                  ...theme.colors,
-                  primary: 'black',
-                },
-              })}
-              classNamePrefix="blog-category"
-              styles={{
-                control: (base) => ({
-                  ...base,
-                  height: 42,
-                  borderRadius: 6,
-                  zIndex: 5,
-                  'input:focus-visible': {
-                    boxShadow: 'none',
-                    outline: 'none',
-                    border: 'none',
-                  },
-                }),
-              }}
-              className={cn(
-                'text-[13px] font-poppins mt-2'
-              )}
-              placeholder="Enter category here"
-            />
             <Input
               name="day"
               value={input.day}
