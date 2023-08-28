@@ -70,6 +70,7 @@ export default function RegisterForm() {
     register(input)
       .then((res) => {
         if (res.code === CONSTANTS.SUCCESS) {
+          navigate(`/verifyemail?email=${input.email}`);
           toast.success(res.message);
         } else {
           toast.error(res.message);
