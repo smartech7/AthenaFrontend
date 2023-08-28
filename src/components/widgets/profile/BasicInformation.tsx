@@ -1,6 +1,7 @@
 import { ChangeEvent, useEffect, useState } from 'react';
 import { CountryDropdown, RegionDropdown } from 'react-country-region-selector';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
+import Select, { Theme } from 'react-select'
 import { User, userValidator } from '@/lib/validation/user';
 
 import Button from '@/components/common/Button';
@@ -9,6 +10,7 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Spinner } from '@material-tailwind/react';
 import { Textarea } from '@/components/ui/textarea';
+import { cn } from '@/lib/utils';
 import toast from 'react-hot-toast';
 import { updateUser } from '@/api/users';
 import { useAuthContext } from '@/context/AuthContext';
@@ -137,6 +139,44 @@ const BasicInformation = () => {
             Date of Birth
           </h6>
           <div className="grid grid-cols-12 gap-3 mt-3">
+            <Select
+              value={input.day}
+              options={[...Array(12)].map((_, i) => i + 1)}
+              onChange={(newVal) => {
+                console.log(newVal);
+                const val = newVal?.toString();
+                setInput((prev) => ({
+                  ...prev,
+                  day: val ? parseInt(val) : 1,
+                }));
+              }}
+              theme={(theme: Theme) => ({
+                ...theme,
+                borderRadius: 0,
+                colors: {
+                  ...theme.colors,
+                  primary: 'black',
+                },
+              })}
+              classNamePrefix="blog-category"
+              styles={{
+                control: (base) => ({
+                  ...base,
+                  height: 42,
+                  borderRadius: 6,
+                  zIndex: 5,
+                  'input:focus-visible': {
+                    boxShadow: 'none',
+                    outline: 'none',
+                    border: 'none',
+                  },
+                }),
+              }}
+              className={cn(
+                'text-[13px] font-poppins mt-2'
+              )}
+              placeholder="Enter category here"
+            />
             <Input
               name="day"
               value={input.day}
@@ -195,6 +235,17 @@ const BasicInformation = () => {
             Location
           </h6>
           <div className="grid grid-cols-12 gap-3 mt-3">
+            <CountryDropdown
+              value={input.country}
+              name="country"
+              onChange={(val) => {
+                setInput((prev) => ({
+                  ...prev,
+                  country: val,
+                }));
+              }}
+              classes="mt-4 p-2 h-[42px] bg-secondary placeholder:text-sm rounded-lg border border-[#E7E7E7] w-full col-span-12 md:col-span-6"
+            />
             <RegionDropdown
               country={input.country}
               value={input.city}
@@ -207,18 +258,6 @@ const BasicInformation = () => {
               }}
               classes="p-2 h-[42px] mt-4 bg-secondary placeholder:text-sm rounded-lg border border-[#E7E7E7] w-full col-span-12 md:col-span-6"
             />
-            <CountryDropdown
-              value={input.country}
-              name="country"
-              onChange={(val) => {
-                setInput((prev) => ({
-                  ...prev,
-                  country: val,
-                }));
-              }}
-              classes="mt-4 p-2 h-[42px] bg-secondary placeholder:text-sm rounded-lg border border-[#E7E7E7] w-full col-span-12 md:col-span-6"
-            />
-            <div className="flex-1"></div>
           </div>
         </div>
 

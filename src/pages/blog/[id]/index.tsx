@@ -13,6 +13,7 @@ import { Spinner } from '@material-tailwind/react';
 import { TiArrowForward } from 'react-icons/ti';
 import { formatDate } from '@/lib/utils';
 import { toast } from 'react-hot-toast';
+import { useAuthContext } from '@/context/AuthContext';
 import { useBlogContext } from '@/context/BlogContext';
 
 // import CommentBox from '@/components/widgets/blog/CommentBox';
@@ -21,6 +22,7 @@ const BlogDetail = () => {
   const params = useParams();
   const navigate = useNavigate();
   const { categories } = useBlogContext();
+  const { user } = useAuthContext();
   const [item, setItem] = useState<Blog | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
@@ -51,7 +53,6 @@ const BlogDetail = () => {
       </div>
     );
 
-
   return (
     <div className="w-full p-3 md:p-5">
       <div
@@ -79,33 +80,37 @@ const BlogDetail = () => {
             </div>
           </div>
           <div className="flex items-center gap-2">
-            <Button
-              className="p-2 text-2xl text-white rounded-full bg-white/20"
-              onClick={() => {
-                navigate(`/blog/${item._id}/edit`);
-              }}
-            >
-              <BiEdit />
-            </Button>
-            <Button
-              className="p-2 text-2xl text-white rounded-full bg-white/20"
-              onClick={() => {
-                deleteBlog(item._id!)
-                  .then((res) => {
-                    if (res.code === CONSTANTS.SUCCESS) {
-                      navigate('/blog');
-                      toast.success(res.message);
-                    } else {
-                      toast.error(res.message);
-                    }
-                  })
-                  .catch((err) => {
-                    console.log('Delete Error:', err);
-                  });
-              }}
-            >
-              <BiTrash />
-            </Button>
+            {item.userId === user?._id && (
+              <div className="flex items-center gap-2">
+                <Button
+                  className="p-2 text-2xl text-white rounded-full bg-white/20"
+                  onClick={() => {
+                    navigate(`/blog/${item._id}/edit`);
+                  }}
+                >
+                  <BiEdit />
+                </Button>
+                <Button
+                  className="p-2 text-2xl text-white rounded-full bg-white/20"
+                  onClick={() => {
+                    deleteBlog(item._id!)
+                      .then((res) => {
+                        if (res.code === CONSTANTS.SUCCESS) {
+                          navigate('/blog');
+                          toast.success(res.message);
+                        } else {
+                          toast.error(res.message);
+                        }
+                      })
+                      .catch((err) => {
+                        console.log('Delete Error:', err);
+                      });
+                  }}
+                >
+                  <BiTrash />
+                </Button>
+              </div>
+            )}
             <SharePopup link={'https://donamix.com'}>
               <Button className="p-2 text-2xl text-white rounded-full bg-white/20">
                 <TiArrowForward />

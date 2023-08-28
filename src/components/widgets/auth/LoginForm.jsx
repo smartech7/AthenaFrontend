@@ -24,6 +24,7 @@ export default function LoginForm() {
   });
   const googleLogin = useGoogleLogin({
     onSuccess: (res) => {
+      setLoading(true);
       thirdPartyLogin({
         type: 'google',
         accesstoken: res.access_token,
@@ -50,6 +51,7 @@ export default function LoginForm() {
 
   const facebookLogin = (res) => {
     if (res.accessToken) {
+      setLoading(true);
       thirdPartyLogin({
         type: 'facebook',
         accesstoken: res.accessToken,
@@ -74,6 +76,7 @@ export default function LoginForm() {
   const appleLogin = (res) => {
     console.log(res);
     if (res.authorization && res.authorization.id_token) {
+      setLoading(true);
       thirdPartyLogin({
         type: 'apple',
         accesstoken: res.id_token,
@@ -132,10 +135,7 @@ export default function LoginForm() {
       <div className="flex gap-4">
         <Button
           className="flex items-center justify-center flex-1 text-black rounded-lg bg-secondary lg:gap-4"
-          onClick={() => {
-            setLoading(true);
-            googleLogin();
-          }}
+          onClick={googleLogin}
         >
           <img src="/images/google.svg" width={26} height={26} />
           <span className="hidden text-xs font-medium leading-4 lg:block xl:text-sm">
