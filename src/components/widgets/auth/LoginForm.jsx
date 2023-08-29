@@ -52,6 +52,7 @@ export default function LoginForm() {
   const facebookLogin = (res) => {
     if (res.accessToken) {
       setLoading(true);
+      console.log(res)
       thirdPartyLogin({
         type: 'facebook',
         accesstoken: res.accessToken,
