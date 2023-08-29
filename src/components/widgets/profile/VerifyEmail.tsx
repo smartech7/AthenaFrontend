@@ -1,10 +1,11 @@
 import { generateOtp, verifyOtp } from '@/api/auth';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 
 import Button from '@/components/common/Button';
 import CONSTANTS from '@/config/constants';
 import { Input } from '@/components/ui/input';
+import { loginSuccess } from '@/actions/auth';
 import { toast } from 'react-hot-toast';
 
 const VerifyEmail = () => {
@@ -12,6 +13,10 @@ const VerifyEmail = () => {
   const [input, setInput] = useState(['', '', '', '']);
   const [searchParams] = useSearchParams();
   const [email, setEmail] = useState<string>('');
+  const ref1 = useRef<HTMLInputElement>(null);
+  const ref2 = useRef<HTMLInputElement>(null);
+  const ref3 = useRef<HTMLInputElement>(null);
+  const ref4 = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     if (searchParams) {
@@ -40,6 +45,7 @@ const VerifyEmail = () => {
     verifyOtp({ email: email, token: input.join('') })
       .then((res) => {
         if (res.code === CONSTANTS.SUCCESS) {
+          loginSuccess(res.token!);
           navigate('/');
           toast.success(res.message);
         } else {
@@ -72,11 +78,15 @@ const VerifyEmail = () => {
 
         <div className="flex items-center justify-center gap-3 mt-[50px]">
           <Input
+            ref={ref1}
             name="digit1"
             value={input[0]}
             maxLength={1}
             onChange={(e) => {
               onDigitChange(0, e.currentTarget.value);
+              if (e.currentTarget.value !== '' && ref2.current) {
+                ref2.current.focus();
+              }
             }}
             onKeyDown={(e) => {
               if (CONSTANTS.NODIGITS.includes(e.key)) e.preventDefault();
@@ -85,11 +95,15 @@ const VerifyEmail = () => {
           />
           <p className="text-2xl font-normal text-[#BCBCBC]">-</p>
           <Input
+            ref={ref2}
             name="digit2"
             value={input[1]}
             maxLength={1}
             onChange={(e) => {
               onDigitChange(1, e.currentTarget.value);
+              if (e.currentTarget.value !== '' && ref3.current) {
+                ref3.current.focus();
+              }
             }}
             onKeyDown={(e) => {
               if (CONSTANTS.NODIGITS.includes(e.key)) e.preventDefault();
@@ -98,11 +112,15 @@ const VerifyEmail = () => {
           />
           <p className="text-2xl font-normal text-[#BCBCBC]">-</p>
           <Input
+            ref={ref3}
             name="digit3"
             value={input[2]}
             maxLength={1}
             onChange={(e) => {
               onDigitChange(2, e.currentTarget.value);
+              if (e.currentTarget.value !== '' && ref4.current) {
+                ref4.current.focus();
+              }
             }}
             onKeyDown={(e) => {
               if (CONSTANTS.NODIGITS.includes(e.key)) e.preventDefault();
@@ -111,6 +129,7 @@ const VerifyEmail = () => {
           />
           <p className="text-2xl font-normal text-[#BCBCBC]">-</p>
           <Input
+            ref={ref4}
             name="digit4"
             value={input[3]}
             maxLength={1}

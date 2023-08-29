@@ -1,6 +1,7 @@
 import { ChangeEvent, useEffect, useState } from 'react';
 import { CountryDropdown, RegionDropdown } from 'react-country-region-selector';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
+import Select, { Theme } from 'react-select'
 import { User, userValidator } from '@/lib/validation/user';
 
 import Button from '@/components/common/Button';
@@ -9,6 +10,7 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Spinner } from '@material-tailwind/react';
 import { Textarea } from '@/components/ui/textarea';
+import { cn } from '@/lib/utils';
 import toast from 'react-hot-toast';
 import { updateUser } from '@/api/users';
 import { useAuthContext } from '@/context/AuthContext';
@@ -195,6 +197,17 @@ const BasicInformation = () => {
             Location
           </h6>
           <div className="grid grid-cols-12 gap-3 mt-3">
+            <CountryDropdown
+              value={input.country}
+              name="country"
+              onChange={(val) => {
+                setInput((prev) => ({
+                  ...prev,
+                  country: val,
+                }));
+              }}
+              classes="mt-4 p-2 h-[42px] bg-secondary placeholder:text-sm rounded-lg border border-[#E7E7E7] w-full col-span-12 md:col-span-6"
+            />
             <RegionDropdown
               country={input.country}
               value={input.city}
@@ -207,18 +220,6 @@ const BasicInformation = () => {
               }}
               classes="p-2 h-[42px] mt-4 bg-secondary placeholder:text-sm rounded-lg border border-[#E7E7E7] w-full col-span-12 md:col-span-6"
             />
-            <CountryDropdown
-              value={input.country}
-              name="country"
-              onChange={(val) => {
-                setInput((prev) => ({
-                  ...prev,
-                  country: val,
-                }));
-              }}
-              classes="mt-4 p-2 h-[42px] bg-secondary placeholder:text-sm rounded-lg border border-[#E7E7E7] w-full col-span-12 md:col-span-6"
-            />
-            <div className="flex-1"></div>
           </div>
         </div>
 

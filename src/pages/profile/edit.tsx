@@ -143,7 +143,7 @@ const ProfileEdit: React.FC<IProfileEditProps> = () => {
     <div>
       <div
         className={cn(
-          'relative z-20 w-full h-[300px]',
+          'relative z-20 w-full h-[300px] overflow-visible',
           coverPhoto ? `bg-cover bg-center` : ''
         )}
         style={{
@@ -190,34 +190,34 @@ const ProfileEdit: React.FC<IProfileEditProps> = () => {
             Edit Cover Photo
           </Button>
         </FileUpload>
+
+        <div id="profile-edit-userinfo">
+          <div className="flex justify-center h-[60px] mt-5 lg:mt-0 lg:h-[85px] transition-all duration-100 lg:w-[300px]">
+            <Avatar
+              className="absolute bottom-0 w-[170px] h-[170px] translate-y-1/2 text-[40px] font-bold border-white border-4 p-0"
+              user={user}
+            />
+          </div>
+        </div>
       </div>
-      <div className="relative z-30 w-full">
+      <div className="relative z-0 w-full">
         <div className="flex">
           <div className="w-[50px] basis-[50px] lg:basis-[300px] lg:w-[300px] bg-white transition-all duration-100">
-            <div id="profile-edit-userinfo">
-              <div className="flex justify-center h-[60px] mt-5 lg:mt-0 lg:h-[85px] transition-all duration-100">
-                <Avatar
-                  className="w-[50px] h-[50px] lg:w-[170px] lg:h-[170px] lg:-translate-y-1/2 text-[40px] font-bold border-white border-4 p-0"
-                  user={user}
-                />
-              </div>
-
-              <div className="flex-col items-center hidden gap-1 lg:flex">
-                <h4 className="mt-4 text-lg font-bold text-black font-inter">
-                  {user?.name}
-                </h4>
-                <h5 className="text-[#818181] font-medium text-base font-inter">
-                  {user?.username}
-                </h5>
-              </div>
+            <div className="hidden items-center flex-col justify-center h-[60px] mt-5 lg:mt-20 lg:h-[85px] transition-all duration-100 gap-1 lg:flex">
+              <h4 className="mt-4 text-lg font-bold text-black font-inter">
+                {user?.name}
+              </h4>
+              <h5 className="text-[#818181] font-medium text-base font-inter">
+                {user?.username}
+              </h5>
             </div>
 
-            <div id="profile-edit-options" className="mt-[30px]">
+            <div id="profile-edit-options" className="mt-6">
               {options.map((option, i) => (
                 <div
                   key={`tab-${i}`}
                   className={cn(
-                    'w-full lg:px-[50px] py-5 text-base font-medium cursor-pointer flex gap-6 hover:opacity-100 items-center justify-center lg:justify-start',
+                    'w-full lg:px-[35px] py-4 text-base font-medium cursor-pointer flex gap-4 hover:opacity-100 items-center justify-center lg:justify-start',
                     tab === option.value ? 'opacity-100' : 'opacity-60'
                   )}
                   onClick={() => {
@@ -230,7 +230,7 @@ const ProfileEdit: React.FC<IProfileEditProps> = () => {
               ))}
             </div>
           </div>
-          <div className="flex-1 px-2 lg:px-[84px] py-[20px]">
+          <div className="flex-1 px-2 lg:px-[84px] py-[20px] mt-[85px] lg:mt-0">
             <div className="flex gap-10 border-b-2 border-b-[#C9C9C9] px-5 items-center">
               <div className="text-base text-[#818181] font-poppins font-semibold cursor-pointer select-none py-3 text-center hover:text-black">
                 Timeline

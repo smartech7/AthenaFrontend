@@ -201,13 +201,14 @@ export const generateOtp = async (email: string) => {
 };
 
 export const verifyOtp = async (data: { email: string; token: string }) => {
-  return new Promise<{ code: string; message: string }>((resolve, reject) => {
+  return new Promise<{ code: string; token?: string; message: string }>((resolve, reject) => {
     axios
       .post(`${apiUrl}/auth/verifyotp`, data)
       .then((res) => {
         resolve({
           code: res.data.message,
-          message: res.data.status
+          token: res.data.status,
+          message: 'Verified successfully!'
         });
       })
       .catch((err: AxiosError) => {
