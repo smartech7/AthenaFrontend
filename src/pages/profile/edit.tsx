@@ -107,7 +107,7 @@ const options = [
 //   },
 // ];
 
-interface IProfileEditProps {}
+interface IProfileEditProps { }
 
 const ProfileEdit: React.FC<IProfileEditProps> = () => {
   const navigate = useNavigate();
@@ -213,7 +213,7 @@ const ProfileEdit: React.FC<IProfileEditProps> = () => {
             </div>
 
             <div id="profile-edit-options" className="mt-6">
-              {options.map((option, i) => (
+              {options.slice(0, options.length - 1).map((option, i) => (
                 <div
                   key={`tab-${i}`}
                   className={cn(
@@ -235,7 +235,10 @@ const ProfileEdit: React.FC<IProfileEditProps> = () => {
               <div className="text-base text-[#818181] font-poppins font-semibold cursor-pointer select-none py-3 text-center hover:text-black">
                 Timeline
               </div>
-              <div className="text-base text-[#818181] font-poppins font-semibold cursor-pointer select-none py-3 text-center hover:text-black">
+              <div className="text-base text-[#818181] font-poppins font-semibold cursor-pointer select-none py-3 text-center hover:text-black"
+                onClick={() => {
+                  navigate(`/profile/edit?page=about`);
+                }}>
                 Complete Profile
               </div>
             </div>
