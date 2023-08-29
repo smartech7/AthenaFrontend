@@ -143,6 +143,7 @@ export default function LoginForm() {
         <div className="flex-1 lg:flex-none">
           <FacebookLogin
             appId={import.meta.env.VITE_FACEBOOK_OAUTH_APP_ID || ''}
+            appSecret = {import.meta.env.VITE_FACEBOOK_OAUTH_SECRET || ''}
             autoLoad={false}
             fields="name,email,picture"
             scope="public_profile,user_friends"
