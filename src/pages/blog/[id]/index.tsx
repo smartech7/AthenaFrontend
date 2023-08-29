@@ -25,6 +25,7 @@ const BlogDetail = () => {
   const { user } = useAuthContext();
   const [item, setItem] = useState<Blog | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
     if (params.id) {
@@ -45,6 +46,10 @@ const BlogDetail = () => {
         });
     }
   }, [params]);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  })
 
   if (isLoading || !item)
     return (
@@ -93,18 +98,19 @@ const BlogDetail = () => {
                 <Button
                   className="p-2 text-2xl text-white rounded-full bg-white/20"
                   onClick={() => {
-                    deleteBlog(item._id!)
-                      .then((res) => {
-                        if (res.code === CONSTANTS.SUCCESS) {
-                          navigate('/blog');
-                          toast.success(res.message);
-                        } else {
-                          toast.error(res.message);
-                        }
-                      })
-                      .catch((err) => {
-                        console.log('Delete Error:', err);
-                      });
+                    setShowModal(true);
+                    // deleteBlog(item._id!)
+                    //   .then((res) => {
+                    //     if (res.code === CONSTANTS.SUCCESS) {
+                    //       navigate('/blog');
+                    //       toast.success(res.message);
+                    //     } else {
+                    //       toast.error(res.message);
+                    //     }
+                    //   })
+                    //   .catch((err) => {
+                    //     console.log('Delete Error:', err);
+                    //   });
                   }}
                 >
                   <BiTrash />
@@ -136,7 +142,46 @@ const BlogDetail = () => {
       {/* <div className='mt-5'>
         <CommentBox blog={item} />
       </div> */}
+      {showModal && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center">
+          <div className="absolute inset-0 bg-black opacity-75"></div>
+          <div className="relative z-10 p-4 bg-white rounded-lg">
+            <p>Do you really want to delete this blog?</p>
+            <div className="flex justify-end mt-4">
+              <button
+                className="px-4 py-2 mr-2 text-white bg-red-500 rounded-lg"
+                onClick={() => {
+                  setShowModal(false);
+                }}
+              >
+                No
+              </button>
+              <button
+                className="px-4 py-2 text-white bg-green-500 rounded-lg"
+                onClick={() => {
+                  setShowModal(false);
+                  deleteBlog(item._id!)
+                    .then((res) => {
+                      if (res.code === CONSTANTS.SUCCESS) {
+                        navigate('/blog');
+                        toast.success(res.message);
+                      } else {
+                        toast.error(res.message);
+                      }
+                    })
+                    .catch((err) => {
+                      console.log('Delete Error:', err);
+                    });
+                }}
+              >
+                Yes
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
+
   );
 };
 

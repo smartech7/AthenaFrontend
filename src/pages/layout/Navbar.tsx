@@ -84,7 +84,6 @@ const Navbar = () => {
             <MenuItem>My Friends</MenuItem>
             <MenuItem>My Photos</MenuItem>
             <MenuItem>My Gifts</MenuItem>
-            <MenuItem>Add new article</MenuItem>
           </MenuList>
         </Menu>
         <Menu placement="right-start" offset={15}>
@@ -221,9 +220,6 @@ const Navbar = () => {
             </DropdownMenuItem>
             <DropdownMenuItem className="font-montserrat font-medium text-[13.24px]">
               <span>My Gifts</span>
-            </DropdownMenuItem>
-            <DropdownMenuItem className="font-montserrat font-medium text-[13.24px]">
-              <span>Add new article</span>
             </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>

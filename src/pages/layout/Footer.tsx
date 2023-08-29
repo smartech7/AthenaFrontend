@@ -148,7 +148,7 @@ const Footer = () => {
 
           <div className="xl:absolute relative z-0 w-full h-[110px] xl:bottom-0 xl:left-0 flex items-center justify-center">
             <p className="text-base leading-[26px] text-white">
-              &copy; {new Date().getFullYear()} Donamix - All rights reserved.
+              &copy; {new Date().getFullYear()} Donamix
             </p>
           </div>
         </div>
