@@ -99,8 +99,9 @@ const UpdateProfilePicture = () => {
               onSuccess={({ url }: { url: string }) => {
                 setAvatar(url);
               }}
+              className="absolute right-3 bottom-3"
             >
-              <Button className="absolute rounded-full right-3 bottom-3 w-[40px] p-0 text-black text-xl h-[40px] bg-secondary">
+              <Button className="rounded-full w-[40px] p-0 text-black text-xl h-[40px] bg-secondary shadow-sm">
                 <BiSolidEdit />
               </Button>
             </FileUpload>

@@ -57,7 +57,7 @@ export const CustomTab: React.FC<ITabProps> = ({
     <TabsTrigger
       {...props}
       className={cn(
-        'flex-1 h-full rounded-lg text-black data-[state=active]:bg-black data-[state=active]:text-white',
+        'flex-1 h-full rounded-lg text-black data-[state=active]:bg-primary data-[state=active]:text-white',
         props.className
       )}
       value={value}
