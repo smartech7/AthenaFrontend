@@ -12,8 +12,8 @@ import RegisterForm from '@/components/widgets/auth/RegisterForm';
 export default function Auth() {
   return (
     <div className="flex justify-center h-full">
-      <div className="w-[540px] py-4 my-auto">
-        <div className="flex justify-center lg:hidden">
+      <div className="w-[540px] py-4 my-auto ">
+        <div className="flex justify-center lg:hidden" >
           <img src="/images/donamix_logo.png" width="60%" className='invert' />
         </div>
         <h2 className="font-bold text-black text-center md:text-[30px] text-[26px] mt-[60px] hidden lg:block">

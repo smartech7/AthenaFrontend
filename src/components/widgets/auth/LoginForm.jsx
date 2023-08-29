@@ -100,9 +100,7 @@ export default function LoginForm() {
           }}
         >
           <img src="/images/google.svg" width={26} height={26} />
-          <span className="hidden text-xs font-medium leading-4 lg:block xl:text-sm">
-            Sign in with Google
-          </span>
+          
         </Button>
         <FacebookLogin
           appId={import.meta.env.VITE_FACEBOOK_OAUTH_APP_ID || ''}

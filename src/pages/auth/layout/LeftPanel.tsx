@@ -1,7 +1,7 @@
 export default function LeftPanel() {
   return (
     <div className="relative h-full pb-5 overflow-hidden bg-black">
-      <div className="container w-full h-full">
+      <div className="container w-full h-full p-0">
         <img
           src="/images/login_bg.png"
           className="bg-cover"
