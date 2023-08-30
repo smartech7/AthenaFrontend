@@ -15,6 +15,7 @@ import Profile from '@/pages/profile';
 import ProfileEdit from '@/pages/profile/edit';
 import VerifyEmail from './components/widgets/profile/VerifyEmail';
 import { useAuthContext } from '@/context/AuthContext';
+import { LinkedInCallback } from "react-linkedin-login-oauth2";
 
 // import Home from '@/pages/Home';
 
@@ -26,6 +27,7 @@ export default function Router() {
       <Route path="auth" element={<AuthLayout />}>
         <Route index element={<Auth />} />
       </Route>
+      <Route path="linkedin/callback" element={<LinkedInCallback />} />
       <Route path="verifyemail" element={<VerifyEmail />} />
       <Route path="logout" element={<Logout />} />
       {isAuth === true && (
