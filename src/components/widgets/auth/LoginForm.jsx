@@ -141,7 +141,7 @@ export default function LoginForm() {
     clientId: '77jxx0v9fk4l1l',
     redirectUri: 'https://donamix.org/linkedin/callback',
     // redirectUri: `${window.location.origin}/linkedin`, // for Next.js, you can use `${typeof window === 'object' && window.location.origin}/linkedin`
-    scope: 'r_emailaddress',
+    scope: 'profile email',
     onSuccess: (code) => {
       console.log(code);
     },
