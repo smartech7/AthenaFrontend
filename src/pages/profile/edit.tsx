@@ -24,6 +24,7 @@ import { cn } from '@/lib/utils';
 import { toast } from 'react-hot-toast';
 import { updateUser } from '@/api/users';
 import { useAuthContext } from '@/context/AuthContext';
+import { DivideCircleIcon } from 'lucide-react';
 
 const options = [
   {
@@ -183,12 +184,12 @@ const ProfileEdit: React.FC<IProfileEditProps> = () => {
               });
           }}
         >
-          <Button
-            className="absolute font-medium text-black right-4 bottom-4 bg-secondary"
-            disabled={isSavingCoverPhoto}
+          <div
+            className="absolute font-medium text-black bg-secondary p-3 rounded curosr-pointer hover:cursor-pointer inline-block top-4 right-4 sm:bottom-4 sm:top-auto"
+          // disabled={isSavingCoverPhoto}
           >
             Edit Cover Photo
-          </Button>
+          </div>
         </FileUpload>
 
         <div id="profile-edit-userinfo">

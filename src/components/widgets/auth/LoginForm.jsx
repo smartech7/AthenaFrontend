@@ -9,7 +9,9 @@ import { Loader2 } from 'lucide-react';
 import toast from 'react-hot-toast';
 import { useGoogleLogin } from '@react-oauth/google';
 import { useNavigate } from 'react-router-dom';
+import { useLinkedIn } from 'react-linkedin-login-oauth2';
 import { useState } from 'react';
+// import { LinkedIn } from 'react-linkedin-login-oauth2';
 
 // import { type LoginUser } from '@/actions/auth';
 
@@ -131,6 +133,22 @@ export default function LoginForm() {
       });
   };
 
+  const responseLinkedin = (response) => {
+    console.log(response)
+  }
+
+  const { linkedInLogin } = useLinkedIn({
+    clientId: '77jxx0v9fk4l1l',
+    redirectUri: 'https://donamix.org/linkedin/callback',
+    // redirectUri: `${window.location.origin}/linkedin`, // for Next.js, you can use `${typeof window === 'object' && window.location.origin}/linkedin`
+    onSuccess: (code) => {
+      console.log(code);
+    },
+    onError: (error) => {
+      console.log(error);
+    },
+  });
+
   return (
     <div className="flex flex-col gap-4 mt-6 md:gap-6">
       <div className="flex gap-4">
@@ -139,12 +157,11 @@ export default function LoginForm() {
           onClick={googleLogin}
         >
           <img src="/images/google.svg" width={26} height={26} />
-          
+
         </Button>
         <div className="flex-1 lg:flex-none">
-          <FacebookLogin
+          {/* <FacebookLogin
             appId={import.meta.env.VITE_FACEBOOK_OAUTH_APP_ID || ''}
-            appSecret = {import.meta.env.VITE_FACEBOOK_OAUTH_SECRET || ''}
             autoLoad={false}
             fields="name,email,picture"
             scope="public_profile,user_friends"
@@ -190,7 +207,14 @@ export default function LoginForm() {
                 </svg>
               </Button>
             )}
-          />
+          /> */}
+          <Button
+            className="flex items-center justify-center flex-1 text-black rounded-lg bg-secondary lg:gap-4"
+            onClick={linkedInLogin}
+          >
+            <img src="/images/google.svg" width={26} height={26} />
+
+          </Button>
         </div>
         <div className="flex-1 lg:flex-none">
           <AppleLogin
