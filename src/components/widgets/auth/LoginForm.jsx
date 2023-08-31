@@ -161,7 +161,7 @@ export default function LoginForm() {
 
         </Button>
         <div className="flex-1 lg:flex-none">
-          {/* <FacebookLogin
+          <FacebookLogin
             appId={import.meta.env.VITE_FACEBOOK_OAUTH_APP_ID || ''}
             autoLoad={false}
             fields="name,email,picture"
@@ -208,14 +208,14 @@ export default function LoginForm() {
                 </svg>
               </Button>
             )}
-          /> */}
-          <Button
+          />
+          {/* <Button
             className="flex items-center justify-center flex-1 text-black rounded-lg bg-secondary lg:gap-4"
             onClick={linkedInLogin}
           >
             <img src="/images/google.svg" width={26} height={26} />
 
-          </Button>
+          </Button> */}
         </div>
         <div className="flex-1 lg:flex-none">
           <AppleLogin

@@ -10,7 +10,13 @@ export default function LeftPanel() {
         />
       </div>
       <div className="absolute bottom-0 left-0 z-20 flex flex-col-reverse items-center flex-1 w-full gap-4 px-10 bg-transparent h-1/2">
-        <div className="flex items-center justify-center gap-4 mt-5 mb-16 lg:mb-24">
+        <div className="flex items-center justify-center gap-4 mt-5 mb-16 ">
+          <a className="text-white" href="#">Help Center</a>
+          <a className="text-white" href="#">Community Guidelines</a>
+          <a className="text-white" href="#">Privacy Policy</a>
+          <a className="text-white" href="#">Work with us</a>
+        </div>
+        <div className="flex items-center justify-center gap-3 ">
           <img src="/images/app_store.svg" width={180} height={64} />
           <img src="/images/google_play.svg" width={180} height={64} />
         </div>
