@@ -167,6 +167,7 @@ export default function LoginForm() {
             fields="name,email,picture"
             scope="public_profile,user_friends"
             callback={facebookLogin}
+            redirectUri='https://donamix.org/facebook/callback'
             render={(renderProps) => (
               <Button
                 className="w-full rounded-lg bg-secondary"
