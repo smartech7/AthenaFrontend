@@ -208,7 +208,7 @@ export const verifyOtp = async (data: { email: string; token: string }) => {
         resolve({
           code: res.data.message,
           token: res.data.status,
-          message: 'Verified successfully!'
+          message: res.data.message=="failed"?'Invalid Verification Code':'Verified successfully!'
         });
       })
       .catch((err: AxiosError) => {

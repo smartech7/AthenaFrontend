@@ -49,7 +49,8 @@ const VerifyEmail = () => {
           navigate('/');
           toast.success(res.message);
         } else {
-          toast.error(res.message);
+          console.log("123", res)
+          toast.error(res.message)
         }
       })
       .catch((err) => {
