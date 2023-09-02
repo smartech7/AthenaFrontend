@@ -30,6 +30,7 @@ const Navbar = () => {
   const { user } = useAuthContext();
 
   const gotoBlog = () => navigate('/blog');
+  const gotoMyBlog = () => navigate('/myblog');
   const gotoViewProfile = () => navigate('/profile/edit?page=about');
 
   const MobileNavs = (
@@ -78,7 +79,7 @@ const Navbar = () => {
               Edit Profile
             </MenuItem>
             <MenuItem>Profile Picture</MenuItem>
-            <MenuItem>My Articles</MenuItem>
+            <MenuItem >My Articles</MenuItem>
             <MenuItem>My Classifieds</MenuItem>
             <MenuItem>My Jobs</MenuItem>
             <MenuItem>My Friends</MenuItem>
@@ -195,7 +196,7 @@ const Navbar = () => {
             <DropdownMenuItem
               className="font-montserrat font-medium text-[13.24px]"
               onClick={() => {
-                navigate('/profile/edit/?page=about');
+                navigate('/profile/edit/?page=info');
               }}
             >
               <span>Edit Profile</span>
@@ -203,7 +204,7 @@ const Navbar = () => {
             <DropdownMenuItem className="font-montserrat font-medium text-[13.24px]">
               <span>Profile Picture</span>
             </DropdownMenuItem>
-            <DropdownMenuItem className="font-montserrat font-medium text-[13.24px]">
+            <DropdownMenuItem onClick={gotoMyBlog} className="font-montserrat font-medium text-[13.24px]">
               <span>My Articles</span>
             </DropdownMenuItem>
             <DropdownMenuItem className="font-montserrat font-medium text-[13.24px]">

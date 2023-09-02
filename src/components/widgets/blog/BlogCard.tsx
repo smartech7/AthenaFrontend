@@ -34,7 +34,7 @@ const BlogCard: React.FunctionComponent<IBlogCardProps> = ({
       <div
         className="w-full h-full bg-transparent cursor-pointer hover:bg-black/20"
         onClick={() => {
-          navigate(`/blog/${item._id}`);
+          navigate(`/blog/${item.ititle}`);
         }}
       >
         <div className="absolute right-4 top-4 bg-white rounded-lg px-3 py-3 text-sm font-bold font-sans">

@@ -5,21 +5,44 @@ import { Chip } from '@material-tailwind/react';
 import { FaGraduationCap } from 'react-icons/fa';
 import { FaLocationDot } from 'react-icons/fa6';
 import { useAuthContext } from '@/context/AuthContext';
+import { useState, useEffect, useRef } from 'react';
 
-interface IAboutProps {}
+interface IAboutProps { }
 
-const About: React.FC<IAboutProps> = ({}) => {
+const About: React.FC<IAboutProps> = ({ }) => {
   const { user } = useAuthContext();
+  // const dropdownRef = useRef(null);
+
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const handleMenuClick = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
+
+  const handleMenuItemClick = () => {
+    setIsMenuOpen(false);
+  };
+
+  // const handleClickOutside = (event: any) => {
+  //   if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+  //     setIsMenuOpen(false);
+  //   }
+  // };
+
+  // useEffect(() => {
+  //   window.addEventListener('click', handleClickOutside);
+  //   return () => {
+  //     window.removeEventListener('click', handleClickOutside);
+  //   };
+  // }, []);
 
   return (
     <div>
       <h3 className="text-xl font-semibold text-black font-poppins">About</h3>
       <p className="text-[#7D7D7D] font-medium font-poppins mt-2">
-        We are Perfect Resume, a reputable and reasonably priced writing service
-        established in Dubai and five other major cities. We are here to provide
-        resume writing services in Qatar and globally for the people who wanted
-        to create resumes. Please allow us to review your resume so that we can
-        advise whether a cover lette.
+
+        {user && user.description
+          ? user.description
+          : ''}
       </p>
 
       <section className="grid grid-cols-10 gap-2 mt-4">
@@ -31,10 +54,18 @@ const About: React.FC<IAboutProps> = ({}) => {
         </Button>
         <Button className="col-span-8 text-black bg-white sm:col-span-3 whitespace-nowrap">
           Send Gift
+
         </Button>
         <Button className="col-span-2 p-0 text-lg text-black bg-white sm:col-span-1">
-          <BiDotsVerticalRounded />
+          <BiDotsVerticalRounded onClick={handleMenuClick} />
         </Button>
+        {isMenuOpen && (
+          <div className="absolute right-4 z-10 w-52 mt-10 origin-top-right bg-white border border-gray-200 divide-y divide-gray-100 rounded-md shadow-lg">
+            <div className="py-1">
+              <a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900" onClick={handleMenuItemClick}>Block & Report</a>
+            </div>
+          </div>
+        )}
       </section>
 
       <section className="bg-white rounded-[9px] mt-6 sm:p-4 px-2 py-4">
@@ -107,7 +138,7 @@ const About: React.FC<IAboutProps> = ({}) => {
               </div>
             </div>
           </div>
-          
+
           <div className='col-span-6 md:col-span-3'>
             <div className='flex flex-col items-center gap-1'>
               <img src='/images/gifts/2.png' className='w-[60px] h-[60px] bg-contain bg-no-repeat' />
@@ -120,7 +151,7 @@ const About: React.FC<IAboutProps> = ({}) => {
               </div>
             </div>
           </div>
-          
+
           <div className='col-span-6 md:col-span-3'>
             <div className='flex flex-col items-center gap-1'>
               <img src='/images/gifts/3.png' className='w-[60px] h-[60px] bg-contain bg-no-repeat' />
@@ -133,7 +164,7 @@ const About: React.FC<IAboutProps> = ({}) => {
               </div>
             </div>
           </div>
-          
+
           <div className='col-span-6 md:col-span-3'>
             <div className='flex flex-col items-center gap-1'>
               <img src='/images/gifts/4.png' className='w-[60px] h-[60px] bg-contain bg-no-repeat' />

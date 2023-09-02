@@ -204,6 +204,92 @@ export const getBlogsByRange = async (data: {
   });
 };
 
+export const getMyBlogsByRange = async (data: {
+  total_count: number;
+  from: number;
+  count: number;
+}) => {
+  return new Promise<{
+    code: string;
+    data?: Blog[];
+    totalCount?: number;
+    message: string;
+  }>((resolve, reject) => {
+    axios
+      .post(`${apiUrl}/blog/filtermyblogs`, data)
+      .then((res) => {
+        if (res.data.message === CONSTANTS.SUCCESS) {
+          resolve({
+            code: CONSTANTS.SUCCESS,
+            data: res.data.data,
+            totalCount: res.data.totalcount,
+            message: 'Saved Successfully!',
+          });
+        } else {
+          console.log(res);
+          reject({
+            code: CONSTANTS.FAILED,
+            message: res.data.status,
+          });
+        }
+      })
+      .catch((err: AxiosError) => {
+        console.log('Error while filtering blogs:', err);
+        reject({
+          code: CONSTANTS.FAILED,
+          message: err.response
+            ? err.response.status
+            : 'Failed with unknown error.',
+        });
+      })
+      .finally(() => {
+        reject({
+          code: CONSTANTS.FAILED,
+          message: 'Failed with unknown error.',
+        });
+      });
+  });
+};
+
+export const getBlogByName = async (id: string) => {
+  return new Promise<{ code: string; data?: Blog; message: string }>(
+    (resolve, reject) => {
+      axios
+        .get(`${apiUrl}/blog/blogbyname/${id}`)
+        .then((res) => {
+          if (res.data.message === CONSTANTS.SUCCESS) {
+            resolve({
+              code: CONSTANTS.SUCCESS,
+              data: res.data.data,
+              message: 'Saved Successfully!',
+            });
+          } else {
+            console.log(res);
+            reject({
+              code: CONSTANTS.FAILED,
+              message: res.data.status,
+            });
+          }
+        })
+        .catch((err: AxiosError) => {
+          console.log('Error while getting blog by id:', err);
+          reject({
+            code: CONSTANTS.FAILED,
+            message: err.response
+              ? err.response.status
+              : 'Failed with unknown error.',
+          });
+        })
+        .finally(() => {
+          reject({
+            code: CONSTANTS.FAILED,
+            message: 'Failed with unknown error.',
+          });
+        });
+    }
+  );
+};
+
 export const getBlogById = async (id: string) => {
   return new Promise<{ code: string; data?: Blog; message: string }>(
     (resolve, reject) => {

@@ -91,6 +91,13 @@ const CreateAlbumDialog: React.FC<ICreateAlbumDialogProps> = ({
         setIsSaving(false);
         onClose();
       });
+
+    setInput({
+      title: '',
+      description: '',
+      images: [],
+    })
+
   };
 
   return (

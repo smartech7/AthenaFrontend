@@ -9,6 +9,9 @@ import AccountSettings from '@/components/widgets/profile/AccountSettings';
 import Albums from '@/components/widgets/profile/Albums';
 import Avatar from '@/components/common/Avatar';
 import BasicInformation from '@/components/widgets/profile/BasicInformation';
+import BlockedUsers from '@/components/widgets/profile/BlockedUsers';
+
+import Friends from '@/components/widgets/profile/Friends';
 import { BiSolidPhotoAlbum } from 'react-icons/bi';
 import Button from '@/components/common/Button';
 import CONSTANTS from '@/config/constants';
@@ -25,6 +28,7 @@ import { toast } from 'react-hot-toast';
 import { updateUser } from '@/api/users';
 import { useAuthContext } from '@/context/AuthContext';
 import { DivideCircleIcon } from 'lucide-react';
+import { BiSolidEdit } from 'react-icons/bi';
 
 const options = [
   {
@@ -83,10 +87,16 @@ const options = [
     title: 'Blocked User',
   },
   {
+    value: 'friends',
+    icon: <MdInfo />,
+    title: 'Friends',
+  },
+  {
     value: 'about',
     icon: <MdInfo />,
     title: 'About',
   },
+
 ];
 
 // const pages = [
@@ -194,10 +204,18 @@ const ProfileEdit: React.FC<IProfileEditProps> = () => {
 
         <div id="profile-edit-userinfo">
           <div className="flex justify-center h-[60px] mt-5 lg:mt-0 lg:h-[85px] transition-all duration-100 lg:w-[300px]">
-            <Avatar
-              className="absolute bottom-0 w-[170px] h-[170px] translate-y-1/2 text-[40px] font-bold border-white border-4 p-0"
-              user={user}
-            />
+
+            <FileUpload
+              onSuccess={({ url }: { url: string }) => {
+                // setAvatar(url);
+              }}
+              className="absolute bottom-0"
+            >
+              <Avatar
+                className="w-[170px] h-[170px] hover:scale-110 translate-y-1/2 text-[40px] font-bold border-white border-4 p-0"
+                user={user}
+              ></Avatar>
+            </FileUpload>
           </div>
         </div>
       </div>
@@ -214,7 +232,7 @@ const ProfileEdit: React.FC<IProfileEditProps> = () => {
             </div>
 
             <div id="profile-edit-options" className="mt-6">
-              {options.slice(0, options.length - 1).map((option, i) => (
+              {options.slice(0, 8).map((option, i) => (
                 <div
                   key={`tab-${i}`}
                   className={cn(
@@ -232,17 +250,35 @@ const ProfileEdit: React.FC<IProfileEditProps> = () => {
             </div>
           </div>
           <div className="flex-1 px-2 lg:px-[84px] py-[20px] mt-[85px] lg:mt-0">
-            <div className="flex gap-10 border-b-2 border-b-[#C9C9C9] px-5 items-center">
-              <div className="text-base text-[#818181] font-poppins font-semibold cursor-pointer select-none py-3 text-center hover:text-black">
-                Timeline
+
+            {tab !== options[9].value ? (
+              <div className="flex gap-10 border-b-2 border-b-[#C9C9C9] px-5 items-center">
+                {/* <div className="text-base text-[#818181] font-poppins font-semibold cursor-pointer select-none py-3 text-center hover:text-black">
+                  Timeline
+                </div> */}
+                <div className="text-base text-[#818181] font-poppins font-semibold cursor-pointer select-none py-3 text-center hover:text-black"
+                  onClick={() => {
+                    navigate(`/profile/edit?page=about`);
+                  }}>
+                  About
+                </div>
+                <div className="text-base text-[#818181] font-poppins font-semibold cursor-pointer select-none py-3 text-center hover:text-black"
+                  onClick={() => {
+                    navigate(`/profile/edit?page=album`);
+                  }}>
+                  Album
+                </div>
+                <div className="text-base text-[#818181] font-poppins font-semibold cursor-pointer select-none py-3 text-center hover:text-black"
+                  onClick={() => {
+                    navigate(`/profile/edit?page=friends`);
+                  }}>
+                  Friends
+                </div>
               </div>
-              <div className="text-base text-[#818181] font-poppins font-semibold cursor-pointer select-none py-3 text-center hover:text-black"
-                onClick={() => {
-                  navigate(`/profile/edit?page=about`);
-                }}>
-                Complete Profile
-              </div>
-            </div>
+            ) : ""
+            }
+
+
             <div className="mt-[30px]">
               {tab === options[0].value ? (
                 <BasicInformation />
@@ -258,6 +294,10 @@ const ProfileEdit: React.FC<IProfileEditProps> = () => {
                 <ChangePassword />
               ) : tab === options[6].value ? (
                 <UpdateProfilePicture />
+              ) : tab === options[7].value ? (
+                <BlockedUsers />
+              ) : tab === options[8].value ? (
+                <Friends />
               ) : (
                 <About />
               )}

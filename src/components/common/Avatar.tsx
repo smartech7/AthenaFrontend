@@ -25,9 +25,9 @@ const Avatar: React.FunctionComponent<IAvatarProps> = ({
       <AvatarFallback>
         {user
           ? user.name
-              .split(' ')
-              .map((subName) => subName.slice(0, 1))
-              .join('')
+            .split(' ')
+            .map((subName) => subName.slice(0, 1))
+            .join('')
           : 'DM'}
       </AvatarFallback>
     </RawAvatar>

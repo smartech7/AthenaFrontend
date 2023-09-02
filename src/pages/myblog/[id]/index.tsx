@@ -18,7 +18,7 @@ import { useBlogContext } from '@/context/BlogContext';
 
 // import CommentBox from '@/components/widgets/blog/CommentBox';
 
-const BlogDetail = () => {
+const MyBlogDetail = () => {
   const params = useParams();
   const navigate = useNavigate();
   const { categories } = useBlogContext();
@@ -185,4 +185,4 @@ const BlogDetail = () => {
   );
 };
 
-export default BlogDetail;
+export default MyBlogDetail;

@@ -23,7 +23,7 @@ const FriendRequestItem: React.FunctionComponent<IFriendRequestItemProps> = ({
   return (
     <div>
       <div className="flex items-start gap-4">
-        <Avatar className="w-[50px] h-[50px]">
+        <Avatar className="w-[50px] hover:w-[50px] h-[50px]">
           <AvatarImage src={item.avatar} alt="" />
           <AvatarFallback>
             {item.name
@@ -43,8 +43,8 @@ const FriendRequestItem: React.FunctionComponent<IFriendRequestItemProps> = ({
               item.role === 'VIP'
                 ? 'text-[#8874DC]'
                 : item.role === 'Moderator'
-                ? 'text-[#4C7737]'
-                : 'text-[#AAA]'
+                  ? 'text-[#4C7737]'
+                  : 'text-[#AAA]'
             )}
           >
             {item.role}
@@ -68,13 +68,13 @@ const FriendRequestItem: React.FunctionComponent<IFriendRequestItemProps> = ({
           </Button>
         </div>
         <div className="flex-1">
-        <Button
-          variant="filled"
-          className="bg-[#F4F4F4] text-[#434343] flex-1 max-w-[150px] mx-auto h-[40px] flex items-center justify-center"
-          fullWidth
-        >
-          Decline
-        </Button>
+          <Button
+            variant="filled"
+            className="bg-[#F4F4F4] text-[#434343] flex-1 max-w-[150px] mx-auto h-[40px] flex items-center justify-center"
+            fullWidth
+          >
+            Decline
+          </Button>
         </div>
       </div>
     </div>

@@ -3,6 +3,7 @@ import { z } from 'zod';
 export const blogValidator = z.object({
   _id: z.string().optional(),
   title: z.string().default(''),
+  ititle: z.string().default(''),
   tag: z.string().default(''),
   banner: z.string().default(''),
   body: z.string().default(''),

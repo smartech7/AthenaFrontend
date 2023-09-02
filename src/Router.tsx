@@ -7,6 +7,12 @@ import BlogCreate from '@/pages/blog/create';
 import BlogDetail from '@/pages/blog/[id]';
 import BlogEdit from '@/pages/blog/[id]/edit';
 import BlogHome from '@/pages/blog';
+
+import MyBlogCreate from '@/pages/myblog/create';
+import MyBlogDetail from '@/pages/myblog/[id]';
+import MyBlogEdit from '@/pages/myblog/[id]/edit';
+import MyBlogHome from '@/pages/myblog';
+
 import DashboardLayout from '@/pages/dashboard/layout';
 import Layout from '@/pages/layout';
 import Logout from '@/components/widgets/auth/Logout';
@@ -43,6 +49,12 @@ export default function Router() {
             <Route path="create" element={<BlogCreate />} />
             <Route path=":id" element={<BlogDetail />} />
             <Route path=":id/edit" element={<BlogEdit />} />
+          </Route>
+          <Route path="myblog" element={<DashboardLayout />}>
+            <Route index element={<MyBlogHome />} />
+            <Route path="create" element={<MyBlogCreate />} />
+            <Route path=":id" element={<MyBlogDetail />} />
+            <Route path=":id/edit" element={<MyBlogEdit />} />
           </Route>
         </Route>
       )}
