@@ -5,13 +5,13 @@ FROM node:18.14
 WORKDIR /app
 
 # Copy the package.json and yarn.lock files to the container
-COPY package.json yarn.lock ./
+COPY . .
 
 # Install the app's dependencies
-RUN yarn install --frozen-lockfile
+# RUN yarn install --frozen-lockfile
 
 # Copy the rest of the app's source code to the container
-COPY . .
+# COPY . .
 
 # Expose port 3000 for the app to listen on
 EXPOSE 5137
