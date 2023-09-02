@@ -16,6 +16,33 @@ interface ISharePopupProps {
 
 const SharePopup: React.FC<ISharePopupProps> = ({ link, children }) => {
   const [isCopied, setIsCopied] = useState<boolean>(false);
+
+  function getShareUrls(blogUrl: string) {
+    const encodedUrl = encodeURIComponent(blogUrl);
+    const title = "Diving Deeper into React JS: Exploring Advanced Concepts"; // Replace with your blog title
+
+    const facebookShareUrl = `https://www.facebook.com/sharer/sharer.php?display=page&u=${encodedUrl}`;
+    const whatsappShareUrl = `https://wa.me/?text=${encodedUrl}`;
+    const telegramShareUrl = `https://t.me/share/url?url=${encodedUrl}&text=${encodeURIComponent(title)}`;
+    const redditShareUrl = `https://reddit.com/submit?url=${encodedUrl}&title=${encodeURIComponent(title)}`;
+    const linkedinShareUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encodedUrl}`;
+    const skypeShareUrl = `https://web.skype.com/share?url=${encodedUrl}&text=${encodeURIComponent(title)}`;
+    const tiktokShareUrl = `https://www.tiktok.com/sharing?u=${encodedUrl}&title=${encodeURIComponent(title)}`;
+
+    return {
+      facebook: facebookShareUrl,
+      whatsapp: whatsappShareUrl,
+      telegram: telegramShareUrl,
+      reddit: redditShareUrl,
+      linkedin: linkedinShareUrl,
+      skype: skypeShareUrl,
+      tiktok: tiktokShareUrl
+    };
+  }
+
+
+  const shareUrls = getShareUrls(link);
+
   return (
     <Popover placement="bottom">
       <PopoverHandler>
@@ -26,7 +53,7 @@ const SharePopup: React.FC<ISharePopupProps> = ({ link, children }) => {
           Share
         </h5>
         <div className="flex justify-between gap-3 mt-5">
-          <Link to="https://facebook.com">
+          <Link to={shareUrls.facebook}>
             <div className="flex flex-col items-center gap-1">
               <img src="/images/facebook.svg" width={30} height={30} />
               <p className="text-[10px] font-medium font-montserrat">
@@ -34,19 +61,19 @@ const SharePopup: React.FC<ISharePopupProps> = ({ link, children }) => {
               </p>
             </div>
           </Link>
-          <Link to="https://tiktok.com">
+          <Link to={shareUrls.tiktok}>
             <div className="flex flex-col items-center gap-1">
               <img src="/images/tiktok.svg" width={30} height={30} />
               <p className="text-[10px] font-medium font-montserrat">Tiktok</p>
             </div>
           </Link>
-          <Link to="https://web.skype.com">
+          <Link to={shareUrls.skype}>
             <div className="flex flex-col items-center gap-1">
               <img src="/images/skype.svg" width={30} height={30} />
               <p className="text-[10px] font-medium font-montserrat">Skype</p>
             </div>
           </Link>
-          <Link to="https://whatsapp.com">
+          <Link to={shareUrls.whatsapp}>
             <div className="flex flex-col items-center gap-1">
               <img src="/images/whatsapp.svg" width={30} height={30} />
               <p className="text-[10px] font-medium font-montserrat">
@@ -54,7 +81,7 @@ const SharePopup: React.FC<ISharePopupProps> = ({ link, children }) => {
               </p>
             </div>
           </Link>
-          <Link to="https://web.telegram.org">
+          <Link to={shareUrls.telegram}>
             <div className="flex flex-col items-center gap-1">
               <img src="/images/telegram.svg" width={30} height={30} />
               <p className="text-[10px] font-medium font-montserrat">

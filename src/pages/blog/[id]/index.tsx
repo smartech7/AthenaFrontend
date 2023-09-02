@@ -117,7 +117,7 @@ const BlogDetail = () => {
                 </Button>
               </div>
             )}
-            <SharePopup link={'https://donamix.com'}>
+            <SharePopup link={window.location.href}>
               <Button className="p-2 text-2xl text-white rounded-full bg-white/20">
                 <TiArrowForward />
               </Button>
