@@ -90,7 +90,7 @@ const BlogDetail = () => {
                 <Button
                   className="p-2 text-2xl text-white rounded-full bg-white/20"
                   onClick={() => {
-                    navigate(`/blog/${item._id}/edit`);
+                    navigate(`/blog/${item.ititle}/edit`);
                   }}
                 >
                   <BiEdit />

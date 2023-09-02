@@ -2,7 +2,7 @@ import { Blog, blogValidator } from '@/lib/validation/blog';
 import CONSTANTS, { Option } from '@/config/constants';
 import { Card, CardBody, Input, Spinner } from '@material-tailwind/react';
 import Select, { Theme } from 'react-select';
-import { getBlogById, getBlogCategories, updateBlog } from '@/api/blog';
+import { getBlogByName, getBlogCategories, updateBlog } from '@/api/blog';
 import { useEffect, useRef, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 
@@ -56,7 +56,7 @@ const BlogEdit = () => {
   useEffect(() => {
     if (params && params.id) {
       console.log(params.id);
-      getBlogById(params.id)
+      getBlogByName(params.id)
         .then((res) => {
           if (res.code === CONSTANTS.SUCCESS) {
             setItem(res.data!);
@@ -123,6 +123,7 @@ const BlogEdit = () => {
       tag: typeof input.tag === 'string' ? input.tag : input.tag.value,
       userId: user._id,
     });
+    console.log(newBlog)
     updateBlog(item?._id as string, newBlog)
       .then((res) => {
         if (res.code === CONSTANTS.SUCCESS) {

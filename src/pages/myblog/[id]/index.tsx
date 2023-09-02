@@ -90,7 +90,7 @@ const MyBlogDetail = () => {
                 <Button
                   className="p-2 text-2xl text-white rounded-full bg-white/20"
                   onClick={() => {
-                    navigate(`/blog/${item._id}/edit`);
+                    navigate(`/myblog/${item.ititle}/edit`);
                   }}
                 >
                   <BiEdit />
@@ -163,7 +163,7 @@ const MyBlogDetail = () => {
                   deleteBlog(item._id!)
                     .then((res) => {
                       if (res.code === CONSTANTS.SUCCESS) {
-                        navigate('/blog');
+                        navigate('/myblog');
                         toast.success(res.message);
                       } else {
                         toast.error(res.message);

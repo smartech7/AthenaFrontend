@@ -145,9 +145,6 @@ export default function RegisterForm() {
           }}
         >
           <img src="/images/google.svg" width={26} height={26} />
-          <span className="hidden text-xs font-medium leading-4 lg:block xl:text-sm">
-            Sign in with Google
-          </span>
         </Button>
         <div className="flex-1 lg:flex-none">
           <FacebookLogin

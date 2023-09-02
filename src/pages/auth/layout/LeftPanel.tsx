@@ -17,14 +17,14 @@ export default function LeftPanel() {
           <a className="text-white" href="#">Work with us</a>
         </div>
         <div className="flex items-center justify-center gap-3 ">
-          <img src="/images/app_store.svg" width={180} height={64} />
-          <img src="/images/google_play.svg" width={180} height={64} />
+          <img src="/images/app_store.svg" className="ls:width-[180px] ls:height-[64px] width-[120px] ls:height-[42px]" />
+          <img src="/images/google_play.svg" className="ls:width-[180px] ls:height-[64px] width-[120px] ls:height-[42px]" />
         </div>
         <div className="px-5 text-center bg-transparent 2xl:px-20 2xl:container">
-          <h2 className="text-white text-[30px] font-semibold">
+          <h2 className="text-white text-[22px] mt-5 ls:text-[30px] font-semibold">
             Join the Global Community
           </h2>
-          <p className="text-white text-[22px] mt-5">
+          <p className="text-white text-[19px] mt-5 ls:text-[22px]">
             Connect, Share and Discover. Explore Boundless Possibilities with
             Donamix — The Ultimate Social Network Experience
           </p>

@@ -150,6 +150,32 @@ const ProfileEdit: React.FC<IProfileEditProps> = () => {
     );
   }
 
+  const SaveAvatar = (avatar: string) => {
+    // setIsSaving(true);
+    alert(avatar)
+    const newUser: User = userValidator.parse({
+      ...user,
+      avatar: avatar,
+    });
+
+    updateUser(user._id, newUser)
+      .then((res) => {
+        if (res.code === CONSTANTS.SUCCESS) {
+          reload();
+          console.log(res);
+          toast.success(res.message);
+        } else {
+          toast.error(res.message);
+        }
+      })
+      .catch((err) => {
+        console.warn(err);
+      })
+      .finally(() => {
+
+      });
+  };
+
   return (
     <div>
       <div
@@ -207,14 +233,19 @@ const ProfileEdit: React.FC<IProfileEditProps> = () => {
 
             <FileUpload
               onSuccess={({ url }: { url: string }) => {
-                // setAvatar(url);
+                SaveAvatar(url);
               }}
-              className="absolute bottom-0"
+              className="absolute bottom-0 "
             >
-              <Avatar
-                className="w-[170px] h-[170px] hover:scale-110 translate-y-1/2 text-[40px] font-bold border-white border-4 p-0"
-                user={user}
-              ></Avatar>
+              <div className="w-[170px] h-[170px] relative hover:scale-110 hover:translate-y-[-5%] transition-transform duration-300 ease-out">
+
+                <Avatar
+                  className="w-100 h-100 translate-y-1/2 text-[40px] font-bold border-white border-4 p-0 !important"
+                  user={user}
+                ></Avatar>
+                <img src='/images/avatarhover.png' className='absolute top-[85px] w-[170px] h-[170px]  p-0 bg-contain bg-no-repeat opacity-0 hover:opacity-50 transition-opacity duration-500 ease-out' />
+
+              </div>
             </FileUpload>
           </div>
         </div>
