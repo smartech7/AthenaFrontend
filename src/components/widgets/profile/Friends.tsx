@@ -51,7 +51,7 @@ const Friends: React.FC<IFriendsProps> = ({ }) => {
             </div>
           </div>
           <Button className="col-span-5 text-white bg-black  sm:col-span-3 whitespace-nowrap">
-            Unblock
+            UnFriend
           </Button>
         </div>
         <div className="rounded-[9px] flex align-center items-center gap-7 px-[13px] justify-between">
@@ -65,7 +65,7 @@ const Friends: React.FC<IFriendsProps> = ({ }) => {
             </div>
           </div>
           <Button className="col-span-5 text-white bg-black  sm:col-span-3 whitespace-nowrap">
-            Unblock
+            UnFriend
           </Button>
         </div>
         <div className="rounded-[9px] flex align-center items-center gap-7 px-[13px] justify-between">
@@ -79,7 +79,7 @@ const Friends: React.FC<IFriendsProps> = ({ }) => {
             </div>
           </div>
           <Button className="col-span-5 text-white bg-black  sm:col-span-3 whitespace-nowrap">
-            Unblock
+            UnFriend
           </Button>
         </div>
         <div className="rounded-[9px] flex align-center items-center gap-7 px-[13px] justify-between">
@@ -93,7 +93,7 @@ const Friends: React.FC<IFriendsProps> = ({ }) => {
             </div>
           </div>
           <Button className="col-span-5 text-white bg-black  sm:col-span-3 whitespace-nowrap">
-            Unblock
+            UnFriend
           </Button>
         </div>
       </section>
