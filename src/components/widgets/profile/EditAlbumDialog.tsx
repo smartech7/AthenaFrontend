@@ -114,7 +114,7 @@ const EditAlbumDialog: React.FC<IEditAlbumDialogProps> = ({
     <Dialog open={open} handler={onClose}>
       <DialogHeader>Create Album</DialogHeader>
       <DialogBody divider className="flex flex-col gap-4">
-        <Input
+        {/* <Input
           placeholder="Title"
           name="title"
           value={input.title}
@@ -126,7 +126,7 @@ const EditAlbumDialog: React.FC<IEditAlbumDialogProps> = ({
           name="description"
           value={input.description}
           onChange={onInputChange}
-        />
+        /> */}
 
         <div className="bg-gray-300 w-full h-[400px] overflow-y-auto rounded-xl outline-dashed outline-gray-400 outline-2 p-4">
           <div className="flex flex-wrap gap-4">
