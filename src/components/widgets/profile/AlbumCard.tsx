@@ -119,7 +119,7 @@ const AlbumCard: React.FC<IAlbumCardProps> = ({ item }) => {
             <div
               key={`album-img-${i}`}
               className="h-[200px] w-4/5 bg-cover bg-center rounded-[5px] border border-gray-10"
-              style={{ backgroundImage: `url(${img.image})` }}
+              style={{ backgroundImage: `url(${img.image})`, backgroundSize: "contain", backgroundRepeat: "no-repeat" }}
             ></div>
           ))}
         </Carousel>
