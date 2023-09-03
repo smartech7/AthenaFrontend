@@ -12,15 +12,37 @@ interface IAboutProps { }
 const About: React.FC<IAboutProps> = ({ }) => {
   const { user } = useAuthContext();
   // const dropdownRef = useRef(null);
+  const modalRef = useRef(null);
 
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState<number>(0);
   const handleMenuClick = () => {
-    setIsMenuOpen(!isMenuOpen);
+    setIsMenuOpen(isMenuOpen > 0 ? 0 : 1);
+    console.log("MenuClick");
   };
 
   const handleMenuItemClick = () => {
-    setIsMenuOpen(false);
+    setIsMenuOpen(0);
   };
+
+  const handleOutsideClick = (event: any) => {
+    console.log('123', event, event.type, isMenuOpen, event.type == 'click' && isMenuOpen == 2)
+    if (event.type == 'click' && isMenuOpen == 2) {
+      setIsMenuOpen(0);
+    }
+    if (event.type == 'click' && isMenuOpen == 1) {
+      setIsMenuOpen(2);
+    }
+
+  };
+
+  useEffect(() => {
+    console.log("isMenuOpen", isMenuOpen)
+    document.body.addEventListener("click", handleOutsideClick);
+
+    return () => {
+      document.body.removeEventListener("click", handleOutsideClick);
+    };
+  })
 
   // const handleClickOutside = (event: any) => {
   //   if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
@@ -56,11 +78,11 @@ const About: React.FC<IAboutProps> = ({ }) => {
           Send Gift
 
         </Button>
-        <Button className="col-span-2 p-0 text-lg text-black bg-white sm:col-span-1">
-          <BiDotsVerticalRounded onClick={handleMenuClick} />
+        <Button className="col-span-2 p-0 text-lg text-black bg-white sm:col-span-1" onClick={handleMenuClick}>
+          <BiDotsVerticalRounded />
         </Button>
-        {isMenuOpen && (
-          <div className="absolute right-4 z-10 w-52 mt-10 origin-top-right bg-white border border-gray-200 divide-y divide-gray-100 rounded-md shadow-lg">
+        {isMenuOpen > 0 && (
+          <div ref={modalRef} className="absolute right-4 z-10 w-52 mt-10 origin-top-right bg-white border border-gray-200 divide-y divide-gray-100 rounded-md shadow-lg">
             <div className="py-1">
               <a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900" onClick={handleMenuItemClick}>Block & Report</a>
             </div>
