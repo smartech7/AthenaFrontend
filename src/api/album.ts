@@ -79,3 +79,75 @@ export const createAlbum = async (data: Album) => {
       });
   });
 };
+
+export const editAlbum = async (id: string, data: Album) => {
+  return new Promise<{ code: string; message: string }>((resolve, reject) => {
+    axios
+      .post(`${apiUrl}/profile/editalbum/${id}`, data)
+      .then((res) => {
+        if (res.data.message === CONSTANTS.SUCCESS) {
+          resolve({
+            code: CONSTANTS.SUCCESS,
+            message: 'Saved Successfully!',
+          });
+        } else {
+          console.log(res);
+          reject({
+            code: CONSTANTS.FAILED,
+            message: res.data.status,
+          });
+        }
+      })
+      .catch((err: AxiosError) => {
+        console.log('Error while edit album:', err);
+        reject({
+          code: CONSTANTS.FAILED,
+          message: err.response
+            ? err.response.status
+            : 'Failed with unknown error.',
+        });
+      })
+      .finally(() => {
+        reject({
+          code: CONSTANTS.FAILED,
+          message: 'Failed with unknown error.',
+        });
+      });
+  });
+};
+
+export const deleteAlbum = async (id: any) => {
+  return new Promise<{ code: string; message: string }>((resolve, reject) => {
+    axios
+      .delete(`${apiUrl}/profile/deletealbum/${id}`)
+      .then((res) => {
+        if (res.data.message === CONSTANTS.SUCCESS) {
+          resolve({
+            code: CONSTANTS.SUCCESS,
+            message: 'Deleted Successfully!',
+          });
+        } else {
+          console.log(res);
+          reject({
+            code: CONSTANTS.FAILED,
+            message: res.data.status,
+          });
+        }
+      })
+      .catch((err: AxiosError) => {
+        console.log('Error while edit album:', err);
+        reject({
+          code: CONSTANTS.FAILED,
+          message: err.response
+            ? err.response.status
+            : 'Failed with unknown error.',
+        });
+      })
+      .finally(() => {
+        reject({
+          code: CONSTANTS.FAILED,
+          message: 'Failed with unknown error.',
+        });
+      });
+  });
+};

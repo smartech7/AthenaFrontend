@@ -205,7 +205,7 @@ export const verifyOtp = async (data: { email: string; token: string }) => {
     axios
       .post(`${apiUrl}/auth/verifyotp`, data)
       .then((res) => {
-        resolve({
+          resolve({
           code: res.data.message,
           token: res.data.status,
           message: res.data.message=="failed"?'Invalid Verification Code':'Verified successfully!'

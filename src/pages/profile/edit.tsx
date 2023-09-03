@@ -7,11 +7,13 @@ import { useNavigate, useSearchParams } from 'react-router-dom';
 import About from '@/components/widgets/profile/About';
 import AccountSettings from '@/components/widgets/profile/AccountSettings';
 import Albums from '@/components/widgets/profile/Albums';
+import MyAlbums from '@/components/widgets/profile/MyAlbums';
 import Avatar from '@/components/common/Avatar';
 import BasicInformation from '@/components/widgets/profile/BasicInformation';
 import BlockedUsers from '@/components/widgets/profile/BlockedUsers';
 
 import Friends from '@/components/widgets/profile/Friends';
+import Timeline from '@/components/widgets/profile/Timeline';
 import { BiSolidPhotoAlbum } from 'react-icons/bi';
 import Button from '@/components/common/Button';
 import CONSTANTS from '@/config/constants';
@@ -84,7 +86,7 @@ const options = [
   {
     value: 'blocked-user',
     icon: <MdBlock />,
-    title: 'Blocked User',
+    title: 'Blocked Members',
   },
   {
     value: 'friends',
@@ -96,7 +98,16 @@ const options = [
     icon: <MdInfo />,
     title: 'About',
   },
-
+  {
+    value: 'myalbum',
+    icon: <MdInfo />,
+    title: 'Album',
+  },
+  {
+    value: 'timeline',
+    icon: <MdInfo />,
+    title: 'Album',
+  },
 ];
 
 // const pages = [
@@ -282,7 +293,7 @@ const ProfileEdit: React.FC<IProfileEditProps> = () => {
           </div>
           <div className="flex-1 px-2 lg:px-[84px] py-[20px] mt-[85px] lg:mt-0">
 
-            {tab === options[9].value ? (
+            {tab === options[9].value || tab === options[8].value || tab === options[10].value || tab === options[11].value ? (
               <div className="flex gap-10 border-b-2 border-b-[#C9C9C9] px-5 items-center">
                 {/* <div className="text-base text-[#818181] font-poppins font-semibold cursor-pointer select-none py-3 text-center hover:text-black">
                   Timeline
@@ -295,13 +306,13 @@ const ProfileEdit: React.FC<IProfileEditProps> = () => {
                 </div>
                 <div className="text-base text-[#818181] font-poppins font-semibold cursor-pointer select-none py-3 text-center hover:text-black"
                   onClick={() => {
-                    // navigate(`/profile/edit?page=about`);
+                    navigate(`/profile/edit?page=timeline`);
                   }}>
                   Timeline
                 </div>
                 <div className="text-base text-[#818181] font-poppins font-semibold cursor-pointer select-none py-3 text-center hover:text-black"
                   onClick={() => {
-                    navigate(`/profile/edit?page=album`);
+                    navigate(`/profile/edit?page=myalbum`);
                   }}>
                   Album
                 </div>
@@ -335,6 +346,10 @@ const ProfileEdit: React.FC<IProfileEditProps> = () => {
                 <BlockedUsers />
               ) : tab === options[8].value ? (
                 <Friends />
+              ) : tab === options[10].value ? (
+                <MyAlbums />
+              ) : tab === options[11].value ? (
+                <Timeline />
               ) : (
                 <About />
               )}

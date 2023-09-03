@@ -1,4 +1,5 @@
 import { Album, albumValidator } from '@/lib/validation/album';
+import { useEffect } from 'react';
 import {
   Dialog,
   DialogBody,
@@ -11,19 +12,21 @@ import CONSTANTS from '@/config/constants';
 import FileUpload from '@/components/common/FileUpload';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
-import { createAlbum } from '@/api/album';
+import { createAlbum, editAlbum } from '@/api/album';
 import { toast } from 'react-hot-toast';
 import { useAuthContext } from '@/context/AuthContext';
 import { useState } from 'react';
 
-interface ICreateAlbumDialogProps {
+interface IEditAlbumDialogProps {
   open: boolean;
   onClose: () => void;
+  album: Album
 }
 
-const CreateAlbumDialog: React.FC<ICreateAlbumDialogProps> = ({
+const EditAlbumDialog: React.FC<IEditAlbumDialogProps> = ({
   open,
   onClose,
+  album
 }) => {
   const { user } = useAuthContext();
   const [input, setInput] = useState<{
@@ -35,11 +38,12 @@ const CreateAlbumDialog: React.FC<ICreateAlbumDialogProps> = ({
       image: string;
       createdAt: string;
     }>;
-  }>({
-    title: '',
-    description: '',
-    images: [],
-  });
+  }>(album);
+
+  useEffect(() => {
+    setInput(album);
+    console.log("Here's input", input);
+  }, [open]);
   const [isSaving, setIsSaving] = useState<boolean>(false);
 
   const onInputChange = (
@@ -67,17 +71,23 @@ const CreateAlbumDialog: React.FC<ICreateAlbumDialogProps> = ({
     }));
   };
 
+  const closeClick = (index: number) => {
+    setInput((prev) => ({
+      ...prev,
+      images: prev.images.filter((_, i) => i !== index),
+    }));
+  };
+
   const onSubmit = () => {
     if (!user) return;
 
     setIsSaving(true);
     const newAlbum: Album = albumValidator.parse({
       ...input,
-      _id: "",
       userId: user._id,
     });
-    console.log(newAlbum)
-    createAlbum(newAlbum)
+
+    editAlbum(album._id ? album._id : "", newAlbum)
       .then((res) => {
         if (res.code === CONSTANTS.SUCCESS) {
           toast.success(res.message);
@@ -100,14 +110,6 @@ const CreateAlbumDialog: React.FC<ICreateAlbumDialogProps> = ({
     })
 
   };
-
-  const closeClick = (index: number) => {
-    setInput((prev) => ({
-      ...prev,
-      images: prev.images.filter((_, i) => i !== index),
-    }));
-  };
-
   return (
     <Dialog open={open} handler={onClose}>
       <DialogHeader>Create Album</DialogHeader>
@@ -141,7 +143,8 @@ const CreateAlbumDialog: React.FC<ICreateAlbumDialogProps> = ({
                       clipRule="evenodd"
                     />
                   </svg>
-                </button></div>
+                </button>
+              </div>
             ))}
 
             <FileUpload onSuccess={onAddImage}>
@@ -167,4 +170,4 @@ const CreateAlbumDialog: React.FC<ICreateAlbumDialogProps> = ({
   );
 };
 
-export default CreateAlbumDialog;
+export default EditAlbumDialog;

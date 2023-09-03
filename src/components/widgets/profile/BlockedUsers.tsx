@@ -37,7 +37,7 @@ const BlockedUsers: React.FC<IBlockedUsersProps> = ({ }) => {
 
   return (
     <div>
-      <h3 className="text-xl font-semibold text-black font-poppins">Blocked Users</h3>
+      <h3 className="text-xl font-semibold text-black font-poppins">Blocked Members</h3>
 
       {/* <section className="grid grid-cols-10 gap-2 mt-4">
         <Button className="col-span-5 text-black bg-white sm:col-span-3 whitespace-nowrap">

@@ -22,7 +22,7 @@ const Avatar: React.FunctionComponent<IAvatarProps> = ({
   return (
     <RawAvatar className={className}>
       <AvatarImage src={src ? src : ((user && user.avatar) ? user.avatar : '')} />
-      <AvatarFallback>
+      <AvatarFallback >
         {user
           ? user.name
             .split(' ')
