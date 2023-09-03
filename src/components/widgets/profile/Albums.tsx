@@ -10,12 +10,39 @@ import { getMyAlbums, deleteAlbum } from '@/api/album';
 import { useAuthContext } from '@/context/AuthContext';
 
 const Albums = () => {
+  const [showConfirmation, setShowConfirmation] = useState<boolean>(false);
+  const [albumIndex, setAlbumIndex] = useState<number>(0);
   const { user } = useAuthContext();
   const [albums, setAlbums] = useState<Album[]>([]);
   const [cur, setCur] = useState<number>(0);
   const [isCreateModalOpen, setIsCreateModalOpen] = useState<boolean>(false);
 
   const [isEditModalOpen, setIsEditModalOpen] = useState<boolean>(false);
+
+  const handleRemoveAlbum = (i: number) => {
+    setAlbumIndex(i);
+    setShowConfirmation(true);
+  };
+
+  const handleConfirmRemoveAlbum = async (confirm: boolean) => {
+    if (confirm) {
+      // setAlbumEdit(albumIndex);
+      await deleteAlbum(albums[albumIndex]._id ? albums[albumIndex]._id : "")
+      getMyAlbums()
+        .then((res) => {
+          setAlbums(res && res.data ? res.data : []);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+      // let newalbums = albums
+      // newalbums.splice(albumIndex, 1);
+      // setAlbums(newalbums)
+    } else {
+
+    }
+    setShowConfirmation(false);
+  };
 
   useEffect(() => {
     getMyAlbums()
@@ -59,17 +86,6 @@ const Albums = () => {
     setIsEditModalOpen(true);
   };
 
-  const removeAlbum = (i: number) => {
-    console.log(i, albums[i]._id ? albums[i]._id : "")
-    deleteAlbum(albums[i]._id ? albums[i]._id : "")
-    getMyAlbums()
-      .then((res) => {
-        if (res && res.data) setAlbums(res.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
 
 
   const onCloseEditModal = () => {
@@ -96,6 +112,17 @@ const Albums = () => {
 
   return (
     <div className='overflow-visible lg:profile-edit-panel-lg profile-edit-panel'>
+      {showConfirmation && (
+        <div className="z-10 fixed top-0 left-0 w-full h-full bg-gray-700 bg-opacity-50 flex justify-center items-center">
+          <div className="bg-white p-4 rounded-lg">
+            <p className="text-lg font-medium mb-4">Do you really want to remove this album?</p>
+            <div className="flex justify-end">
+              <button className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded mr-2" onClick={() => handleConfirmRemoveAlbum(false)}>No</button>
+              <button className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded" onClick={() => handleConfirmRemoveAlbum(true)}>Yes</button>
+            </div>
+          </div>
+        </div>
+      )}
       <CreateAlbumDialog
         open={isCreateModalOpen}
         onClose={onCloseCreateModal}
@@ -108,7 +135,6 @@ const Albums = () => {
       <h3 className="text-black font-poppins text-xl font-semibold">
         Manage Albums
       </h3>
-
       <div className="flex flex-col gap-3 mt-5">
         {albums.length > 0 ? (
           albums.map((val: Album, i: number) => (
@@ -128,7 +154,7 @@ const Albums = () => {
                   </svg>
 
                 </button>
-                <button className="bg-red-500 hover:bg-red-700 text-white font-bold  rounded-r flex items-center justify-center" onClick={() => removeAlbum(i)}>
+                <button className="bg-red-500 hover:bg-red-700 text-white font-bold rounded-r flex items-center justify-center" onClick={() => handleRemoveAlbum(i)}>
                   <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
                   </svg>
